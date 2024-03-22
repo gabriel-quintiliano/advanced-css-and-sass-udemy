@@ -6,3 +6,46 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+/* basic "global" reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* margins and paddings are NOT added to the total size of the element */
+}
+
+body {
+  /* everything related to "global" fonts should be done in the body tag selector, because
+   * this way every element within <body> will inherit these style and its also more efficient
+   * that doing the same via the `*` selector, which selects each element "individually", here
+   * we're using the power of inheritance */
+
+  font-family: "Lato", sans-serif; /* Use "Lato" font-family if available, otherwise use "sans-serif" */
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7; /* now line-height will be 1.7x bigger than the pre-defined line-height*/
+  color: #777; /* sets text color */
+  padding: 30px; /* this padding will not be inherited by elements within <body> */
+}
+
+.header {
+  /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */
+  height: calc(98vh - (60px - 3vh)); /* 97% of the viewport height*/
+  /* height: calc(97vh - 30px); 95% of the viewport height */
+  /* always apply a gradient on the background via the `background-image` css prop, and if its the case
+   * define the actual bg image afterwards, this way the gradient will be on top of the image - make sure
+  * to correctly adjust the gradient opacity */
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.8),
+      rgba(40, 180, 131, 0.8)
+    ),
+    url("../img/hero.jpg");
+  background-size: cover; /* directly on replaced elements, e.g. <img>, <video>, you can use `object-fit` */
+  background-position: top; /* tells which part of the bg should be "fixed" and will never go out of the frame */
+
+  /* clip-path apply a "mask" in the object, you define the coordinate based on what you want to be shown on
+   * screen - the `polygon` function receives coordinates to create as polygon shaped mask.
+   * Fortunately, coordinates can be dynamic and passed as percentages */
+  clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+}
