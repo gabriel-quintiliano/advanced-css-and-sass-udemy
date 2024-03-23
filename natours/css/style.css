@@ -79,6 +79,9 @@ body {
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
+
+  /* maybe this is needed if animations (of child elems of this) flick, this prop somehow fixes it */
+  backface-visibility: hidden;
 }
 
 .heading-primary-main {
@@ -86,6 +89,15 @@ body {
   font-size: 60px;
   font-weight: 400;
   letter-spacing: 35px;
+
+  animation-name: moveInLeft;
+  animation-duration: 1.3s;
+  animation-timing-function: ease-out;
+
+  /*
+  animation-delay: 3s; - delay for the animation to start
+  animation-iteration-count: 3; - how many times should the animation be repeated
+  */
 }
 
 .heading-primary-sub {
@@ -93,4 +105,52 @@ body {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 17.4px;
+
+  animation: moveInRight 1.3s ease-out; /* this is the shortcut for everything described bellow */
+  /* animation-name: moveInRight;
+  animation-duration: 1.3s;
+  animation-timing-function: ease-out; */
+}
+
+/* regarding browser performance, it's better to only ever animate the `opacity` and `transform` properties
+ * because these only trigger the `composite` phase of rendering the element on screen, the other phases,
+ * `style`, `layout` (of elements) and `paint` are skipped.
+ *
+ * of course you can animate other properties, but remember that browser animations are only optimized for
+ * `opacity` and `transform`. This video `https://www.youtube.com/watch?v=N5EW4HnF6FU` demonstrates this in
+ * practice.
+ *
+ * for example when you deal with an element's width or margin you're also messing with the positioning of
+ * the elements next to it and because of that, animations with those become less performant and look bad. */
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    /* translateX repositions the element on the x axis relative to its initial position */
+    transform: translateX(-100px); /* the animation starts with the elem. 100px to the left */
+  }
+  
+  80% {
+    transform: translateX(10px);
+  }
+  
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* so the elem. is in its final position in the end of the animation */
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px); /* the animation starts with the elem. 100px to the right */
+  }
+  
+  80% {
+    transform: translateX(-10px);
+  }
+  
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* so the elem. is in its final position in the end of the animation */
+  }
 }
