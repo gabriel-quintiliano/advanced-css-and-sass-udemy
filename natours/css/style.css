@@ -177,6 +177,7 @@ body {
    * 2. define the time this style transition will take (from initial state - define above - to final state
    *    which is in this case defined in `.btn:hover` and `.btn:active`) */
   transition: all .2s;
+  position: relative;
 }
 
 .btn:hover {
@@ -193,4 +194,53 @@ body {
 .btn-white {
   background-color: #fff;
   color: #777;
+}
+
+/* ::after is a pseudo-element, which are virtual elements that are inserted as child-elements from the
+ * real html element, these will only appear on screen if they have `display` or `content` set, and you
+ * also need to define its `height` and `width` (remember, as these are within the real html element,
+ * the 100% value refers to the whole size of this element)
+ *  */
+.btn::after {
+  content: ""; /* it just need to have `content` set, it can even be empty */
+  display: inline-block;
+  height: 100%; /* refers to 100% of the `.btn` element */
+  width: 100%; /* refers to 100% of the `.btn` element */
+  border-radius: 7px;
+  position: absolute; /* this prop + `top: 0;` and `left: 0;` positions this pseudo-elem right over `.btn` */
+  top: 0;
+  left: 0;
+  transition: all .4s;
+  z-index: -1; /* so it hinds behind `.btn` */
+}
+
+/* ::after pseudo-element when hovered */
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6); /* scales this pseudo-element to twice its size */
+  opacity: 0;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn-animated {
+  /* animation: <animation-name> <animation-duration> <animation-timing-function> <animation-delay> */
+  animation: moveInBottom 0.65s ease-out .75s;
+
+  /* `backwards` value already applies styles define in the first `@keyframes` animation rules (0% in this
+   * case), during `animation-delay` (.75s in this case). */
+  animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px); /* the animation starts with the elem. 100px to the right */
+  }
+  
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* so the elem. is in its final position in the end of the animation */
+  }
 }
