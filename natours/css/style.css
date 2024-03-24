@@ -74,14 +74,16 @@ body {
    * the element's center. Relative to the element's own position, it repositions it 50% (of its length) to the left
    * and 50% (of its height) to the top */
   transform: translate(-50%, -50%);
+  text-align: center; /* this will make sure `.btn` element is centered */
 }
 
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
 
-  /* maybe this is needed if animations (of child elems of this) flick, this prop somehow fixes it */
+  /* maybe this is needed if animations (of child elements of this) flick, this prop somehow fixes it */
   backface-visibility: hidden;
+  margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -153,4 +155,42 @@ body {
     opacity: 1;
     transform: translateX(0); /* so the elem. is in its final position in the end of the animation */
   }
+}
+
+/* :link pseudo-class represents an unvisited anchor tag */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none; /* gets rid of that default underline in anchor tags text content */
+  padding: 15px 40px;
+  /* by setting `display: inline-block` the inner-display prop = `inline` and because of that you can treat
+   * this element as text (so it can be easily centered if its parent element has `text-align: center` set).
+   * the `inline-block` value is necessary so there is a box model for us to deal with margins and paddings... */
+  display: inline-block;
+  border-radius: 7px;
+
+  /* the `transition` property is a short-hand that will deal with the changing of style of an element,
+   * so in the end it can be seen as another way to approach animations.
+   * `transition` must always be set alongside the initial state styles.
+   *
+   * 1. define which css properties this transition will be applied to (if you don't know, use `all`)
+   * 2. define the time this style transition will take (from initial state - define above - to final state
+   *    which is in this case defined in `.btn:hover` and `.btn:active`) */
+  transition: all .2s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .2); /* value = x-axis y-axis blur color */
+}
+
+/* :active pseudo-class represents an anchor tag that is being clicked (left button of mouse pressed) */
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2); /* value = x-axis y-axis blur color */
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
 }
