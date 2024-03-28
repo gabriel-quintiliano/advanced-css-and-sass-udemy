@@ -43,7 +43,7 @@ body {
 
 .header {
   /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */
-  height: calc(98vh - (60px - 3vh)); /* 97% of the viewport height*/
+  height: calc(98vh - (60px - 2vh)); /* 98% of the viewport height (60px is for 2 * <body> padding (30px)) */
   /* height: calc(97vh - 30px); 95% of the viewport height */
   /* always apply a gradient on the background via the `background-image` css prop, and if its the case
    * define the actual bg image afterwards, this way the gradient will be on top of the image - make sure
