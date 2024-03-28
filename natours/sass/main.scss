@@ -1,36 +1,48 @@
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+$color-grey-dark: #777;
+$color-white: #fff;
+
 /* basic "global" reset - affects all html elements including before and after pseudo-elements */
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
+
   /* every element will inherit its box-sizing from its parent, which in this case will be the value
    * `box-sizing: border-box` set in <body>. Doing it this way (via inheritance) is considered a slightly
    * better approach than just setting it via the universal selector (I just dunno why) */
-  box-sizing: inherit; }
+  box-sizing: inherit;
+}
 
 html {
   font-size: 62.5%;
   /* 62.5% * 16px (which is generally browser font-size) = 10 px, thus 1rem = 10px */
-  /* rem is not supported bellow IE 9 */ }
+  /* rem is not supported bellow IE 9 */
+}
 
 body {
   /* everything related to "global" fonts should be done in the body tag selector, because
    * this way every element within <body> will inherit these style and its also more efficient
    * that doing the same via the `*` selector, which selects each element "individually", here
    * we're using the power of inheritance */
+
   font-family: "Lato", sans-serif;
   /* Use "Lato" font-family if available, otherwise use "sans-serif" */
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 1.7;
   /* now line-height will be 1.7x bigger than the pre-defined line-height*/
-  color: #777;
+  color: $color-grey-dark;
   /* sets text color */
   padding: 3rem;
   /* this padding will not be inherited by elements within <body> */
+
   box-sizing: border-box;
-  /* margins and paddings are NOT added to the total size of the element */ }
+  /* margins and paddings are NOT added to the total size of the element */
+}
 
 .header {
   /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */
@@ -40,29 +52,38 @@ body {
   /* always apply a gradient on the background via the `background-image` css prop, and if its the case
    * define the actual bg image afterwards, this way the gradient will be on top of the image - make sure
   * to correctly adjust the gradient opacity */
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
+  background-image: linear-gradient(to right bottom,
+      /* for rgba(), in regular css you must use numbers, but in scss you can also use hexadecimal values too */
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)),
+    url("../img/hero.jpg");
   background-size: cover;
   /* directly on replaced elements, e.g. <img>, <video>, you can use `object-fit` */
   background-position: top;
   /* tells which part of the bg should be "fixed" and will never go out of the frame */
+
   /* clip-path apply a "mask" in the object, you define the coordinate based on what you want to be shown on
    * screen - the `polygon` function receives coordinates to create as polygon shaped mask.
    * Fortunately, coordinates can be dynamic and passed as percentages */
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
   /* position: relative; is like `static` but respects reference values from `top`, `left`, `bottom` and `right`,
    * and also can be used as "anchor" to child elements which have `position: absolute` */
-  position: relative; }
+  position: relative;
+}
 
 .header__logo-box {
   position: absolute;
   top: 4rem;
   /* relative to it's closest positioned parent, `.header` in this case */
   left: 4rem;
-  /* relative to it's closest positioned parent, `.header` in this case */ }
+  /* relative to it's closest positioned parent, `.header` in this case */
+}
 
 .header__logo {
   height: 3.5rem;
-  /* by just setting `height` and omitting the `width`, this prop will be automatically figured out */ }
+  /* by just setting `height` and omitting the `width`, this prop will be automatically figured out */
+}
 
 .header__text-box {
   /* When you want to symmetrically center an element, just use flexbox prop on parents and child elements, but when
@@ -78,38 +99,46 @@ body {
    * and 50% (of its height) to the top */
   transform: translate(-50%, -50%);
   text-align: center;
-  /* this will make sure `.btn` element is centered */ }
+  /* this will make sure `.btn` element is centered */
+}
 
 .heading-primary {
-  color: #fff;
+  color: $color-white;
   text-transform: uppercase;
+
   /* maybe this is needed if animations (of child elements of this) flick, this prop somehow fixes it */
   backface-visibility: hidden;
-  margin-bottom: 6rem; }
+  margin-bottom: 6rem;
+}
 
 .heading-primary--main {
   display: block;
   font-size: 6rem;
   font-weight: 400;
   letter-spacing: 3.5rem;
+
   animation-name: moveInLeft;
   animation-duration: 1.3s;
   animation-timing-function: ease-out;
+
   /*
   animation-delay: 3s; - delay for the animation to start
   animation-iteration-count: 3; - how many times should the animation be repeated
-  */ }
+  */
+}
 
 .heading-primary--sub {
   display: block;
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 1.75rem;
+
   animation: moveInRight 1.3s ease-out;
   /* this is the shortcut for everything described bellow */
   /* animation-name: moveInRight;
   animation-duration: 1.3s;
-  animation-timing-function: ease-out; */ }
+  animation-timing-function: ease-out; */
+}
 
 /* regarding browser performance, it's better to only ever animate the `opacity` and `transform` properties
  * because these only trigger the `composite` phase of rendering the element on screen, the other phases,
@@ -126,25 +155,37 @@ body {
     opacity: 0;
     /* translateX repositions the element on the x axis relative to its initial position */
     transform: translateX(-10rem);
-    /* the animation starts with the elem. 10rem (100px) to the left */ }
+    /* the animation starts with the elem. 10rem (100px) to the left */
+  }
+
   80% {
-    transform: translateX(1rem); }
+    transform: translateX(1rem);
+  }
+
   100% {
     opacity: 1;
     transform: translateX(0);
-    /* so the elem. is in its final position in the end of the animation */ } }
+    /* so the elem. is in its final position in the end of the animation */
+  }
+}
 
 @keyframes moveInRight {
   0% {
     opacity: 0;
     transform: translateX(10rem);
-    /* the animation starts with the elem. 10rem (100px) to the right */ }
+    /* the animation starts with the elem. 10rem (100px) to the right */
+  }
+
   80% {
-    transform: translateX(-1rem); }
+    transform: translateX(-1rem);
+  }
+
   100% {
     opacity: 1;
     transform: translateX(0);
-    /* so the elem. is in its final position in the end of the animation */ } }
+    /* so the elem. is in its final position in the end of the animation */
+  }
+}
 
 /* :link pseudo-class represents an unvisited anchor tag */
 .btn:link,
@@ -158,6 +199,7 @@ body {
    * the `inline-block` value is necessary so there is a box model for us to deal with margins and paddings... */
   display: inline-block;
   border-radius: .7rem;
+
   /* the `transition` property is a short-hand that will deal with the changing of style of an element,
    * so in the end it can be seen as another way to approach animations.
    * `transition` must always be set alongside the initial state styles.
@@ -166,22 +208,26 @@ body {
    * 2. define the time this style transition will take (from initial state - define above - to final state
    *    which is in this case defined in `.btn:hover` and `.btn:active`) */
   transition: all .2s;
-  position: relative; }
+  position: relative;
+}
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-  /* value = x-axis y-axis blur color */ }
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+  /* value = x-axis y-axis blur color */
+}
 
 /* :active pseudo-class represents an anchor tag that is being clicked (left button of mouse pressed) */
 .btn:active {
   transform: translateY(-1px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-  /* value = x-axis y-axis blur color */ }
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+  /* value = x-axis y-axis blur color */
+}
 
 .btn--white {
-  background-color: #fff;
-  color: #777; }
+  background-color: $color-white;
+  color: $color-grey-dark;
+}
 
 /* ::after is a pseudo-element, which are virtual elements that are inserted as child-elements from the
  * real html element, these will only appear on screen if they have `display` or `content` set, and you
@@ -203,30 +249,39 @@ body {
   left: 0;
   transition: all .4s;
   z-index: -1;
-  /* so it hinds behind `.btn` */ }
+  /* so it hinds behind `.btn` */
+}
 
 /* ::after pseudo-element when hovered */
 .btn:hover::after {
   transform: scaleX(1.4) scaleY(1.6);
   /* scales this pseudo-element to twice its size */
-  opacity: 0; }
+  opacity: 0;
+}
 
 .btn--white::after {
-  background-color: #fff; }
+  background-color: $color-white;
+}
 
 .btn--animated {
   /* animation: <animation-name> <animation-duration> <animation-timing-function> <animation-delay> */
   animation: moveInBottom 0.65s ease-out .75s;
+
   /* `backwards` value already applies styles define in the first `@keyframes` animation rules (0% in this
    * case), during `animation-delay` (.75s in this case). */
-  animation-fill-mode: backwards; }
+  animation-fill-mode: backwards;
+}
 
 @keyframes moveInBottom {
   0% {
     opacity: 0;
     transform: translateY(3rem);
-    /* the animation starts with the elem. 100px to the right */ }
+    /* the animation starts with the elem. 100px to the right */
+  }
+
   100% {
     opacity: 1;
     transform: translateY(0);
-    /* so the elem. is in its final position in the end of the animation */ } }
+    /* so the elem. is in its final position in the end of the animation */
+  }
+}
