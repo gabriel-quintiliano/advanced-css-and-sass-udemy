@@ -7,11 +7,17 @@ Dark green: #28b485
 
 */
 
-/* basic "global" reset */
-* {
+/* basic "global" reset - affects all html elements including before and after pseudo-elements */
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* margins and paddings are NOT added to the total size of the element */
+
+  /* every element will inherit its box-sizing from its parent, which in this case will be the value
+   * `box-sizing: border-box` set in <body>. Doing it this way (via inheritance) is considered a slightly
+   * better approach than just setting it via the universal selector (I just dunno why) */
+  box-sizing: inherit;
 }
 
 html {
@@ -31,6 +37,8 @@ body {
   line-height: 1.7; /* now line-height will be 1.7x bigger than the pre-defined line-height*/
   color: #777; /* sets text color */
   padding: 3rem; /* this padding will not be inherited by elements within <body> */
+
+  box-sizing: border-box; /* margins and paddings are NOT added to the total size of the element */
 }
 
 .header {
