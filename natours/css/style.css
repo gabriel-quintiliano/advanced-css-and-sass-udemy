@@ -67,17 +67,17 @@ body {
   position: relative;
 }
 
-.logo-box {
+.header__logo-box {
   position: absolute;
   top: 4rem; /* relative to it's closest positioned parent, `.header` in this case */
   left: 4rem; /* relative to it's closest positioned parent, `.header` in this case */
 }
 
-.logo {
+.header__logo {
   height: 3.5rem; /* by just setting `height` and omitting the `width`, this prop will be automatically figured out */
 }
 
-.text-box {
+.header__text-box {
   /* When you want to symmetrically center an element, just use flexbox prop on parents and child elements, but when
    * it's not gonna be 100% symmetrical, that's how you do it: */
   position: absolute; /* now it's positioned relative to it's closest positioned parent */
@@ -99,7 +99,7 @@ body {
   margin-bottom: 6rem;
 }
 
-.heading-primary-main {
+.heading-primary--main {
   display: block;
   font-size: 6rem;
   font-weight: 400;
@@ -115,7 +115,7 @@ body {
   */
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
   display: block;
   font-size: 2rem;
   font-weight: 700;
@@ -204,7 +204,7 @@ body {
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2); /* value = x-axis y-axis blur color */
 }
 
-.btn-white {
+.btn--white {
   background-color: #fff;
   color: #777;
 }
@@ -233,11 +233,11 @@ body {
   opacity: 0;
 }
 
-.btn-white::after {
+.btn--white::after {
   background-color: #fff;
 }
 
-.btn-animated {
+.btn--animated {
   /* animation: <animation-name> <animation-duration> <animation-timing-function> <animation-delay> */
   animation: moveInBottom 0.65s ease-out .75s;
 
