@@ -14,6 +14,11 @@ Dark green: #28b485
   box-sizing: border-box; /* margins and paddings are NOT added to the total size of the element */
 }
 
+html {
+  font-size: 62.5%; /* 62.5% * 16px (which is generally browser font-size) = 10 px, thus 1rem = 10px */
+  /* rem is not supported bellow IE 9 */
+}
+
 body {
   /* everything related to "global" fonts should be done in the body tag selector, because
    * this way every element within <body> will inherit these style and its also more efficient
@@ -22,10 +27,10 @@ body {
 
   font-family: "Lato", sans-serif; /* Use "Lato" font-family if available, otherwise use "sans-serif" */
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1.6rem;
   line-height: 1.7; /* now line-height will be 1.7x bigger than the pre-defined line-height*/
   color: #777; /* sets text color */
-  padding: 30px; /* this padding will not be inherited by elements within <body> */
+  padding: 3rem; /* this padding will not be inherited by elements within <body> */
 }
 
 .header {
@@ -56,12 +61,12 @@ body {
 
 .logo-box {
   position: absolute;
-  top: 40px; /* relative to it's closest positioned parent, `.header` in this case */
-  left: 40px; /* relative to it's closest positioned parent, `.header` in this case */
+  top: 4rem; /* relative to it's closest positioned parent, `.header` in this case */
+  left: 4rem; /* relative to it's closest positioned parent, `.header` in this case */
 }
 
 .logo {
-  height: 35px; /* by just setting `height` and omitting the `width`, this prop will be automatically figured out */
+  height: 3.5rem; /* by just setting `height` and omitting the `width`, this prop will be automatically figured out */
 }
 
 .text-box {
@@ -83,14 +88,14 @@ body {
 
   /* maybe this is needed if animations (of child elements of this) flick, this prop somehow fixes it */
   backface-visibility: hidden;
-  margin-bottom: 60px;
+  margin-bottom: 6rem;
 }
 
 .heading-primary-main {
   display: block;
-  font-size: 60px;
+  font-size: 6rem;
   font-weight: 400;
-  letter-spacing: 35px;
+  letter-spacing: 3.5rem;
 
   animation-name: moveInLeft;
   animation-duration: 1.3s;
@@ -104,9 +109,9 @@ body {
 
 .heading-primary-sub {
   display: block;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: 17.4px;
+  letter-spacing: 1.75rem;
 
   animation: moveInRight 1.3s ease-out; /* this is the shortcut for everything described bellow */
   /* animation-name: moveInRight;
@@ -128,11 +133,11 @@ body {
   0% {
     opacity: 0;
     /* translateX repositions the element on the x axis relative to its initial position */
-    transform: translateX(-100px); /* the animation starts with the elem. 100px to the left */
+    transform: translateX(-10rem); /* the animation starts with the elem. 10rem (100px) to the left */
   }
   
   80% {
-    transform: translateX(10px);
+    transform: translateX(1rem);
   }
   
   100% {
@@ -144,11 +149,11 @@ body {
 @keyframes moveInRight {
   0% {
     opacity: 0;
-    transform: translateX(100px); /* the animation starts with the elem. 100px to the right */
+    transform: translateX(10rem); /* the animation starts with the elem. 10rem (100px) to the right */
   }
   
   80% {
-    transform: translateX(-10px);
+    transform: translateX(-1rem);
   }
   
   100% {
@@ -162,12 +167,12 @@ body {
 .btn:visited {
   text-transform: uppercase;
   text-decoration: none; /* gets rid of that default underline in anchor tags text content */
-  padding: 15px 40px;
+  padding: 1.5rem 4rem;
   /* by setting `display: inline-block` the inner-display prop = `inline` and because of that you can treat
    * this element as text (so it can be easily centered if its parent element has `text-align: center` set).
    * the `inline-block` value is necessary so there is a box model for us to deal with margins and paddings... */
   display: inline-block;
-  border-radius: 7px;
+  border-radius: .7rem;
 
   /* the `transition` property is a short-hand that will deal with the changing of style of an element,
    * so in the end it can be seen as another way to approach animations.
@@ -182,13 +187,13 @@ body {
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .2); /* value = x-axis y-axis blur color */
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2); /* value = x-axis y-axis blur color */
 }
 
 /* :active pseudo-class represents an anchor tag that is being clicked (left button of mouse pressed) */
 .btn:active {
   transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, .2); /* value = x-axis y-axis blur color */
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2); /* value = x-axis y-axis blur color */
 }
 
 .btn-white {
@@ -206,7 +211,7 @@ body {
   display: inline-block;
   height: 100%; /* refers to 100% of the `.btn` element */
   width: 100%; /* refers to 100% of the `.btn` element */
-  border-radius: 7px;
+  border-radius: .7rem;
   position: absolute; /* this prop + `top: 0;` and `left: 0;` positions this pseudo-elem right over `.btn` */
   top: 0;
   left: 0;
@@ -236,7 +241,7 @@ body {
 @keyframes moveInBottom {
   0% {
     opacity: 0;
-    transform: translateY(30px); /* the animation starts with the elem. 100px to the right */
+    transform: translateY(3rem); /* the animation starts with the elem. 100px to the right */
   }
   
   100% {
