@@ -114,8 +114,46 @@ body {
     animation-duration: 1.3s;
     animation-timing-function: ease-out; */ }
 
+.heading-secondary {
+  display: inline-block;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: linear-gradient(to right, #7ed56f, #28b485);
+  /* by default the `background`(shortcut), `background-color` and `background-images` properties fill
+   * the whole border-box, but via the `background-clip` property you can change this behavior to:
+   * `padding-box`, `content-box` or `text`, so that the background you fill only this specific area. */
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 2px;
+  transition: all .2s; }
+  .heading-secondary:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.heading-tertiary {
+  font-weight: 700;
+  text-transform: uppercase; }
+
+.paragraph:not(:last-child) {
+  margin-bottom: 3rem; }
+
+/* in this file you'll have utility classes which are generic classes that have a single
+ * or simple style declaration that can be reused throughout the project */
+.u-center-text {
+  text-align: center; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1rem; }
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem; }
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem; }
+
 .btn {
-  /* :link pseudo-class represents an unvisited anchor tag */
+  /* :link pseudo-class represents an anchor that has a destination set i.e. href */
   /* :active pseudo-class represents an anchor tag that is being clicked (left button of mouse pressed) */
   /* ::after is a pseudo-element, which are virtual elements that are inserted as child-elements from the
    * real html element, these will only appear on screen if they have `display` or `content` set, and you
@@ -165,7 +203,8 @@ body {
     /* refers to 100% of the `.btn` element */
     width: 100%;
     /* refers to 100% of the `.btn` element */
-    border-radius: .7rem;
+    border-radius: 7px;
+    /* used px because I don't want it to change based on browser font-size */
     position: absolute;
     /* this prop + `top: 0;` and `left: 0;` positions this pseudo-elem right over `.btn` */
     top: 0;
@@ -181,6 +220,25 @@ body {
     /* `backwards` value already applies styles define in the first `@keyframes` animation rules (0% in this
      * case), during `animation-delay` (.75s in this case). */
     animation-fill-mode: backwards; }
+
+.btn-text:link, .btn-text:visited {
+  color: #55c57a;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #55c57a;
+  padding: 3px;
+  border-radius: 5px;
+  transition: all .3s ease-out; }
+
+.btn-text:hover {
+  background-color: #55c57a;
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px); }
+
+.btn-text:active {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transform: translateY(0px); }
 
 .header {
   /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */
@@ -231,7 +289,6 @@ body {
 .row {
   display: flow-root;
   max-width: 114rem;
-  background-color: #eee;
   margin: 0 auto;
   /* [class^="col-"] selects all elements whose class attribute value starts with "col-"
    * actually is the `^` symbol that does this trick.
@@ -241,7 +298,6 @@ body {
   .row:not(:last-child) {
     margin-bottom: 8rem; }
   .row [class^="col-"] {
-    background-color: orangered;
     float: left; }
     .row [class^="col-"]:not(:last-child) {
       margin-right: 6rem; }
@@ -258,3 +314,17 @@ body {
     width: calc(calc(calc(100% - (4 - 1) * 6rem) / 4 * 2) + 6rem); }
   .row .col-3-of-4 {
     width: calc(calc(calc(100% - (4 - 1) * 6rem) / 4 * 3) + 12rem); }
+
+/* in scss files within the pages folder (like this file), we can put style that could
+ * be in the components folder but actually are going to appear only in this specific page */
+.section-about {
+  background-color: #f7f7f7;
+  /* 8rem is the padding we want and +$margin-negative-indentation is to "cancel out" the
+   * negative margin-top property set just bellow. In the end we're just doing that so the
+   * background color of this element "flows" behind the element above this one.
+   * (I looks like a hack to me, maybe there is a better way to do that...) */
+  padding: calc(8rem + 20vh) 0;
+  /* when you use negative values for margin instead of "expanding" outwards and pushing elements
+   * around, it "expands" inwards and this way its box model gets smaller, thus the element gets
+   * closer to other elements */
+  margin-top: -20vh; }

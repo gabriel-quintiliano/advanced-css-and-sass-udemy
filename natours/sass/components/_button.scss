@@ -1,5 +1,5 @@
 .btn {
-  /* :link pseudo-class represents an unvisited anchor tag */
+  /* :link pseudo-class represents an anchor that has a destination set i.e. href */
   &:link,
   &:visited {
     text-transform: uppercase;
@@ -54,7 +54,7 @@
     display: inline-block;
     height: 100%; /* refers to 100% of the `.btn` element */
     width: 100%; /* refers to 100% of the `.btn` element */
-    border-radius: .7rem;
+    border-radius: 7px; /* used px because I don't want it to change based on browser font-size */
     position: absolute; /* this prop + `top: 0;` and `left: 0;` positions this pseudo-elem right over `.btn` */
     top: 0;
     left: 0;
@@ -73,5 +73,30 @@
     /* `backwards` value already applies styles define in the first `@keyframes` animation rules (0% in this
      * case), during `animation-delay` (.75s in this case). */
     animation-fill-mode: backwards;
+  }
+}
+
+.btn-text {
+  &:link,
+  &:visited {
+    color: $color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;
+    padding: 3px;
+    border-radius: 5px; // used px because I don't want it to change based on browser font-size
+    transition: all .3s ease-out;
+  }
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: 0 1rem 2rem rgba($color-black, .15);
+    transform: translateY(-2px);
+  }
+
+  &:active { // anchor being clicked
+    box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+    transform: translateY(0px);
   }
 }

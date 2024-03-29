@@ -1,0 +1,15 @@
+/* in scss files within the pages folder (like this file), we can put style that could
+ * be in the components folder but actually are going to appear only in this specific page */
+
+.section-about {
+  background-color: $color-grey-light-1;
+  /* 8rem is the padding we want and +$margin-negative-indentation is to "cancel out" the
+   * negative margin-top property set just bellow. In the end we're just doing that so the
+   * background color of this element "flows" behind the element above this one.
+   * (I looks like a hack to me, maybe there is a better way to do that...) */
+  padding: calc(8rem + #{$margin-negative-indentation}) 0;
+  /* when you use negative values for margin instead of "expanding" outwards and pushing elements
+   * around, it "expands" inwards and this way its box model gets smaller, thus the element gets
+   * closer to other elements */
+  margin-top: -$margin-negative-indentation;
+}
