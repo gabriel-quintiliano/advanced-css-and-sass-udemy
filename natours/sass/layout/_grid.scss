@@ -1,0 +1,52 @@
+/* Even though floats are not used anymore, it may be interesting to still know how these
+ * work in case you have to update an old website that uses it to newer technologies */
+
+.row {
+  display: flow-root; // so the .row is "aware" of floats and contains those
+  max-width: $grid-width; // 1140px or if it doesn't fit, spread 100% of the available space
+  background-color: #eee;
+  margin: 0 auto;
+
+  &:not(:last-child) { // every .row but the last one
+    margin-bottom: $gutter-vertical;
+  }
+
+  /* [class^="col-"] selects all elements whose class attribute value starts with "col-"
+   * actually is the `^` symbol that does this trick.
+   * `^` --> starts with the declared value
+   * `*` --> contains the declared value
+   * `$` --> ends with the declared value */
+  [class^="col-"] {
+    background-color: orangered;
+    float: left;
+
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+    }
+  }
+
+  .col-1-of-2 {
+    /* to use a sass variable within a native css function you MUST wrap that in # + { <var-here> } */
+    width: calc((100% - #{$gutter-horizontal})/2);
+  }
+  
+  .col-1-of-3 {
+    width: calcGridColWidth(1,3);
+  }
+
+  .col-2-of-3 {
+    width: calcGridColWidth(2,3);
+  }
+
+  .col-1-of-4 {
+    width: calcGridColWidth(1,4);
+  }
+
+  .col-2-of-4 {
+    width: calcGridColWidth(2,4);
+  }
+
+  .col-3-of-4 {
+    width: calcGridColWidth(3,4);
+  }
+}
