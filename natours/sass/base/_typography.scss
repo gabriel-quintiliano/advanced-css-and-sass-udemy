@@ -1,0 +1,47 @@
+/* in this file you should put styles related to the general typography of the website */
+
+body {
+  font-family: "Lato", sans-serif; /* Use "Lato" font-family if available, otherwise use "sans-serif" */
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7; /* now line-height will be 1.7x bigger than the pre-defined line-height*/
+  color: $color-grey-dark; /* sets text color */
+  padding: 3rem; /* this padding will not be inherited by elements within <body> */
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+
+  /* maybe this is needed if animations (of child elements of this) flick, this prop somehow fixes it */
+  backface-visibility: hidden;
+  margin-bottom: 6rem;
+  
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+  
+    animation-name: moveInLeft;
+    animation-duration: 1.3s;
+    animation-timing-function: ease-out;
+  
+    /*
+    animation-delay: 3s; - delay for the animation to start
+    animation-iteration-count: 3; - how many times should the animation be repeated
+    */
+  }
+  
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+  
+    animation: moveInRight 1.3s ease-out; /* this is the shortcut for everything described bellow */
+    /* animation-name: moveInRight;
+    animation-duration: 1.3s;
+    animation-timing-function: ease-out; */
+  }
+}

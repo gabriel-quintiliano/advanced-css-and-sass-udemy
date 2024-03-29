@@ -1,0 +1,77 @@
+.btn {
+  /* :link pseudo-class represents an unvisited anchor tag */
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none; /* gets rid of that default underline in anchor tags text content */
+    padding: 1.5rem 4rem;
+    /* by setting `display: inline-block` the inner-display prop = `inline` and because of that you can treat
+     * this element as text (so it can be easily centered if its parent element has `text-align: center` set).
+     * the `inline-block` value is necessary so there is a box model for us to deal with margins and paddings... */
+    display: inline-block;
+    border-radius: .7rem;
+
+    /* the `transition` property is a short-hand that will deal with the changing of style of an element,
+     * so in the end it can be seen as another way to approach animations.
+     * `transition` must always be set alongside the initial state styles.
+     *
+     * 1. define which css properties this transition will be applied to (if you don't know, use `all`)
+     * 2. define the time this style transition will take (from initial state - define above - to final state
+     *    which is in this case defined in `.btn:hover` and `.btn:active`) */
+    transition: all .2s;
+    position: relative;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba($color-black, .2); /* value = x-axis y-axis blur color */
+
+    /* ::after pseudo-element when hovered */
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6); /* scales this pseudo-element to twice its size */
+      opacity: 0;
+    }
+  }
+  
+  /* :active pseudo-class represents an anchor tag that is being clicked (left button of mouse pressed) */
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 .5rem 1rem rgba($color-black, .2); /* value = x-axis y-axis blur color */
+  }
+  
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+  }
+  
+  /* ::after is a pseudo-element, which are virtual elements that are inserted as child-elements from the
+   * real html element, these will only appear on screen if they have `display` or `content` set, and you
+   * also need to define its `height` and `width` (remember, as these are within the real html element,
+   * the 100% value refers to the whole size of this element)
+   *  */
+  &::after {
+    content: ""; /* it just need to have `content` set, it can even be empty */
+    display: inline-block;
+    height: 100%; /* refers to 100% of the `.btn` element */
+    width: 100%; /* refers to 100% of the `.btn` element */
+    border-radius: .7rem;
+    position: absolute; /* this prop + `top: 0;` and `left: 0;` positions this pseudo-elem right over `.btn` */
+    top: 0;
+    left: 0;
+    transition: all .4s;
+    z-index: -1; /* so it hinds behind `.btn` */
+  }
+  
+  &--white::after {
+    background-color: $color-white;
+  }
+  
+  &--animated {
+    /* animation: <animation-name> <animation-duration> <animation-timing-function> <animation-delay> */
+    animation: moveInBottom 0.65s ease-out .75s;
+  
+    /* `backwards` value already applies styles define in the first `@keyframes` animation rules (0% in this
+     * case), during `animation-delay` (.75s in this case). */
+    animation-fill-mode: backwards;
+  }
+}

@@ -1,0 +1,46 @@
+.header {
+  /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */
+  height: calc(98vh - (60px - 2vh)); /* 98% of the viewport height (60px is for 2 * <body> padding (30px)) */
+  /* always apply a gradient on the background via the `background-image` css prop, and if its the case
+   * define the actual bg image afterwards, this way the gradient will be on top of the image - make sure
+   * to correctly adjust the gradient opacity */
+  background-image: linear-gradient(to right bottom,
+      /* for rgba(), in regular css you must use numbers, but in scss you can also use hexadecimal values too */
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)),
+    url("../img/hero.jpg");
+  background-size: cover; /* directly on replaced elements, e.g. <img>, <video>, you can use `object-fit` */
+  background-position: top; /* tells which part of the bg should be "fixed" and will never go out of the frame */
+
+  /* clip-path apply a "mask" in the object, you define the coordinate based on what you want to be shown on
+   * screen - the `polygon` function receives coordinates to create as polygon shaped mask.
+   * Fortunately, coordinates can be dynamic and passed as percentages */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  /* position: relative; is like `static` but respects reference values from `top`, `left`, `bottom` and `right`,
+   * and also can be used as "anchor" to child elements which have `position: absolute` */
+  position: relative;
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem; /* relative to it's closest positioned parent, `.header` in this case */
+    left: 4rem; /* relative to it's closest positioned parent, `.header` in this case */
+  }
+
+  &__logo {
+    height: 3.5rem; /* by just setting `height` and omitting the `width`, this prop will be automatically figured out */
+  }
+
+  &__text-box {
+    /* When you want to symmetrically center an element, just use flexbox prop on parents and child elements, but when
+     * it's not gonna be 100% symmetrical, that's how you do it: */
+    position: absolute; /* now it's positioned relative to it's closest positioned parent */
+    top: 40%; /* relative to `.header` */
+    left: 50%; /* relative to `.header` */
+    /* as the element is positioned based on its top left corner, the prop bellow "makes it" be positioned based on
+     * the element's center. Relative to the element's own position, it repositions it 50% (of its length) to the left
+     * and 50% (of its height) to the top */
+    transform: translate(-50%, -50%);
+    text-align: center; /* this will make sure `.btn` element is centered */
+  }
+}
