@@ -36,10 +36,9 @@ body {
   /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */
   height: calc(98vh - (60px - 2vh));
   /* 98% of the viewport height (60px is for 2 * <body> padding (30px)) */
-  /* height: calc(97vh - 30px); 95% of the viewport height */
   /* always apply a gradient on the background via the `background-image` css prop, and if its the case
    * define the actual bg image afterwards, this way the gradient will be on top of the image - make sure
-  * to correctly adjust the gradient opacity */
+   * to correctly adjust the gradient opacity */
   background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
   background-size: cover;
   /* directly on replaced elements, e.g. <img>, <video>, you can use `object-fit` */
@@ -52,33 +51,30 @@ body {
   /* position: relative; is like `static` but respects reference values from `top`, `left`, `bottom` and `right`,
    * and also can be used as "anchor" to child elements which have `position: absolute` */
   position: relative; }
-
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  /* relative to it's closest positioned parent, `.header` in this case */
-  left: 4rem;
-  /* relative to it's closest positioned parent, `.header` in this case */ }
-
-.header__logo {
-  height: 3.5rem;
-  /* by just setting `height` and omitting the `width`, this prop will be automatically figured out */ }
-
-.header__text-box {
-  /* When you want to symmetrically center an element, just use flexbox prop on parents and child elements, but when
-   * it's not gonna be 100% symmetrical, that's how you do it: */
-  position: absolute;
-  /* now it's positioned relative to it's closest positioned parent */
-  top: 40%;
-  /* relative to `.header` */
-  left: 50%;
-  /* relative to `.header` */
-  /* as the element is positioned based on its top left corner, the prop bellow "makes it" be positioned based on
-   * the element's center. Relative to the element's own position, it repositions it 50% (of its length) to the left
-   * and 50% (of its height) to the top */
-  transform: translate(-50%, -50%);
-  text-align: center;
-  /* this will make sure `.btn` element is centered */ }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    /* relative to it's closest positioned parent, `.header` in this case */
+    left: 4rem;
+    /* relative to it's closest positioned parent, `.header` in this case */ }
+  .header__logo {
+    height: 3.5rem;
+    /* by just setting `height` and omitting the `width`, this prop will be automatically figured out */ }
+  .header__text-box {
+    /* When you want to symmetrically center an element, just use flexbox prop on parents and child elements, but when
+     * it's not gonna be 100% symmetrical, that's how you do it: */
+    position: absolute;
+    /* now it's positioned relative to it's closest positioned parent */
+    top: 40%;
+    /* relative to `.header` */
+    left: 50%;
+    /* relative to `.header` */
+    /* as the element is positioned based on its top left corner, the prop bellow "makes it" be positioned based on
+     * the element's center. Relative to the element's own position, it repositions it 50% (of its length) to the left
+     * and 50% (of its height) to the top */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    /* this will make sure `.btn` element is centered */ }
 
 .heading-primary {
   color: #fff;
@@ -86,30 +82,28 @@ body {
   /* maybe this is needed if animations (of child elements of this) flick, this prop somehow fixes it */
   backface-visibility: hidden;
   margin-bottom: 6rem; }
-
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
-  animation-name: moveInLeft;
-  animation-duration: 1.3s;
-  animation-timing-function: ease-out;
-  /*
-  animation-delay: 3s; - delay for the animation to start
-  animation-iteration-count: 3; - how many times should the animation be repeated
-  */ }
-
-.heading-primary--sub {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.75rem;
-  animation: moveInRight 1.3s ease-out;
-  /* this is the shortcut for everything described bellow */
-  /* animation-name: moveInRight;
-  animation-duration: 1.3s;
-  animation-timing-function: ease-out; */ }
+  .heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1.3s;
+    animation-timing-function: ease-out;
+    /*
+    animation-delay: 3s; - delay for the animation to start
+    animation-iteration-count: 3; - how many times should the animation be repeated
+    */ }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 1.3s ease-out;
+    /* this is the shortcut for everything described bellow */
+    /* animation-name: moveInRight;
+    animation-duration: 1.3s;
+    animation-timing-function: ease-out; */ }
 
 /* regarding browser performance, it's better to only ever animate the `opacity` and `transform` properties
  * because these only trigger the `composite` phase of rendering the element on screen, the other phases,
@@ -168,58 +162,73 @@ body {
   transition: all .2s;
   position: relative; }
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-  /* value = x-axis y-axis blur color */ }
-
-/* :active pseudo-class represents an anchor tag that is being clicked (left button of mouse pressed) */
-.btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-  /* value = x-axis y-axis blur color */ }
-
-.btn--white {
-  background-color: #fff;
-  color: #777; }
-
-/* ::after is a pseudo-element, which are virtual elements that are inserted as child-elements from the
- * real html element, these will only appear on screen if they have `display` or `content` set, and you
- * also need to define its `height` and `width` (remember, as these are within the real html element,
- * the 100% value refers to the whole size of this element)
- *  */
-.btn::after {
-  content: "";
-  /* it just need to have `content` set, it can even be empty */
-  display: inline-block;
-  height: 100%;
-  /* refers to 100% of the `.btn` element */
-  width: 100%;
-  /* refers to 100% of the `.btn` element */
-  border-radius: .7rem;
-  position: absolute;
-  /* this prop + `top: 0;` and `left: 0;` positions this pseudo-elem right over `.btn` */
-  top: 0;
-  left: 0;
-  transition: all .4s;
-  z-index: -1;
-  /* so it hinds behind `.btn` */ }
-
-/* ::after pseudo-element when hovered */
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  /* scales this pseudo-element to twice its size */
-  opacity: 0; }
-
-.btn--white::after {
-  background-color: #fff; }
-
-.btn--animated {
-  /* animation: <animation-name> <animation-duration> <animation-timing-function> <animation-delay> */
-  animation: moveInBottom 0.65s ease-out .75s;
-  /* `backwards` value already applies styles define in the first `@keyframes` animation rules (0% in this
-   * case), during `animation-delay` (.75s in this case). */
-  animation-fill-mode: backwards; }
+.btn {
+  /* :link pseudo-class represents an unvisited anchor tag */
+  /* :active pseudo-class represents an anchor tag that is being clicked (left button of mouse pressed) */
+  /* ::after is a pseudo-element, which are virtual elements that are inserted as child-elements from the
+   * real html element, these will only appear on screen if they have `display` or `content` set, and you
+   * also need to define its `height` and `width` (remember, as these are within the real html element,
+   * the 100% value refers to the whole size of this element)
+   *  */ }
+  .btn:link, .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    /* gets rid of that default underline in anchor tags text content */
+    padding: 1.5rem 4rem;
+    /* by setting `display: inline-block` the inner-display prop = `inline` and because of that you can treat
+     * this element as text (so it can be easily centered if its parent element has `text-align: center` set).
+     * the `inline-block` value is necessary so there is a box model for us to deal with margins and paddings... */
+    display: inline-block;
+    border-radius: .7rem;
+    /* the `transition` property is a short-hand that will deal with the changing of style of an element,
+     * so in the end it can be seen as another way to approach animations.
+     * `transition` must always be set alongside the initial state styles.
+     *
+     * 1. define which css properties this transition will be applied to (if you don't know, use `all`)
+     * 2. define the time this style transition will take (from initial state - define above - to final state
+     *    which is in this case defined in `.btn:hover` and `.btn:active`) */
+    transition: all .2s;
+    position: relative; }
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    /* value = x-axis y-axis blur color */
+    /* ::after pseudo-element when hovered */ }
+    .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      /* scales this pseudo-element to twice its size */
+      opacity: 0; }
+  .btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    /* value = x-axis y-axis blur color */ }
+  .btn--white {
+    background-color: #fff;
+    color: #777; }
+  .btn::after {
+    content: "";
+    /* it just need to have `content` set, it can even be empty */
+    display: inline-block;
+    height: 100%;
+    /* refers to 100% of the `.btn` element */
+    width: 100%;
+    /* refers to 100% of the `.btn` element */
+    border-radius: .7rem;
+    position: absolute;
+    /* this prop + `top: 0;` and `left: 0;` positions this pseudo-elem right over `.btn` */
+    top: 0;
+    left: 0;
+    transition: all .4s;
+    z-index: -1;
+    /* so it hinds behind `.btn` */ }
+  .btn--white::after {
+    background-color: #fff; }
+  .btn--animated {
+    /* animation: <animation-name> <animation-duration> <animation-timing-function> <animation-delay> */
+    animation: moveInBottom 0.65s ease-out .75s;
+    /* `backwards` value already applies styles define in the first `@keyframes` animation rules (0% in this
+     * case), during `animation-delay` (.75s in this case). */
+    animation-fill-mode: backwards; }
 
 @keyframes moveInBottom {
   0% {
