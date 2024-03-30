@@ -1,5 +1,7 @@
 .composition {
   position: relative;
+  perspective: 55rem;
+  perspective-origin: 30% 0%;
 
   &__photo {
     width: 60%;
@@ -8,29 +10,33 @@
     position: absolute;
     transition: all .2s;
     outline-offset: .8rem; // creates a space between the element and the actual outline
-
+    
     &--p1 {
-      top: -2rem;
+      // top: -2rem;
       left: 0;
-      transform: rotateZ(-6deg);
+      transform: rotateX(78deg) rotateZ(15deg) rotateY(-5deg) scale(.8);
+      translate: 0px 0px -350px;
     }
     
     &--p2 {
       top: 2rem;
       right: 0;
-      transform: rotateZ(3deg);
+      transform: rotateX(76deg) rotateZ(15deg) rotateY(-5deg) scale(.9);
+      translate: 0px 0px -200px;
     }
-
+    
     &--p3 {
-      top: 10rem;
+      top: 8rem;
       left: 20%;
+      transform: rotateX(83deg) rotateZ(26deg) rotateY(-3deg);
+      translate: 0px 0px 0px;
     }
 
-    // composition__photo:hover :not(:hover)
+    // composition__photo:hover
     &:hover {
       outline: .8rem solid $color-primary;
       transform: scale(1.1);
-      box-shadow: 0 2.5rem 4rem rgba($color-black, .4);
+      translate: 0px 0px 0px;
       z-index: 1;
     }
   }
