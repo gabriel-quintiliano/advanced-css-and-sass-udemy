@@ -1,0 +1,86 @@
+.card {
+  perspective: 150rem;
+  position: relative;
+  height: $card-height;
+  /* Why was it necessary to set a height above?
+  *
+  * It was necessary because all the child elements of div.card have `position: absolute` set
+  * which makes them be removed from the `normal flow` (because of the creation of a new BFC),
+  * thus the div.card element collapses (and becomes flat with with no height). Meanwhile, the
+  * work around for this situations is setting a height manually (if needed).
+  *
+  * In this case, the best thing to do was to manually set the height to the same as the content
+  * (div.card__side) mainly to use the :hover pseudo-class on that and avoid flickering of the
+  * animation applied. */
+  
+  &__side {
+    color: white;
+    font-size: 2rem;
+    
+    height: $card-height;
+    transition: all .8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden; // so when this element is rotated 180deg its back doesn't show
+    border-radius: 4px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+    /* `width: 100%;` is needed because elements with `position: absolute` set have their width
+    * defined by their content, I think it is `width: max-content;`. */
+    width: 100%;
+    
+    &--front {
+      background-color: $color-white;
+    }
+    
+    &--back {
+      color: white;
+      rotate: y 180deg;
+      // transform: rotateY(90deg); // you could use this too
+      
+      &-1 {
+        background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+      }
+
+      &-2 {
+        background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+      }
+
+      &-3 {
+        background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+      }
+    }
+  }
+  
+  /* by hovering .card we rotate the child .card__side and this way we avoid animation flicker */
+  &:hover &__side--front {
+    rotate: y -180deg;
+    // transform: rotateY(-180deg); // you could use this too
+  }
+  
+  &:hover &__side--back {
+    rotate: y 0deg;
+    // transform: rotateY(0deg); // you could use this too
+
+    /* hint: the value of `rotate` (or `transform: rotate()`) is the final position after the rotation,
+     * so don't make a mistake and this that this value will be added to the final position after an
+     * earlier rotation.
+     * 
+     * However, this is actually the case when the previous rotation has been performed by its "counter
+     * part property", in this scenario the current rotation will start from the final position of the
+     * last rotation. Taking the code above as example: 
+     * 
+     * // if .card__side--back was set like:
+     * &--back {
+     * color: white;
+     * rotate: y 180deg;
+     *
+     * // then in .card:hover .card__side--back we could just add or remove 180deg to finish the this new
+     * // rotation at 0deg:
+     * &:hover &__side--back {
+     *   transform: rotateY(180deg);
+     * }
+     */
+  }
+}

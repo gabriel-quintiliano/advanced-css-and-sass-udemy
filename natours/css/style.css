@@ -254,6 +254,8 @@ body {
 
 .composition {
   position: relative;
+  perspective: 55rem;
+  perspective-origin: 30% 0%;
   /* when .component is being hovered (i.e. when any element within .component container is being hovered),
    * selects all descendants from .component which are NOT being hovered at that moment.
    * final selector --> .component:hover .component__photo:not(:hover) */ }
@@ -265,20 +267,23 @@ body {
     transition: all .2s;
     outline-offset: .8rem; }
     .composition__photo--p1 {
-      top: -2rem;
       left: 0;
-      transform: rotateZ(-6deg); }
+      transform: rotateX(78deg) rotateZ(15deg) rotateY(-5deg) scale(0.8);
+      translate: 0px 0px -350px; }
     .composition__photo--p2 {
       top: 2rem;
       right: 0;
-      transform: rotateZ(3deg); }
+      transform: rotateX(76deg) rotateZ(15deg) rotateY(-5deg) scale(0.9);
+      translate: 0px 0px -200px; }
     .composition__photo--p3 {
-      top: 10rem;
-      left: 20%; }
+      top: 8rem;
+      left: 20%;
+      transform: rotateX(83deg) rotateZ(26deg) rotateY(-3deg);
+      translate: 0px 0px 0px; }
     .composition__photo:hover {
       outline: 0.8rem solid #55c57a;
       transform: scale(1.1);
-      box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.4);
+      translate: 0px 0px 0px;
       z-index: 1; }
   .composition:hover .composition__photo:not(:hover) {
     opacity: 0.7;
@@ -291,7 +296,8 @@ body {
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
   transition-property: transform box-shadow;
-  transition-duration: .2s; }
+  transition-duration: .2s;
+  min-height: 38rem; }
   .feature-box__icon {
     font-size: 6rem;
     margin-bottom: .5rem;
@@ -301,6 +307,70 @@ body {
   .feature-box:hover {
     transform: scale(1.05) translateY(-1.5rem);
     box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.35); }
+
+.card {
+  perspective: 150rem;
+  position: relative;
+  height: 50rem;
+  /* Why was it necessary to set a height above?
+  *
+  * It was necessary because all the child elements of div.card have `position: absolute` set
+  * which makes them be removed from the `normal flow` (because of the creation of a new BFC),
+  * thus the div.card element collapses (and becomes flat with with no height). Meanwhile, the
+  * work around for this situations is setting a height manually (if needed).
+  *
+  * In this case, the best thing to do was to manually set the height to the same as the content
+  * (div.card__side) mainly to use the :hover pseudo-class on that and avoid flickering of the
+  * animation applied. */
+  /* by hovering .card we rotate the child .card__side and this way we avoid animation flicker */ }
+  .card__side {
+    color: white;
+    font-size: 2rem;
+    height: 50rem;
+    transition: all .8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 4px;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    /* `width: 100%;` is needed because elements with `position: absolute` set have their width
+    * defined by their content, I think it is `width: max-content;`. */
+    width: 100%; }
+    .card__side--front {
+      background-color: #fff; }
+    .card__side--back {
+      color: white;
+      rotate: y 180deg; }
+      .card__side--back-1 {
+        background-image: linear-gradient(to right bottom, #ffb900, #ff7730); }
+      .card__side--back-2 {
+        background-image: linear-gradient(to right bottom, #ffb900, #ff7730); }
+      .card__side--back-3 {
+        background-image: linear-gradient(to right bottom, #ffb900, #ff7730); }
+  .card:hover .card__side--front {
+    rotate: y -180deg; }
+  .card:hover .card__side--back {
+    rotate: y 0deg;
+    /* hint: the value of `rotate` (or `transform: rotate()`) is the final position after the rotation,
+     * so don't make a mistake and this that this value will be added to the final position after an
+     * earlier rotation.
+     * 
+     * However, this is actually the case when the previous rotation has been performed by its "counter
+     * part property", in this scenario the current rotation will start from the final position of the
+     * last rotation. Taking the code above as example: 
+     * 
+     * // if .card__side--back was set like:
+     * &--back {
+     * color: white;
+     * rotate: y 180deg;
+     *
+     * // then in .card:hover .card__side--back we could just add or remove 180deg to finish the this new
+     * // rotation at 0deg:
+     * &:hover &__side--back {
+     *   transform: rotateY(180deg);
+     * }
+     */ }
 
 .header {
   /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */
@@ -402,3 +472,8 @@ body {
   transform: skewY(-7deg); }
   .section-features > * {
     transform: skewY(7deg); }
+
+.section-tours {
+  padding: calc(8rem + 8rem) 0 8rem;
+  background-color: #f7f7f7;
+  margin-top: -8rem; }
