@@ -152,6 +152,15 @@ body {
 .u-margin-bottom-big {
   margin-bottom: 8rem; }
 
+.u-padding-left-small {
+  padding-left: 1rem; }
+
+.u-pos-relative {
+  position: relative; }
+
+.u-pos-absolute {
+  position: absolute; }
+
 .btn {
   /* :link pseudo-class represents an anchor that has a destination set i.e. href */
   /* :active pseudo-class represents an anchor tag that is being clicked (left button of mouse pressed) */
@@ -179,12 +188,12 @@ body {
      *    which is in this case defined in `.btn:hover` and `.btn:active`) */
     transition: all .2s;
     position: relative; }
-  .btn:hover {
+  .btn:hover, .btn:focus {
     transform: translateY(-3px);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
     /* value = x-axis y-axis blur color */
     /* ::after pseudo-element when hovered */ }
-    .btn:hover::after {
+    .btn:hover::after, .btn:focus::after {
       transform: scaleX(1.4) scaleY(1.6);
       /* scales this pseudo-element to twice its size */
       opacity: 0; }
@@ -230,7 +239,7 @@ body {
   border-radius: 5px;
   transition: all .3s ease-out; }
 
-.btn-text:hover {
+.btn-text:hover, .btn-text:focus {
   background-color: #55c57a;
   color: #fff;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
@@ -239,6 +248,38 @@ body {
 .btn-text:active {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   transform: translateY(0px); }
+
+.composition {
+  position: relative;
+  /* when .component is being hovered (i.e. when any element within .component container is being hovered),
+   * selects all descendants from .component which are NOT being hovered at that moment.
+   * final selector --> .component:hover .component__photo:not(:hover) */ }
+  .composition__photo {
+    width: 60%;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    position: absolute;
+    transition: all .2s;
+    outline-offset: .8rem; }
+    .composition__photo--p1 {
+      top: -2rem;
+      left: 0;
+      transform: rotateZ(-6deg); }
+    .composition__photo--p2 {
+      top: 2rem;
+      right: 0;
+      transform: rotateZ(3deg); }
+    .composition__photo--p3 {
+      top: 10rem;
+      left: 20%; }
+    .composition__photo:hover {
+      outline: 0.8rem solid #55c57a;
+      transform: scale(1.1);
+      box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.4);
+      z-index: 1; }
+  .composition:hover .composition__photo:not(:hover) {
+    opacity: 0.7;
+    scale: .9; }
 
 .header {
   /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */

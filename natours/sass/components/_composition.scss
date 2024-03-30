@@ -1,0 +1,45 @@
+.composition {
+  position: relative;
+
+  &__photo {
+    width: 60%;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
+    border-radius: 5px;
+    position: absolute;
+    transition: all .2s;
+    outline-offset: .8rem; // creates a space between the element and the actual outline
+
+    &--p1 {
+      top: -2rem;
+      left: 0;
+      transform: rotateZ(-6deg);
+    }
+    
+    &--p2 {
+      top: 2rem;
+      right: 0;
+      transform: rotateZ(3deg);
+    }
+
+    &--p3 {
+      top: 10rem;
+      left: 20%;
+    }
+
+    // composition__photo:hover :not(:hover)
+    &:hover {
+      outline: .8rem solid $color-primary;
+      transform: scale(1.1);
+      box-shadow: 0 2.5rem 4rem rgba($color-black, .4);
+      z-index: 1;
+    }
+  }
+
+  /* when .component is being hovered (i.e. when any element within .component container is being hovered),
+   * selects all descendants from .component which are NOT being hovered at that moment.
+   * final selector --> .component:hover .component__photo:not(:hover) */
+  &:hover &__photo:not(:hover) {
+    opacity: 0.7;
+    scale: .9;
+  }
+}
