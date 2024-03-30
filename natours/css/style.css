@@ -143,8 +143,11 @@ body {
 .u-center-text {
   text-align: center; }
 
-.u-margin-bottom-small {
+.u-margin-bottom-extra-small {
   margin-bottom: 1rem; }
+
+.u-margin-bottom-small {
+  margin-bottom: 2rem; }
 
 .u-margin-bottom-medium {
   margin-bottom: 4rem; }
@@ -281,6 +284,24 @@ body {
     opacity: 0.7;
     scale: .9; }
 
+.feature-box {
+  background-color: #d6e8da;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  transition-property: transform box-shadow;
+  transition-duration: .2s; }
+  .feature-box__icon {
+    font-size: 6rem;
+    margin-bottom: .5rem;
+    background-image: linear-gradient(to right, #7ed56f, #28b485);
+    background-clip: text;
+    color: transparent; }
+  .feature-box:hover {
+    transform: scale(1.05) translateY(-1.5rem);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.35); }
+
 .header {
   /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */
   height: calc(98vh - (60px - 2vh));
@@ -331,6 +352,9 @@ body {
   display: flow-root;
   max-width: 114rem;
   margin: 0 auto;
+  /* I don't want this padding to change according to root font-size because in case its a bigger
+   * font-size this padding would also become bigger and thus squash letters even more. */
+  padding: 0 16px;
   /* [class^="col-"] selects all elements whose class attribute value starts with "col-"
    * actually is the `^` symbol that does this trick.
    * `^` --> starts with the declared value
@@ -364,8 +388,17 @@ body {
    * negative margin-top property set just bellow. In the end we're just doing that so the
    * background color of this element "flows" behind the element above this one.
    * (I looks like a hack to me, maybe there is a better way to do that...) */
-  padding: calc(8rem + 20vh) 0;
+  padding: calc(8rem + 20vh) 0 20vh;
   /* when you use negative values for margin instead of "expanding" outwards and pushing elements
    * around, it "expands" inwards and this way its box model gets smaller, thus the element gets
    * closer to other elements */
   margin-top: -20vh; }
+
+.section-features {
+  padding: 15rem 0;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/nat-4.jpg");
+  background-size: cover;
+  margin-top: -12rem;
+  transform: skewY(-7deg); }
+  .section-features > * {
+    transform: skewY(7deg); }

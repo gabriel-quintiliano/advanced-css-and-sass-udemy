@@ -7,9 +7,28 @@
    * negative margin-top property set just bellow. In the end we're just doing that so the
    * background color of this element "flows" behind the element above this one.
    * (I looks like a hack to me, maybe there is a better way to do that...) */
-  padding: calc(8rem + #{$margin-negative-indentation}) 0;
+  padding: calc(8rem + #{$margin-negative-indentation}) 0 $margin-negative-indentation; // top sides bottom
   /* when you use negative values for margin instead of "expanding" outwards and pushing elements
    * around, it "expands" inwards and this way its box model gets smaller, thus the element gets
    * closer to other elements */
   margin-top: -$margin-negative-indentation;
+}
+
+.section-features {
+  padding: 15rem 0;
+  background-image:
+    linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, .8),
+      rgba($color-primary-dark, .8)),
+    url("../img/nat-4.jpg");
+  background-size: cover;
+  // clip-path: polygon(0 25%, 100% 0, 100% 75%, 0 100%);
+  margin-top: -12rem;
+  transform: skewY(-7deg);
+
+  // the `&` is not really necessary bellow but it looks better when being used like that
+  & > * {
+    transform: skewY(7deg);
+  }
 }

@@ -5,6 +5,9 @@
   display: flow-root; // so the .row is "aware" of floats and contains those
   max-width: $grid-width; // 1140px or if it doesn't fit, spread 100% of the available space
   margin: 0 auto;
+  /* I don't want this padding to change according to root font-size because in case its a bigger
+   * font-size this padding would also become bigger and thus squash letters even more. */
+  padding: 0 16px;
 
   &:not(:last-child) { // every .row but the last one
     margin-bottom: $gutter-vertical;
