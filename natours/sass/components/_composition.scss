@@ -1,11 +1,10 @@
 .composition {
   position: relative;
-  perspective: 55rem;
-  perspective-origin: 30% 0%;
+  perspective: 700px; // this perspective should NOT change according to browser font-size
+  perspective-origin: 40% 0%;
 
   &__photo {
     width: 80%;
-    box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
     border-radius: 5px;
     position: absolute;
     transition: all .2s;
@@ -15,6 +14,7 @@
       left: -5rem;
       transform: rotateX(80deg) rotateZ(15deg) rotateY(-5deg) scale(.8);
       translate: 0px 0px -350px;
+      box-shadow: 0 15px 40px rgba($color-black, .4);
     }
     
     &--p2 {
@@ -22,18 +22,20 @@
       left: 5rem;
       transform: rotateX(80deg) rotateZ(360deg) rotateY(-5deg) scale(0.9);
       translate: 10rem 0px -200px;
+      box-shadow: 0 8px 30px rgba($color-black, .4);
     }
     
     &--p3 {
       top: 8rem;
       left: 10%;
       transform: rotateX(76deg) rotateZ(20deg) rotateY(352deg);
+      box-shadow: 5px 15px 15px rgba($color-black, .5);
     }
 
     // composition__photo:hover
     &:hover {
       outline: .8rem solid $color-primary;
-      transform: scale(1);
+      transform: scale(1.05);
       translate: 0px 0px 0px;
       z-index: 1;
     }

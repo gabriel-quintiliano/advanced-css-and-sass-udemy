@@ -273,14 +273,13 @@ body {
 
 .composition {
   position: relative;
-  perspective: 55rem;
-  perspective-origin: 30% 0%;
+  perspective: 700px;
+  perspective-origin: 40% 0%;
   /* when .component is being hovered (i.e. when any element within .component container is being hovered),
    * selects all descendants from .component which are NOT being hovered at that moment.
    * final selector --> .component:hover .component__photo:not(:hover) */ }
   .composition__photo {
     width: 80%;
-    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
     border-radius: 5px;
     position: absolute;
     transition: all .2s;
@@ -288,19 +287,22 @@ body {
     .composition__photo--p1 {
       left: -5rem;
       transform: rotateX(80deg) rotateZ(15deg) rotateY(-5deg) scale(0.8);
-      translate: 0px 0px -350px; }
+      translate: 0px 0px -350px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); }
     .composition__photo--p2 {
       top: 2rem;
       left: 5rem;
       transform: rotateX(80deg) rotateZ(360deg) rotateY(-5deg) scale(0.9);
-      translate: 10rem 0px -200px; }
+      translate: 10rem 0px -200px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); }
     .composition__photo--p3 {
       top: 8rem;
       left: 10%;
-      transform: rotateX(76deg) rotateZ(20deg) rotateY(352deg); }
+      transform: rotateX(76deg) rotateZ(20deg) rotateY(352deg);
+      box-shadow: 5px 15px 15px rgba(0, 0, 0, 0.5); }
     .composition__photo:hover {
       outline: 0.8rem solid #55c57a;
-      transform: scale(1);
+      transform: scale(1.05);
       translate: 0px 0px 0px;
       z-index: 1; }
   .composition:hover .composition__photo:not(:hover) {
