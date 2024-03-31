@@ -703,9 +703,9 @@ body {
 }
 
 .section-tours {
-  padding: calc(8rem + 8rem) 0 8rem;
+  padding: calc(12rem + 8rem) 0 8rem;
   background-color: #f7f7f7;
-  margin-top: -8rem;
+  margin-top: -12rem;
 }
 
 .section-stories {
