@@ -14,9 +14,7 @@
   * (div.card__side) mainly to use the :hover pseudo-class on that and avoid flickering of the
   * animation applied. */
   
-  &__side {
-    font-size: 2rem;
-    
+  &__side {    
     height: $card-height;
     transition: all .8s ease;
     position: absolute;
@@ -44,22 +42,26 @@
       }
 
       &-2 {
-        background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+        background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
       }
 
       &-3 {
-        background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+        background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
       }
     }
   }
   
-  /* by hovering .card we rotate the child .card__side and this way we avoid animation flicker */
-  &:hover &__side--front {
+  /* by hovering .card we rotate the child .card__side and this way we avoid animation flicker,
+   * also, the :focus-within pseudo-class will turn the card when tab navigation focus on the
+   * button placed on the back side of the card. */
+  &:hover &__side--front,
+  &:focus-within &__side--front {
     rotate: y -180deg;
     // transform: rotateY(-180deg); // you could use this too
   }
   
-  &:hover &__side--back {
+  &:hover &__side--back,
+  &:focus-within &__side--back {
     rotate: y 0deg;
     // transform: rotateY(0deg); // you could use this too
 
@@ -93,21 +95,21 @@
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100% );
 
     &--1 {
-      background-image: linear-gradient(to right bottom, $color-secondary-light, ($color-secondary-dark)), url("../img/nat-5.jpg");
+      background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url("../img/nat-5.jpg");
     }
     
     &--2 {
-      background-image: url("../img/nat-5.jpg");
+      background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url("../img/nat-6.jpg");
     }
     
     &--3 {
-      background-image: url("../img/nat-5.jpg");
+      background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url("../img/nat-7.jpg");
     }
   }
 
   // CARD HEADING STYLING
   &__heading {
-    width: min-content; // width is calculated according to it widest child element (content). 
+    width: 15ch; // width is calculated according to it widest child element (content). 
     font-size: 2.8rem;
     font-weight: 300;
     text-align: right;
@@ -132,6 +134,14 @@
     &--1 {
       background-image: linear-gradient(to right bottom, rgba($color-secondary-light, .85), rgba($color-secondary-dark, .85));
     }
+
+    &--2 {
+      background-image: linear-gradient(to right bottom, rgba($color-primary-light, .85), rgba($color-primary-dark, .85));
+    }
+
+    &--3 {
+      background-image: linear-gradient(to right bottom, rgba($color-tertiary-light, .85), rgba($color-tertiary-dark, .85));
+    }
   }
 
   // CARD DETAILS STYLING
@@ -152,5 +162,30 @@
         }
       }
     }
+  }
+
+  // BACK-SIDE STYLING
+  &__cta {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  
+  &__price-box {
+    transform-style: preserve-3d;
+    color: $color-white;
+    margin-bottom: 8rem;
+  }
+
+  &__price-only {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+
+  &__price-value {
+    font-size: 6rem;
+    font-weight: 300;
   }
 }

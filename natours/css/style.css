@@ -155,6 +155,18 @@ body {
 .u-margin-bottom-big {
   margin-bottom: 8rem; }
 
+.u-margin-top-extra-small {
+  margin-top: 1rem; }
+
+.u-margin-top-small {
+  margin-top: 2rem; }
+
+.u-margin-top-medium {
+  margin-top: 4rem; }
+
+.u-margin-top-big {
+  margin-top: 8rem; }
+
 .u-padding-left-small {
   padding-left: 1rem; }
 
@@ -207,6 +219,13 @@ body {
   .btn--white {
     background-color: #fff;
     color: #777; }
+    .btn--white::after {
+      background-color: #fff; }
+  .btn--green {
+    background-color: #55c57a;
+    color: #fff; }
+    .btn--green::after {
+      background-color: #55c57a; }
   .btn::after {
     content: "";
     /* it just need to have `content` set, it can even be empty */
@@ -321,12 +340,13 @@ body {
   * In this case, the best thing to do was to manually set the height to the same as the content
   * (div.card__side) mainly to use the :hover pseudo-class on that and avoid flickering of the
   * animation applied. */
-  /* by hovering .card we rotate the child .card__side and this way we avoid animation flicker */
+  /* by hovering .card we rotate the child .card__side and this way we avoid animation flicker,
+   * also, the :focus-within pseudo-class will turn the card when tab navigation focus on the
+   * button placed on the back side of the card. */
   /* It was best not to nest it above because &__heading-span is an element itself and BEM methodology is
    * against the nesting of different elements, you can only nest those within blocks and within elements
    * you only nest modifiers */ }
   .card__side {
-    font-size: 2rem;
     height: 50rem;
     transition: all .8s ease;
     position: absolute;
@@ -346,12 +366,14 @@ body {
       .card__side--back-1 {
         background-image: linear-gradient(to right bottom, #ffb900, #ff7730); }
       .card__side--back-2 {
-        background-image: linear-gradient(to right bottom, #ffb900, #ff7730); }
+        background-image: linear-gradient(to right bottom, #7ed56f, #28b485); }
       .card__side--back-3 {
-        background-image: linear-gradient(to right bottom, #ffb900, #ff7730); }
-  .card:hover .card__side--front {
+        background-image: linear-gradient(to right bottom, #2998ff, #5643fa); }
+  .card:hover .card__side--front,
+  .card:focus-within .card__side--front {
     rotate: y -180deg; }
-  .card:hover .card__side--back {
+  .card:hover .card__side--back,
+  .card:focus-within .card__side--back {
     rotate: y 0deg;
     /* hint: the value of `rotate` (or `transform: rotate()`) is the final position after the rotation,
      * so don't make a mistake and this that this value will be added to the final position after an
@@ -381,11 +403,11 @@ body {
     .card__picture--1 {
       background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url("../img/nat-5.jpg"); }
     .card__picture--2 {
-      background-image: url("../img/nat-5.jpg"); }
+      background-image: linear-gradient(to right bottom, #7ed56f, #28b485), url("../img/nat-6.jpg"); }
     .card__picture--3 {
-      background-image: url("../img/nat-5.jpg"); }
+      background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url("../img/nat-7.jpg"); }
   .card__heading {
-    width: min-content;
+    width: 15ch;
     font-size: 2.8rem;
     font-weight: 300;
     text-align: right;
@@ -402,6 +424,10 @@ body {
     box-decoration-break: clone; }
     .card__heading-span--1 {
       background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.85), rgba(255, 119, 48, 0.85)); }
+    .card__heading-span--2 {
+      background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.85), rgba(40, 180, 133, 0.85)); }
+    .card__heading-span--3 {
+      background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85)); }
   .card__details ul {
     list-style: none;
     margin: 0 auto;
@@ -412,6 +438,22 @@ body {
       padding: 1rem; }
       .card__details ul li:not(:last-child) {
         border-bottom: 1px solid #eee; }
+  .card__cta {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%); }
+  .card__price-box {
+    transform-style: preserve-3d;
+    color: #fff;
+    margin-bottom: 8rem; }
+  .card__price-only {
+    font-size: 1.4rem;
+    text-transform: uppercase; }
+  .card__price-value {
+    font-size: 6rem;
+    font-weight: 300; }
 
 .header {
   /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */

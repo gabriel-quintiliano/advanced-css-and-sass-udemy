@@ -42,6 +42,19 @@
   &--white {
     background-color: $color-white;
     color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  &--green {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &::after {
+      background-color: $color-primary;
+    }
   }
   
   /* ::after is a pseudo-element, which are virtual elements that are inserted as child-elements from the
