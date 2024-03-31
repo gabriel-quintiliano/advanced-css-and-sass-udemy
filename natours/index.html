@@ -244,7 +244,26 @@
         </div>
       </section>
 
-      <section class="section-stories">
+      <section class="section-stories" style="position: relative;">
+
+        <div class="bg-video">
+          <!-- to make sure browser don't prevent your video from auto playing, make sure to also use the
+              `muted` attribute -->
+          <video autoplay muted loop class="bg-video__content">
+            <!-- in the <video> tag you can define a video to play via the `src` attribute, but you can also
+                embed the <source> tag within. The tags embedded within <video> are used as fallback if the
+                original video can't play because of browser support. As declared bellow, first an .mp4 video
+                will try to play, if not possible, then it'll try a .webm video and finally if this can't also
+                play, the "Your browser doesn't support this video :(" will show. In this case, as shown in
+                the official documentation you can also show a link for the downloading of the video or place
+                an image if no video can play. -->
+            <source src="img/video.mp4" type="video/mp4">
+            <source src="img/video.webm" type="video/webm">
+
+            Your browser doesn't support this video :(
+          </video>
+        </div>
+
         <div class="u-center-text u-margin-bottom-big">
           <h2 class="heading-secondary">
             We make people genuinely happy
