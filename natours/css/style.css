@@ -260,29 +260,28 @@ body {
    * selects all descendants from .component which are NOT being hovered at that moment.
    * final selector --> .component:hover .component__photo:not(:hover) */ }
   .composition__photo {
-    width: 60%;
+    width: 80%;
     box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
     border-radius: 5px;
     position: absolute;
     transition: all .2s;
     outline-offset: .8rem; }
     .composition__photo--p1 {
-      left: 0;
-      transform: rotateX(78deg) rotateZ(15deg) rotateY(-5deg) scale(0.8);
+      left: -5rem;
+      transform: rotateX(80deg) rotateZ(15deg) rotateY(-5deg) scale(0.8);
       translate: 0px 0px -350px; }
     .composition__photo--p2 {
       top: 2rem;
-      right: 0;
-      transform: rotateX(76deg) rotateZ(15deg) rotateY(-5deg) scale(0.9);
-      translate: 0px 0px -200px; }
+      left: 5rem;
+      transform: rotateX(80deg) rotateZ(360deg) rotateY(-5deg) scale(0.9);
+      translate: 10rem 0px -200px; }
     .composition__photo--p3 {
       top: 8rem;
-      left: 20%;
-      transform: rotateX(83deg) rotateZ(26deg) rotateY(-3deg);
-      translate: 0px 0px 0px; }
+      left: 10%;
+      transform: rotateX(76deg) rotateZ(20deg) rotateY(352deg); }
     .composition__photo:hover {
       outline: 0.8rem solid #55c57a;
-      transform: scale(1.1);
+      transform: scale(1);
       translate: 0px 0px 0px;
       z-index: 1; }
   .composition:hover .composition__photo:not(:hover) {
@@ -322,9 +321,11 @@ body {
   * In this case, the best thing to do was to manually set the height to the same as the content
   * (div.card__side) mainly to use the :hover pseudo-class on that and avoid flickering of the
   * animation applied. */
-  /* by hovering .card we rotate the child .card__side and this way we avoid animation flicker */ }
+  /* by hovering .card we rotate the child .card__side and this way we avoid animation flicker */
+  /* It was best not to nest it above because &__heading-span is an element itself and BEM methodology is
+   * against the nesting of different elements, you can only nest those within blocks and within elements
+   * you only nest modifiers */ }
   .card__side {
-    color: white;
     font-size: 2rem;
     height: 50rem;
     transition: all .8s ease;
@@ -333,6 +334,7 @@ body {
     left: 0;
     backface-visibility: hidden;
     border-radius: 4px;
+    overflow: hidden;
     box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
     /* `width: 100%;` is needed because elements with `position: absolute` set have their width
     * defined by their content, I think it is `width: max-content;`. */
@@ -340,7 +342,6 @@ body {
     .card__side--front {
       background-color: #fff; }
     .card__side--back {
-      color: white;
       rotate: y 180deg; }
       .card__side--back-1 {
         background-image: linear-gradient(to right bottom, #ffb900, #ff7730); }
@@ -371,6 +372,46 @@ body {
      *   transform: rotateY(180deg);
      * }
      */ }
+  .card__picture {
+    height: 23rem;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: screen;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); }
+    .card__picture--1 {
+      background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url("../img/nat-5.jpg"); }
+    .card__picture--2 {
+      background-image: url("../img/nat-5.jpg"); }
+    .card__picture--3 {
+      background-image: url("../img/nat-5.jpg"); }
+  .card__heading {
+    width: min-content;
+    font-size: 2.8rem;
+    font-weight: 300;
+    text-align: right;
+    text-transform: uppercase;
+    color: #fff;
+    position: absolute;
+    top: 12rem;
+    right: 2rem; }
+  .card__heading-span {
+    padding: 1rem 1.5rem;
+    /* `box-decoration-break: clone;` makes the breaks of an inline inline element be treated as different
+     * boxes and thus applies styles as if each piece had it own box model */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone; }
+    .card__heading-span--1 {
+      background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.85), rgba(255, 119, 48, 0.85)); }
+  .card__details ul {
+    list-style: none;
+    margin: 0 auto;
+    width: 80%; }
+    .card__details ul li {
+      text-align: center;
+      font-size: 1.5rem;
+      padding: 1rem; }
+      .card__details ul li:not(:last-child) {
+        border-bottom: 1px solid #eee; }
 
 .header {
   /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */

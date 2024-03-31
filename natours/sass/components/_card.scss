@@ -1,4 +1,5 @@
 .card {
+  // FUNCTIONALITY
   perspective: 150rem;
   position: relative;
   height: $card-height;
@@ -14,7 +15,6 @@
   * animation applied. */
   
   &__side {
-    color: white;
     font-size: 2rem;
     
     height: $card-height;
@@ -24,6 +24,7 @@
     left: 0;
     backface-visibility: hidden; // so when this element is rotated 180deg its back doesn't show
     border-radius: 4px;
+    overflow: hidden; // will make the border-radius show in the background-image of &__picture--X
     box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
 
     /* `width: 100%;` is needed because elements with `position: absolute` set have their width
@@ -35,7 +36,6 @@
     }
     
     &--back {
-      color: white;
       rotate: y 180deg;
       // transform: rotateY(90deg); // you could use this too
       
@@ -82,5 +82,75 @@
      *   transform: rotateY(180deg);
      * }
      */
+  }
+
+  // FRONT-SIDE STYLING
+  &__picture {
+    height: 23rem;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: screen; // blend mode for the background-image value (in this case the linear-gradient and image).
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100% );
+
+    &--1 {
+      background-image: linear-gradient(to right bottom, $color-secondary-light, ($color-secondary-dark)), url("../img/nat-5.jpg");
+    }
+    
+    &--2 {
+      background-image: url("../img/nat-5.jpg");
+    }
+    
+    &--3 {
+      background-image: url("../img/nat-5.jpg");
+    }
+  }
+
+  // CARD HEADING STYLING
+  &__heading {
+    width: min-content; // width is calculated according to it widest child element (content). 
+    font-size: 2.8rem;
+    font-weight: 300;
+    text-align: right;
+    text-transform: uppercase;
+    color: $color-white;
+    position: absolute;
+    top: 12rem;
+    right: 2rem;
+  }
+
+  /* It was best not to nest it above because &__heading-span is an element itself and BEM methodology is
+   * against the nesting of different elements, you can only nest those within blocks and within elements
+   * you only nest modifiers */
+  &__heading-span {
+    padding: 1rem 1.5rem;
+
+    /* `box-decoration-break: clone;` makes the breaks of an inline inline element be treated as different
+     * boxes and thus applies styles as if each piece had it own box model */
+    -webkit-box-decoration-break: clone; // -webkit is needed so it works on chrome
+    box-decoration-break: clone; // not supported for chrome yet
+
+    &--1 {
+      background-image: linear-gradient(to right bottom, rgba($color-secondary-light, .85), rgba($color-secondary-dark, .85));
+    }
+  }
+
+  // CARD DETAILS STYLING
+  &__details {
+
+    ul {
+      list-style: none;
+      margin: 0 auto;
+      width: 80%;
+      
+      li {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 1rem;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $color-grey-light-2;
+        }
+      }
+    }
   }
 }
