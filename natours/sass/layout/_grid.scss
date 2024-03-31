@@ -27,8 +27,8 @@
   }
 
   .col-1-of-2 {
-    /* to use a sass variable within a native css function you MUST wrap that in # + { <var-here> } */
-    width: calc((100% - #{$gutter-horizontal})/2);
+    /* no need to use # + { <var-here> } within `calc()` in dart-sass@1.72.0 */
+    width: calc((100% - $gutter-horizontal)/2);
   }
   
   .col-1-of-3 {
