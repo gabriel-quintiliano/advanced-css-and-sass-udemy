@@ -1,0 +1,65 @@
+.story {
+  $story-padding: 6rem;
+  $transition-duration: .45s;
+
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 30px 60px rgba($color-black, .1);
+  background-color: $color-white;
+  border-radius: 3px;
+  padding: $story-padding;
+  transform: skewX(-12deg);
+  
+  & > * {
+    // so child elements look normal
+    transform: skewX(12deg);
+  }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+
+    margin-right: calc($story-padding / 2); // applied to <figure>
+    // apparently, the basis for the percentage within `circle()` is the current element width, not the parents width.
+    shape-outside: circle(50%);
+    clip-path: circle(50%);
+    
+    position: relative;
+  }
+
+  &__img {
+    height: 100%;
+    transform: translateX(-40px) scale(1.2);
+    transition: all $transition-duration;
+  }
+
+  &__caption {
+    font-size: 1.7rem;
+    color: $color-white;
+    text-transform: uppercase;
+    text-align: center;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 80%);
+
+    // background-color: rgba($color-black, .25);
+    // box-shadow: 0 15px 40px rgba($color-black, 1);
+    opacity: 0;
+    transition: all $transition-duration;
+  }
+
+  &:hover &__caption {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+  }
+
+  &:hover &__img {
+    transform: translateX(-40px) scale(1);
+
+    // the filter property can apply many filters to an image or other replaced element
+    filter: blur(3px) brightness(80%);
+  }
+}
