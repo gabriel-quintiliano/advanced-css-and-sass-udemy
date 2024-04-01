@@ -1,0 +1,69 @@
+.form {
+  
+  &__group:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  &__input {
+    font-size: 1.5rem;
+    /* <input> elements DON'T INHERIT the font properties, so it need to define it or
+     * set it to inherit it's parent font-family value (this will also be used by the
+     * form's placeholder text) */
+    font-family: inherit;
+    color: inherit;
+    
+    /* in form inputs horizontal padding tends to look smaller, so make it a bit
+     * bigger to compensate for that and make it look better*/
+    padding: 1.5rem 2rem;
+    border-radius: 3px;
+    background-color: rgba($color-white, .5);
+    border-style: none; // to remove the default <input> borders
+    width: 100%;
+    display: block;
+
+    /* this transparent border is here just so that when we add a greenish border
+     * as the user focuses on this <input> the elements below aren't moved around,
+     * and that is because the border is already here but not showing yet. */
+    border-bottom: 3px solid transparent;
+    transition: border-bottom .2s;
+
+    // when the <input> is focused by tab or the user is typing within
+    &:focus {
+      outline: none; // by default it has some kind of outline
+      box-shadow: 0 16px 20px rgba($color-black, .1);
+      border-bottom: 3px solid $color-primary;
+    }
+    
+    &:focus:invalid {
+      border-bottom: 3px solid $color-secondary-dark;
+    }
+
+    /* via the ::placeholder pseudo-element you can add rule sets specific to an
+     * <input> placeholder, e.g. a different font color, a lighter one maybe. */
+    &::placeholder {
+      color: $color-grey-dark-2;
+    }
+  }
+
+  &__label {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: .7rem;
+    display: inline-block;
+    opacity: 1;
+    
+    transition-property: transform opacity;
+    transition-duration: .2s;
+  }
+  
+  /* while <input> placeholder is being shown, the associated <label> will be invisible
+   * an translated upwards, so when it reappears (as the placeholder goes away), it will
+   * be back to its original position in an animation as if the placeholder itself is
+   * going down. */
+  &__input:placeholder-shown + &__label {
+    transform: translateY(-4.3rem);
+    opacity: 0; // only makes element disappear
+    visibility: hidden; // makes the element actually inexistent in the page
+  }
+}
