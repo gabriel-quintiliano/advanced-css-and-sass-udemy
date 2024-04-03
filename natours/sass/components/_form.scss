@@ -64,6 +64,62 @@
   &__input:placeholder-shown + &__label {
     transform: translateY(-4.3rem);
     opacity: 0; // only makes element disappear
-    visibility: hidden; // makes the element actually inexistent in the page
+    visibility: hidden; // makes the element actually inexistent in the page (but doesn't change the layout)
+  }
+
+  &__radio-group {
+    /* as we know there are only 2 radio buttons, `width: 49%;` + `display: inline-block;`
+     * will make sure these are side by side in the layout. */
+    width: 49%;
+    display: inline-block;
+  }
+
+    &__radio-input {
+      /* so the actual <input type="radio"> which cannot be styled is removed from the layout
+       * and also don't show on screen. It doesn't affect is functionality, by clicking the
+       * <label> linked to this input, it will still be selected. */
+      display: none;
+  }
+
+  &__radio-label {
+    cursor: pointer;
+  }
+
+  &__radio-button {
+    $outline-offset: .3rem;
+    $outline-width: .2rem;
+
+    display: inline-block; // so height, width, border-radius and background-color can apply
+    vertical-align: middle; // center it in the middle of line
+    transform: translateY(-2px); // just a fix to better center it
+
+    // this is the size of the middle "ball" in the "selected" state
+    height: 1.1rem;
+    width: 1.1rem;
+    border-radius: 50%; // to make this elem. to look like a circle
+
+    /* as there is no way (that I know of) to offset a border, I'll make the outer circle
+     * of this radio button out of the outline property, which can be offset. As outline
+     * doesn't take actual space in the page structure, i'm making up for that with a margin
+     * that is the sum of the outline-width and outline-offset. */
+    outline: $outline-width solid $color-secondary-dark;
+    /* if you're really going to use `outline-offset` on your project, it may be worth to
+     * look for more details on the behavior of Google Chrome of not accepting non-whole 
+     * pixel values for this property (I think it rounded these broken numbers down). */
+    outline-offset: $outline-offset;
+    margin: calc($outline-offset + $outline-width);
+
+    /* In the Udemy css course, the instructor achieves the same using the border property
+     * to represent the outer circle and makes the inner circle out of the border of the
+     * ::after pseudo-element which is centered using `position: absolute`. I just found
+     * my approach easier and simpler. In this case, the background-color will be animated
+     * which is far from ideal, but it's an area so small that there show be unnoticeable
+     * performance wise. */
+
+    transition: background-color .2s;
+  }
+
+  &__radio-input:checked + &__radio-label &__radio-button {
+    background-color: $color-secondary-dark;
   }
 }

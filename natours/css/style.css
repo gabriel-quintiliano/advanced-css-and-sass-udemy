@@ -652,6 +652,49 @@ body {
   opacity: 0;
   visibility: hidden;
 }
+.form__radio-group {
+  /* as we know there are only 2 radio buttons, `width: 49%;` + `display: inline-block;`
+   * will make sure these are side by side in the layout. */
+  width: 49%;
+  display: inline-block;
+}
+.form__radio-input {
+  /* so the actual <input type="radio"> which cannot be styled is removed from the layout
+   * and also don't show on screen. It doesn't affect is functionality, by clicking the
+   * <label> linked to this input, it will still be selected. */
+  display: none;
+}
+.form__radio-label {
+  cursor: pointer;
+}
+.form__radio-button {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateY(-2px);
+  height: 1.1rem;
+  width: 1.1rem;
+  border-radius: 50%;
+  /* as there is no way (that I know of) to offset a border, I'll make the outer circle
+   * of this radio button out of the outline property, which can be offset. As outline
+   * doesn't take actual space in the page structure, i'm making up for that with a margin
+   * that is the sum of the outline-width and outline-offset. */
+  outline: 0.2rem solid #ff7730;
+  /* if you're really going to use `outline-offset` on your project, it may be worth to
+   * look for more details on the behavior of Google Chrome of not accepting non-whole 
+   * pixel values for this property (I think it rounded these broken numbers down). */
+  outline-offset: 0.3rem;
+  margin: 0.5rem;
+  /* In the Udemy css course, the instructor achieves the same using the border property
+   * to represent the outer circle and makes the inner circle out of the border of the
+   * ::after pseudo-element which is centered using `position: absolute`. I just found
+   * my approach easier and simpler. In this case, the background-color will be animated
+   * which is far from ideal, but it's an area so small that there show be unnoticeable
+   * performance wise. */
+  transition: background-color 0.2s;
+}
+.form__radio-input:checked + .form__radio-label .form__radio-button {
+  background-color: #ff7730;
+}
 
 .header {
   /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */
