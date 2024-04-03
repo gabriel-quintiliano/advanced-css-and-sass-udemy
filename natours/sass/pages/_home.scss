@@ -52,15 +52,19 @@
 }
 
 .book {
+  /* regarding `linear-gradient()` its direction can be set in degrees also, and you can define a percentages
+   * referring after the color which will represent where it begins or ends, e.g. below the a gradient that
+   * starts at 0% in white and goes up to 50%, and from there up to the end it its transparent so the actual
+   * background image can show. */
   background-image: linear-gradient(105deg, rgba($color-white, .85) 0%, rgba($color-white, .85) 50%, transparent 50%), url("../img/nat-10.jpg");
-  background-size: 100%; // this is equivalent to `cover`
-  border-radius: 3px;
+  background-size: cover;
+  background-position: right;
+  border-radius: 4px;
   box-shadow: 0 15px 40px rgba($color-black, .2);
-
-  height: 50rem;
 
   &__form {
     width: 50%; 
     padding: 6rem;
+    padding-bottom: 4rem;
   }
 }

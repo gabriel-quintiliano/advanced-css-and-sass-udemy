@@ -1,28 +1,40 @@
 .btn {
-  /* :link pseudo-class represents an anchor that has a destination set i.e. href */
-  &:link,
-  &:visited {
-    text-transform: uppercase;
-    text-decoration: none; /* gets rid of that default underline in anchor tags text content */
-    padding: 1.5rem 4rem;
-    /* by setting `display: inline-block` the inner-display prop = `inline` and because of that you can treat
-     * this element as text (so it can be easily centered if its parent element has `text-align: center` set).
-     * the `inline-block` value is necessary so there is a box model for us to deal with margins and paddings... */
-    display: inline-block;
-    border-radius: .7rem;
+  /* this `.btn` class was initially meant to be used only on <a> elements, so the "main" styles below
+   * were all describe within `&:link, &:visited {...}` to account for visited and unvisited links.
+   * Later on I found out that all styles defined for <a> also will be applied to the :visited and
+   * :link naturally, unless they're overridden within these pseudo-class selectors. Second to that,
+   * both of the states targeted by :visited and :link are comprised in the :any-link, so you can use
+   * that instead. Finally, as this same `.btn` is now use in <button> elements, I've dropped :link
+   * and :visited to the single `.btn` class selector so that all the main style are applied both to
+   * <button> and <a>, <a>:visited and <a>:link.
+   *
+   * Use <a>:visited and <a>:link when you want to apply to style specifically to these states of <a>,
+   * otherwise use <a> (or a class that will be directly assigned this element) */
 
-    /* the `transition` property is a short-hand that will deal with the changing of style of an element,
-     * so in the end it can be seen as another way to approach animations.
-     * `transition` must always be set alongside the initial state styles.
-     *
-     * 1. define which css properties this transition will be applied to (if you don't know, use `all`)
-     * 2. define the time this style transition will take (from initial state - define above - to final state
-     *    which is in this case defined in `.btn:hover` and `.btn:active`) */
-    transition: all .2s;
-    position: relative;
-  }
+  text-transform: uppercase;
+  text-decoration: none; /* gets rid of that default underline in anchor tags text content */
+  padding: 1.5rem 4rem;
+  /* by setting `display: inline-block` the inner-display prop = `inline` and because of that you can treat
+   * this element as text (so it can be easily centered if its parent element has `text-align: center` set).
+   * the `inline-block` value is necessary so there is a box model for us to deal with margins and paddings... */
+  display: inline-block;
+  border-radius: .7rem;
 
-  &:hover, &:focus {
+  // specific styles for when this class is used in a <button> element
+  border: none; // to remove any border from <button> elements, <a> elements have no border by default.
+  cursor: pointer; // so <button> elements have a pointer cursor when hovered (just like <a> elements )
+
+  /* the `transition` property is a short-hand that will deal with the changing of style of an element,
+   * so in the end it can be seen as another way to approach animations.
+   * `transition` must always be set alongside the initial state styles.
+   *
+   * 1. define which css properties this transition will be applied to (if you don't know, use `all`)
+   * 2. define the time this style transition will take (from initial state - define above - to final state
+   *    which is in this case defined in `.btn:hover` and `.btn:active`) */
+  transition: all .2s;
+  position: relative;
+
+  &:hover {
     transform: translateY(-3px);
     box-shadow: 0 1rem 2rem rgba($color-black, .2); /* value = x-axis y-axis blur color */
 
@@ -34,7 +46,7 @@
   }
   
   /* :active pseudo-class represents an anchor tag that is being clicked (left button of mouse pressed) */
-  &:active {
+  &:active, &:focus {
     transform: translateY(-1px);
     box-shadow: 0 .5rem 1rem rgba($color-black, .2); /* value = x-axis y-axis blur color */
   }

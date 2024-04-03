@@ -145,68 +145,74 @@ body {
 
 /* in this file you'll have utility classes which are generic classes that have a single
  * or simple style declaration that can be reused throughout the project */
+/* while using !important is not a good practice at all, utility classes are an exception
+ * to that, because as these will a lot of times be less specific that "normal" classes,
+ * you don't care and just want that very specific style provided by the utility class
+ * to be applied no matter what. */
 .u-center-text {
-  text-align: center;
+  text-align: center !important;
 }
 
 .u-margin-bottom-extra-small {
-  margin-bottom: 1rem;
+  margin-bottom: 1rem !important;
 }
 
 .u-margin-bottom-small {
-  margin-bottom: 2rem;
+  margin-bottom: 2rem !important;
 }
 
 .u-margin-bottom-medium {
-  margin-bottom: 4rem;
+  margin-bottom: 4rem !important;
 }
 
 .u-margin-bottom-big {
-  margin-bottom: 8rem;
+  margin-bottom: 8rem !important;
 }
 
 .u-margin-top-extra-small {
-  margin-top: 1rem;
+  margin-top: 1rem !important;
 }
 
 .u-margin-top-small {
-  margin-top: 2rem;
+  margin-top: 2rem !important;
 }
 
 .u-margin-top-medium {
-  margin-top: 4rem;
+  margin-top: 4rem !important;
 }
 
 .u-margin-top-big {
-  margin-top: 8rem;
+  margin-top: 8rem !important;
 }
 
 .u-margin-top-huge {
-  margin-top: 10rem;
+  margin-top: 10rem !important;
 }
 
 .u-padding-left-small {
-  padding-left: 1rem;
+  padding-left: 1rem !important;
 }
 
 .u-pos-relative {
-  position: relative;
+  position: relative !important;
 }
 
 .u-pos-absolute {
-  position: absolute;
+  position: absolute !important;
 }
 
 .btn {
-  /* :link pseudo-class represents an anchor that has a destination set i.e. href */
-  /* :active pseudo-class represents an anchor tag that is being clicked (left button of mouse pressed) */
-  /* ::after is a pseudo-element, which are virtual elements that are inserted as child-elements from the
-   * real html element, these will only appear on screen if they have `display` or `content` set, and you
-   * also need to define its `height` and `width` (remember, as these are within the real html element,
-   * the 100% value refers to the whole size of this element)
-   *  */
-}
-.btn:link, .btn:visited {
+  /* this `.btn` class was initially meant to be used only on <a> elements, so the "main" styles below
+   * were all describe within `&:link, &:visited {...}` to account for visited and unvisited links.
+   * Later on I found out that all styles defined for <a> also will be applied to the :visited and
+   * :link naturally, unless they're overridden within these pseudo-class selectors. Second to that,
+   * both of the states targeted by :visited and :link are comprised in the :any-link, so you can use
+   * that instead. Finally, as this same `.btn` is now use in <button> elements, I've dropped :link
+   * and :visited to the single `.btn` class selector so that all the main style are applied both to
+   * <button> and <a>, <a>:visited and <a>:link.
+   *
+   * Use <a>:visited and <a>:link when you want to apply to style specifically to these states of <a>,
+   * otherwise use <a> (or a class that will be directly assigned this element) */
   text-transform: uppercase;
   text-decoration: none; /* gets rid of that default underline in anchor tags text content */
   padding: 1.5rem 4rem;
@@ -215,6 +221,8 @@ body {
    * the `inline-block` value is necessary so there is a box model for us to deal with margins and paddings... */
   display: inline-block;
   border-radius: 0.7rem;
+  border: none;
+  cursor: pointer;
   /* the `transition` property is a short-hand that will deal with the changing of style of an element,
    * so in the end it can be seen as another way to approach animations.
    * `transition` must always be set alongside the initial state styles.
@@ -224,17 +232,23 @@ body {
    *    which is in this case defined in `.btn:hover` and `.btn:active`) */
   transition: all 0.2s;
   position: relative;
+  /* :active pseudo-class represents an anchor tag that is being clicked (left button of mouse pressed) */
+  /* ::after is a pseudo-element, which are virtual elements that are inserted as child-elements from the
+   * real html element, these will only appear on screen if they have `display` or `content` set, and you
+   * also need to define its `height` and `width` (remember, as these are within the real html element,
+   * the 100% value refers to the whole size of this element)
+   *  */
 }
-.btn:hover, .btn:focus {
+.btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); /* value = x-axis y-axis blur color */
   /* ::after pseudo-element when hovered */
 }
-.btn:hover::after, .btn:focus::after {
+.btn:hover::after {
   transform: scaleX(1.4) scaleY(1.6); /* scales this pseudo-element to twice its size */
   opacity: 0;
 }
-.btn:active {
+.btn:active, .btn:focus {
   transform: translateY(-1px);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* value = x-axis y-axis blur color */
 }
@@ -821,15 +835,20 @@ body {
 }
 
 .book {
+  /* regarding `linear-gradient()` its direction can be set in degrees also, and you can define a percentages
+   * referring after the color which will represent where it begins or ends, e.g. below the a gradient that
+   * starts at 0% in white and goes up to 50%, and from there up to the end it its transparent so the actual
+   * background image can show. */
   background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.85) 50%, transparent 50%), url("../img/nat-10.jpg");
-  background-size: 100%;
-  border-radius: 3px;
+  background-size: cover;
+  background-position: right;
+  border-radius: 4px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  height: 50rem;
 }
 .book__form {
   width: 50%;
   padding: 6rem;
+  padding-bottom: 4rem;
 }
 
 /*# sourceMappingURL=style.css.map */

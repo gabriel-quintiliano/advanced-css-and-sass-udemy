@@ -1,20 +1,25 @@
 /* in this file you'll have utility classes which are generic classes that have a single
  * or simple style declaration that can be reused throughout the project */
 
-.u-center-text { text-align: center; }
+/* while using !important is not a good practice at all, utility classes are an exception
+ * to that, because as these will a lot of times be less specific that "normal" classes,
+ * you don't care and just want that very specific style provided by the utility class
+ * to be applied no matter what. */
 
-.u-margin-bottom-extra-small { margin-bottom: 1rem; }
-.u-margin-bottom-small { margin-bottom: 2rem; }
-.u-margin-bottom-medium { margin-bottom: 4rem; }
-.u-margin-bottom-big { margin-bottom: 8rem; }
+.u-center-text { text-align: center !important; }
 
-.u-margin-top-extra-small { margin-top: 1rem; }
-.u-margin-top-small { margin-top: 2rem; }
-.u-margin-top-medium { margin-top: 4rem; }
-.u-margin-top-big { margin-top: 8rem; }
-.u-margin-top-huge { margin-top: 10rem; }
+.u-margin-bottom-extra-small { margin-bottom: 1rem !important; }
+.u-margin-bottom-small { margin-bottom: 2rem !important; }
+.u-margin-bottom-medium { margin-bottom: 4rem !important; }
+.u-margin-bottom-big { margin-bottom: 8rem !important; }
 
-.u-padding-left-small { padding-left: 1rem; }
+.u-margin-top-extra-small { margin-top: 1rem !important; }
+.u-margin-top-small { margin-top: 2rem !important; }
+.u-margin-top-medium { margin-top: 4rem !important; }
+.u-margin-top-big { margin-top: 8rem !important; }
+.u-margin-top-huge { margin-top: 10rem !important; }
 
-.u-pos-relative { position: relative; }
-.u-pos-absolute { position: absolute; }
+.u-padding-left-small { padding-left: 1rem !important; }
+
+.u-pos-relative { position: relative !important; }
+.u-pos-absolute { position: absolute !important; }
