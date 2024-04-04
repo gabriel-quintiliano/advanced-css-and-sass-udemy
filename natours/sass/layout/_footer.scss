@@ -1,0 +1,61 @@
+.footer {
+  background-color: $color-grey-dark-3;
+  padding: 10rem 0;
+  font-size: 1.4rem;
+  color: $color-grey-light-1;
+
+  &__logo-box {
+    text-align: center;
+    margin-bottom: 8rem;
+  }
+
+  &__logo {
+    width: 15rem;
+  }
+
+  &__navigation {
+    border-top: 1px solid $color-grey-dark;
+    padding-top: 2rem;
+  }
+
+  &__list {
+    list-style: none;
+    text-align: center;
+  }
+
+  &__item {
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: 2rem;
+    }
+  }
+
+  &__link {
+    // white on dark may look strange, use a light grey instead
+    background-color: $color-grey-dark-3;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: inherit;
+
+    // inline-block is what allows transform to do its job
+    display: inline-block;
+    transition: transform 150ms;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $color-primary;
+      box-shadow: 0 10px 20px rgba($color-black, .4);
+      transform: rotate(5deg) scale(1.3);
+    }
+  }
+
+  &__copyright {
+    padding-top: 2rem;
+    // display: inline-block;
+    border-top: 1px solid $color-grey-dark;
+    width: 80%;
+    margin-left: auto;
+  }
+}
