@@ -713,14 +713,6 @@ body {
 .navigation__checkbox {
   display: none;
 }
-.navigation__checkbox:checked ~ .navigation__background {
-  transform: scale(90);
-}
-.navigation__checkbox:checked ~ .navigation__nav {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(0);
-}
 .navigation__button {
   height: 7rem;
   width: 7rem;
@@ -729,6 +721,7 @@ body {
   z-index: 1002;
   top: 6rem;
   right: 6rem;
+  line-height: 7rem;
   background-color: #fff;
   cursor: pointer;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -755,8 +748,8 @@ body {
   left: 0;
   opacity: 0;
   visibility: hidden;
-  transform: translateX(-400px);
-  transition: opacity 0.4s cubic-bezier(0.46, 0, 0.36, 0), transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  transform: translateX(-500px);
+  transition: opacity 0.4s cubic-bezier(0.46, 0, 0.36, 0), transform 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
   transition-delay: 0.2s;
 }
 .navigation__list {
@@ -793,6 +786,58 @@ body {
   background-position: 100%;
   color: #55c57a;
   transform: translateX(1rem);
+}
+.navigation__checkbox:checked ~ .navigation__background {
+  transform: scale(90);
+}
+.navigation__checkbox:checked ~ .navigation__nav {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0);
+}
+.navigation__icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.navigation__icon, .navigation__icon::before, .navigation__icon::after {
+  width: 3rem;
+  height: 2px;
+  background-color: #333;
+  display: inline-block;
+}
+.navigation__icon::before, .navigation__icon::after {
+  content: "";
+  position: absolute;
+  transition-property: translate, rotate, opacity;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+.navigation__icon::before {
+  top: -0.8rem;
+}
+.navigation__icon::after {
+  top: 0.8rem;
+}
+.navigation__button:hover .navigation__icon::before {
+  translate: 0 -0.2rem;
+}
+.navigation__button:hover .navigation__icon::after {
+  translate: 0 0.2rem;
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon {
+  /* so the actual <span> element "disappears", ::before and ::after are not affected,
+   * if we'd use `opacity instead, everything would disappear `*/
+  background-color: transparent;
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon::before {
+  rotate: -45deg;
+  translate: 0 0.8rem;
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon::after {
+  rotate: 45deg;
+  translate: 0 -0.8rem;
 }
 
 .header {

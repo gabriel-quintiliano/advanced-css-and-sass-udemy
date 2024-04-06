@@ -4,16 +4,6 @@
     display: none;
   }
 
-  &__checkbox:checked ~ &__background {
-    transform: scale(90);
-  }
-
-  &__checkbox:checked ~ &__nav {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(0);
-  }
-
   &__button {
     // this button will be a bit bigger than the background when it's not expanded
     height: 7rem;
@@ -23,6 +13,7 @@
     z-index: 1002;  // above &__background and &__nav
     top: 6rem;
     right: 6rem;
+    line-height: 7rem;
     background-color: $color-white;
     cursor: pointer;
     box-shadow: 0 10px 30px rgba($color-black, .1);
@@ -53,8 +44,8 @@
     left: 0;
     opacity: 0;
     visibility: hidden; // so that it's really not "in the page", not just not appearing
-    transform: translateX(-400px);
-    transition: opacity .4s cubic-bezier(.46,0,.36,0), transform .5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    transform: translateX(-500px);
+    transition: opacity .4s cubic-bezier(.46,0,.36,0), transform .4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
     transition-delay: .2s;
   }
 
@@ -97,6 +88,67 @@
       background-position: 100%;
       color: $color-primary;
       transform: translateX(1rem);
+    }
+  }
+
+  // FUNCTIONALITY
+  &__checkbox:checked ~ &__background {
+    transform: scale(90);
+  }
+
+  &__checkbox:checked ~ &__nav {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0);
+  }
+
+  // ICON
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    // styles shared by the element, ::before and ::after
+    &,
+    &::before,
+    &::after {
+      width: 3rem;
+      height: 2px;
+      background-color: $color-grey-dark-3;
+      display: inline-block;
+    }
+
+    &::before,
+    &::after {
+      content: ""; // without content, these wouldn't appear
+      position: absolute;
+      transition-property: translate, rotate, opacity;
+      transition-duration: 200ms;
+      transition-timing-function: ease-in-out;
+    }
+
+    &::before { top: -.8rem; }
+    &::after { top: .8rem; }
+  }
+
+  &__button:hover &__icon {
+    &::before { translate: 0 -.2rem; }
+    &::after { translate: 0 .2rem; }
+  }
+
+  &__checkbox:checked + &__button &__icon {
+    /* so the actual <span> element "disappears", ::before and ::after are not affected,
+     * if we'd use `opacity instead, everything would disappear `*/
+    background-color: transparent;
+
+    &::before {
+      rotate: -45deg;
+      translate: 0 .8rem;
+    }
+    &::after {
+      rotate: 45deg;
+      translate: 0 -.8rem;
     }
   }
 
