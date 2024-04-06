@@ -710,6 +710,91 @@ body {
   background-color: #ff7730;
 }
 
+.navigation__checkbox {
+  display: none;
+}
+.navigation__checkbox:checked ~ .navigation__background {
+  transform: scale(90);
+}
+.navigation__checkbox:checked ~ .navigation__nav {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0);
+}
+.navigation__button {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 1002;
+  top: 6rem;
+  right: 6rem;
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+.navigation__background {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 1000;
+  top: 6.5rem;
+  right: 6.5rem;
+  /* While `linear-gradient` goes from side to side, the `radial-gradient` starts at the center
+   * and expands outwards. first you define the color in the center and after the outer color */
+  background-image: radial-gradient(#7ed56f, #28b485);
+  transition: transform 0.8s cubic-bezier(0.83, 0, 0.17, 1);
+}
+.navigation__nav {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-400px);
+  transition: opacity 0.4s cubic-bezier(0.46, 0, 0.36, 0), transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  transition-delay: 0.2s;
+}
+.navigation__list {
+  list-style: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.navigation__item {
+  margin: 1rem;
+}
+.navigation__link {
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 300;
+  padding: 1rem 2rem;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #fff 50%);
+  background-size: 225%;
+  transition: all 0.3s;
+}
+.navigation__link span {
+  margin-right: 1.5rem;
+}
+.navigation__link:hover, .navigation__link:active, .navigation__link:focus {
+  /* when a percentage is used like that (below), the background X coordinate goes to the percentage
+   * with a Y coordinate set to 50%. So in the end, the thick is: expand the "solid part" of the
+   * background until it disappears (as done above) and then, on hover, focus and active, bring the
+   * background-position to 100% so the solid part of it reappears. */
+  background-position: 100%;
+  color: #55c57a;
+  transform: translateX(1rem);
+}
+
 .header {
   /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */
   height: calc(98vh - (60px - 2vh)); /* 98% of the viewport height (60px is for 2 * <body> padding (30px)) */

@@ -17,6 +17,26 @@
   </head>
 
   <body>
+
+    <!-- What done bellow is known as "checkbox hack" and it's not a close friend with semantics
+        or accessibility, so you better use a <button> element and you'll need very little JS to
+        make it work just the same, probably just use `<element>.toggleClass("someClass")` and
+        figure out an animation logic to be applied.  -->
+    <div class="navigation">
+      <input type="checkbox" class="navigation__checkbox" id="navi-toggle">
+      <label for="navi-toggle" class="navigation__button"></label> <!-- navigation icon -->
+      <div class="navigation__background"></div> <!-- background fill that will expand when clicked -->
+      <nav class="navigation__nav"> <!-- navigation container itself when it is expanded -->
+        <ul class="navigation__list">
+          <li class="navigation__item"><a href="#" class="navigation__link"><span>01.</span>About Natours</a></li>
+          <li class="navigation__item"><a href="#" class="navigation__link"><span>02.</span>Your benefits</a></li>
+          <li class="navigation__item"><a href="#" class="navigation__link"><span>03.</span>Popular tours</a></li>
+          <li class="navigation__item"><a href="#" class="navigation__link"><span>04.</span>Stories</a></li>
+          <li class="navigation__item"><a href="#" class="navigation__link"><span>05.</span>Book now</a></li>
+        </ul>
+      </nav>
+    </div>
+
     <header class="header">
       <div class="header__logo-box">
         <!-- img is an inline element, so it's a good idea to have it within a container (div)

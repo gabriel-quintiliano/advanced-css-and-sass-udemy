@@ -1,0 +1,103 @@
+.navigation {
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__checkbox:checked ~ &__background {
+    transform: scale(90);
+  }
+
+  &__checkbox:checked ~ &__nav {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0);
+  }
+
+  &__button {
+    // this button will be a bit bigger than the background when it's not expanded
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+    position: fixed;
+    z-index: 1002;  // above &__background and &__nav
+    top: 6rem;
+    right: 6rem;
+    background-color: $color-white;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba($color-black, .1);
+  }
+
+  &__background {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    position: fixed;
+    z-index: 1000; // above &__nav and below &__button
+    top: 6.5rem;
+    right: 6.5rem;
+
+    /* While `linear-gradient` goes from side to side, the `radial-gradient` starts at the center
+     * and expands outwards. first you define the color in the center and after the outer color */
+    background-image: radial-gradient($color-primary-light, $color-primary-dark);
+
+    transition: transform .8s cubic-bezier(0.83, 0, 0.17, 1);
+  }
+
+  &__nav {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 1001; // below &__background and &__button
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden; // so that it's really not "in the page", not just not appearing
+    transform: translateX(-400px);
+    transition: opacity .4s cubic-bezier(.46,0,.36,0), transform .5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    transition-delay: .2s;
+  }
+
+  &__list {
+    list-style: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  &__item {
+    margin: 1rem;
+  }
+
+  &__link {
+    display: inline-block; // so padding and transform works
+    font-size: 3rem;
+    font-weight: 300;
+    padding: 1rem 2rem;
+    color: $color-white;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+    background-size: 225%;
+    transition: all .3s;
+
+    span {
+      margin-right: 1.5rem;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      /* when a percentage is used like that (below), the background X coordinate goes to the percentage
+       * with a Y coordinate set to 50%. So in the end, the thick is: expand the "solid part" of the
+       * background until it disappears (as done above) and then, on hover, focus and active, bring the
+       * background-position to 100% so the solid part of it reappears. */
+      background-position: 100%;
+      color: $color-primary;
+      transform: translateX(1rem);
+    }
+  }
+
+}
