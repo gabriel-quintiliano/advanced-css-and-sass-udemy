@@ -710,6 +710,68 @@ body {
   background-color: #ff7730;
 }
 
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* Regarding width, it seems better to use 100% instead of 100vw (when it's possible) because,
+   * the `vw` unit takes into account the scroll bar width too, i.e. the whole window width.
+   * Meanwhile, 100% in most cases will represent 100% of the available space, i.e. disregards
+   * the scrollbar width. */
+  width: 100%;
+  height: 100vh;
+  padding: 4rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1004;
+}
+.popup__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  height: 50rem;
+  width: 75%;
+  max-width: 114rem;
+  max-height: 85%;
+  background-color: #fff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  overflow: clip;
+  position: relative;
+}
+.popup__left {
+  display: inline-block;
+  width: 33.3333333%;
+  height: 100%;
+}
+.popup__right {
+  display: inline-block;
+  width: 66.6666667%;
+  max-height: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  overflow: auto;
+  padding: 3rem 5rem;
+}
+.popup__img {
+  /* `vertical-align: middle` removes void space bellow the image, as <img> is an inline element,
+   * that is referent to the line-height set up. */
+  vertical-align: middle;
+  height: 50%;
+  width: 100%;
+  object-fit: cover;
+}
+.popup__text {
+  font-size: 1.4rem;
+  margin-bottom: 4rem;
+  text-align: justify;
+  column-count: 2;
+  column-gap: 3rem;
+  column-rule: 2px solid #eee;
+}
+
 .navigation__checkbox {
   display: none;
 }
