@@ -144,7 +144,7 @@
         </div>
       </section>
 
-      <section class="section-tours">
+      <section class="section-tours" id="section-tours">
         <div class="u-center-text u-margin-bottom-big">
           <h2 class="heading-secondary">Most popular tours</h2>
         </div>
@@ -183,7 +183,7 @@
                     <p class="card__price-only">Only</p>
                     <p class="card__price-value">$297</p>
                   </div>
-                  <a href="#" class="btn btn--white">Book now!</a>
+                  <a href="#popup" class="btn btn--white">Book now!</a>
                 </div>
               </div>
             </div>
@@ -219,7 +219,7 @@
                     <p class="card__price-only">Only</p>
                     <p class="card__price-value">$497</p>
                   </div>
-                  <a href="#" class="btn btn--white">Book now!</a>
+                  <a href="#popup" class="btn btn--white">Book now!</a>
                 </div>
               </div>
             </div>
@@ -253,7 +253,7 @@
                     <p class="card__price-only">Only</p>
                     <p class="card__price-value">$897</p>
                   </div>
-                  <a href="#" class="btn btn--white">Book now!</a>
+                  <a href="#popup" class="btn btn--white">Book now!</a>
                 </div>
               </div>
             </div>
@@ -424,8 +424,9 @@
     </footer>
 
     <!-- this popup is not really structurely tied to any hmtl section, thus it could be placed anywhere -->
-    <div class="popup">
+    <div class="popup" id="popup">
       <div class="popup__content">
+        <a href="#section-tours" class="btn btn-close popup__close">&times;</a>
         <div class="popup__left">
           <img src="img/nat-8.jpg" alt="Tour photo" class="popup__img">
           <img src="img/nat-9.jpg" alt="Tour photo" class="popup__img">

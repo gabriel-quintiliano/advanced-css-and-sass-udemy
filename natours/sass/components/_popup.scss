@@ -12,6 +12,21 @@
   background-color: rgba($color-black, .8);
   z-index: 1004; // so it is above .navigation__button
 
+  // This popup will initially be hidden from view
+  opacity: 0;
+  visibility: hidden;
+
+  perspective: 7rem;
+  transition: opacity .3s;
+
+  /* The :target pseudo-class represents the state when this class (.popup in this case) is present
+   * in the url as a fragment, e.g. 'yoursite.com/#popup', that is when the styles defined here will
+   * be applied to the class itself. */
+  &:target {
+    opacity: 1;
+    visibility: visible;
+  }
+
   &__content {
     @include absCenter;
 
@@ -24,9 +39,14 @@
     border-radius: 3px;
     overflow: clip;
 
-    position: relative;
+    transform: translateZ(-100px);
+    transition: transform .4s 150ms;
   }
 
+  &:target &__content {
+    transform: translateZ(0px);
+  }
+  
   &__left {
     display: inline-block;
     width: 33.3333333%;
@@ -63,5 +83,12 @@
     column-count: 2; // in how many columns the whole text will be split into
     column-gap: 3rem; // gap width between columns
     column-rule: 2px solid $color-grey-light-2; // a vertical line between columns
+  }
+
+  &__close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1005; // above everything else
   }
 }

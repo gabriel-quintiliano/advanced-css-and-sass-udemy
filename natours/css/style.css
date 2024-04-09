@@ -309,6 +309,19 @@ body {
   transform: translateY(0px);
 }
 
+.btn-close {
+  padding: 0;
+  margin: 0;
+  font-size: 3.7rem;
+  width: 3.7rem;
+  height: 3.7rem;
+  background-color: #55c57a;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 3.3rem;
+  color: white;
+}
+
 .composition {
   position: relative;
   perspective: 700px;
@@ -723,6 +736,17 @@ body {
   padding: 4rem;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 1004;
+  opacity: 0;
+  visibility: hidden;
+  perspective: 7rem;
+  transition: opacity 0.3s;
+  /* The :target pseudo-class represents the state when this class (.popup in this case) is present
+   * in the url as a fragment, e.g. 'yoursite.com/#popup', that is when the styles defined here will
+   * be applied to the class itself. */
+}
+.popup:target {
+  opacity: 1;
+  visibility: visible;
 }
 .popup__content {
   position: absolute;
@@ -737,7 +761,11 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   overflow: clip;
-  position: relative;
+  transform: translateZ(-100px);
+  transition: transform 0.4s 150ms;
+}
+.popup:target .popup__content {
+  transform: translateZ(0px);
 }
 .popup__left {
   display: inline-block;
@@ -770,6 +798,12 @@ body {
   column-count: 2;
   column-gap: 3rem;
   column-rule: 2px solid #eee;
+}
+.popup__close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1005;
 }
 
 .navigation__checkbox {

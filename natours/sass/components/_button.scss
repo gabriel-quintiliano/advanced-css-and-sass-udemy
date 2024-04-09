@@ -125,3 +125,19 @@
     transform: translateY(0px);
   }
 }
+
+.btn-close {
+  $btn-close-size: 3.7rem;
+  $close-figure-size: $btn-close-size;
+
+  padding: 0;
+  margin: 0;
+  font-size: $close-figure-size;
+  width: $btn-close-size;
+  height: $btn-close-size;
+  background-color: $color-primary;
+  border-radius: 50%;
+  text-align: center;
+  line-height: $btn-close-size - .4rem;
+  color: white;
+}
