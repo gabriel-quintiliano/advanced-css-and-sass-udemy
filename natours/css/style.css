@@ -1,5 +1,45 @@
 /* in thw "7-1 architecture" this main.scss file only serves to import other files 
 @import "folder/file"; --> will import `folder/_file.scss` */
+/*
+0-600px:       phone (max-width)
+601-900px:     Tablet portrait (max-width)
+901-1200px:    Tablet landscape (max-width)
+[1201-1800px]: where the normal css already applies (base)
+1801px + :     Big desktop (min-width)
+*/
+/* In sass you can use media queries directly within the selector, while in plain css
+ * the selector must be encapsulated by the media query, this alone can make it all more
+ * organized and specific, but there are even better way to implement it... 
+ *
+ * To use media queries in a more efficient way which is powered by sass, make these into
+ * reusable mixins, this way you can still define several media queries in several different
+ * .scss files (which makes it all more organized and specific), but if you ever want to
+ * change any of the breakpoints you'll only deal with the media query declaration within
+ * the corresponding mixin, hence it's much more scalable. Traditionally, there is a single
+ * big ass media query which holds every style specific for that breakpoint, but no need to
+ * do that in sass. */
+/* The @content directive make it possible for the mixin take a declaration block and in the
+ * compiling process replace @content for that block. */
+/* $breakpoint argument choices:
+ * - phone 
+ * - tab-port
+ * - tab-land
+ * - big-desktop
+ *
+ * ORDER: Base + typography > general layout > grid > page-layout > components
+ *
+ * 1 em = 16px by default */
+/* Media queries only take into account the font-size set up in the browser itself, what
+ * is set up in :root or html makes no difference. And also, use `em` instead of `rem`
+ * because `em` have better support in media queries and regarding sizes, there will be
+ * no difference in this case, both relate to the default font-size of the browser. */
+/* As done above, it's a pretty good idea to use `em` instead of `px` in your media query
+ * breakpoints because this way, when the user has, for example, a bigger font-size set up
+ * in their browser, this will also be taken into account to make the style of that media
+ * query apply or not. Say that the user has the default font-size set to 24px, now 37.5em
+ * is not 600px anymore, it's 900px, so in this case, even in a 900px display the user will
+ * have the same layout as a 600px phone layout (with font-size 16px), which makes sense as
+ * the content itself will appear bigger. */
 /* this file as the name suggests will be the base the styles will be build on top of. In here
  * you will set global resets, styles and normalizations */
 /* basic "global" reset - affects all html elements including before and after pseudo-elements */
@@ -15,8 +55,23 @@
 }
 
 html {
-  font-size: 62.5%; /* 62.5% * 16px (which is generally browser font-size) = 10 px, thus 1rem = 10px */
+  font-size: 62.5%;
   /* rem is not supported bellow IE 9 */
+}
+@media screen and (max-width: 75em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+@media screen and (max-width: 56.25em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media screen and (min-width: 112.5em) {
+  html {
+    font-size: 75%;
+  }
 }
 
 body {
@@ -25,6 +80,12 @@ body {
    * that doing the same via the `*` selector, which selects each element "individually", here
    * we're using the power of inheritance */
   box-sizing: border-box; /* margins and paddings are NOT added to the total size of the element */
+  padding: 3rem; /* this padding will not be inherited by elements within <body> */
+}
+@media screen and (max-width: 56.25em) {
+  body {
+    padding: 0;
+  }
 }
 
 /* in this file you should put all animations that'll be used in the project */
@@ -81,7 +142,6 @@ body {
   font-size: 1.6rem;
   line-height: 1.7; /* now line-height will be 1.7x bigger than the pre-defined line-height*/
   color: #777; /* sets text color */
-  padding: 3rem; /* this padding will not be inherited by elements within <body> */
 }
 
 .heading-primary {
@@ -104,6 +164,12 @@ body {
   animation-iteration-count: 3; - how many times should the animation be repeated
   */
 }
+@media screen and (max-width: 37.5em) {
+  .heading-primary--main {
+    letter-spacing: 1rem;
+    font-size: 5rem;
+  }
+}
 .heading-primary--sub {
   display: block;
   font-size: 2rem;
@@ -113,6 +179,12 @@ body {
   /* animation-name: moveInRight;
   animation-duration: 1.3s;
   animation-timing-function: ease-out; */
+}
+@media screen and (max-width: 37.5em) {
+  .heading-primary--sub {
+    letter-spacing: 0.5rem;
+    font-size: 1.7rem;
+  }
 }
 
 .heading-secondary {
@@ -128,6 +200,16 @@ body {
   color: transparent;
   letter-spacing: 2px;
   transition: all 0.2s;
+}
+@media screen and (max-width: 56.25em) {
+  .heading-secondary {
+    font-size: 3rem;
+  }
+}
+@media screen and (max-width: 37.5em) {
+  .heading-secondary {
+    font-size: 2.5rem;
+  }
 }
 .heading-secondary:hover {
   transform: skewY(2deg) skewX(15deg) scale(1.1);
@@ -732,7 +814,7 @@ body {
    * Meanwhile, 100% in most cases will represent 100% of the available space, i.e. disregards
    * the scrollbar width. */
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding: 4rem;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 1004;

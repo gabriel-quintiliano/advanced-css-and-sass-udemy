@@ -15,8 +15,20 @@
 }
 
 html {
-  font-size: 62.5%; /* 62.5% * 16px (which is generally browser font-size) = 10 px, thus 1rem = 10px */
+  font-size: 62.5%; // 62.5% * 16px (which is generally browser font-size) = 10 px, thus 1rem = 10px
   /* rem is not supported bellow IE 9 */
+  
+  @include respond(tab-land) { // width < 1200px
+    font-size: 56.25%; // 1 rem = 9px, 9/16 = 56.25%
+  }
+  
+  @include respond(tab-port) { // width < 900px
+    font-size: 50%; // 1 rem = 8px, 8/16 = 50%
+  }
+
+  @include respond(big-desktop) { // width > 1800px
+    font-size: 75%; // 1 rem = 12px, 12/16 = 75%
+  }
 }
 
 body {
@@ -26,4 +38,9 @@ body {
    * we're using the power of inheritance */
 
   box-sizing: border-box; /* margins and paddings are NOT added to the total size of the element */
+  padding: 3rem; /* this padding will not be inherited by elements within <body> */
+
+  @include respond(tab-port) { // width < 900px
+    padding: 0;
+  }
 }
