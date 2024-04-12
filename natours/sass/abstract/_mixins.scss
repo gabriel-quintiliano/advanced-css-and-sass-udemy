@@ -5,3 +5,84 @@
   // transform: translate(-50%, -50%);
   translate: -50% -50%;
 }
+
+// MEDIA QUERIES
+/*
+0-600px:       phone (max-width)
+601-900px:     Tablet portrait (max-width)
+901-1200px:    Tablet landscape (max-width)
+[1201-1800px]: where the normal css already applies (base)
+1801px + :     Big desktop (min-width)
+*/
+
+/* In sass you can use media queries directly within the selector, while in plain css
+ * the selector must be encapsulated by the media query, this alone can make it all more
+ * organized and specific, but there are even better way to implement it... 
+ *
+ * To use media queries in a more efficient way which is powered by sass, make these into
+ * reusable mixins, this way you can still define several media queries in several different
+ * .scss files (which makes it all more organized and specific), but if you ever want to
+ * change any of the breakpoints you'll only deal with the media query declaration within
+ * the corresponding mixin, hence it's much more scalable. Traditionally, there is a single
+ * big ass media query which holds every style specific for that breakpoint, but no need to
+ * do that in sass. */
+
+// you can implement the concept above as different mixins,
+/* The @content directive make it possible for the mixin take a declaration block and in the
+ * compiling process replace @content for that block. */
+@mixin respond-phone {
+  @media screen and (max-width: 600px) { @content }
+}
+  
+@mixin respond-tab-port {
+  @media screen and (max-width: 900px) { @content }
+}
+
+@mixin respond-tab-land {
+  @media screen and (max-width: 1200px) { @content }
+}
+
+@mixin respond-big-desktop {
+  @media screen and (min-width: 1800px) { @content }
+}
+
+// Or a single mixin that will act like a media query manager
+/* $breakpoint argument choices:
+ * - phone 
+ * - tab-port
+ * - tab-land
+ * - big-desktop
+ *
+ * ORDER: Base + typography > general layout > grid > page-layout > components
+ *
+ * 1 em = 16px by default */
+
+@mixin respond($breakpoint) {
+  // in this case, the @if directive works just like in any programming language
+  @if $breakpoint == phone {
+    @media screen and (max-width: 37.5em) { @content } // 600px
+  }
+  @if $breakpoint == tab-port {
+    @media screen and (max-width: 56.25em) { @content } // 900px
+  }
+  @if $breakpoint == tab-land {
+    @media screen and (max-width: 75em) { @content } // 1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media screen and (min-width: 112.5em) { @content } // 1800px
+  }
+}
+
+// VERY IMPORTANT NOTE ABOUT `EM` UNIT IN MEDIA QUERIES:
+/* Media queries only take into account the font-size set up in the browser itself, what
+ * is set up in :root or html makes no difference. And also, use `em` instead of `rem`
+ * because `em` have better support in media queries and regarding sizes, there will be
+ * no difference in this case, both relate to the default font-size of the browser. */
+
+/* As done above, it's a pretty good idea to use `em` instead of `px` in your media query
+ * breakpoints because this way, when the user has, for example, a bigger font-size set up
+ * in their browser, this will also be taken into account to make the style of that media
+ * query apply or not. Say that the user has the default font-size set to 24px, now 37.5em
+ * is not 600px anymore, it's 900px, so in this case, even in a 900px display the user will
+ * have the same layout as a 600px phone layout (with font-size 16px), which makes sense as
+ * the content itself will appear bigger. */

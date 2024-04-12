@@ -7,7 +7,7 @@
    * Meanwhile, 100% in most cases will represent 100% of the available space, i.e. disregards
    * the scrollbar width. */
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding: 4rem;
   background-color: rgba($color-black, .8);
   z-index: 1004; // so it is above .navigation__button
