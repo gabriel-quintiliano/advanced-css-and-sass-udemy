@@ -16,6 +16,10 @@
    * screen - the `polygon` function receives coordinates to create as polygon shaped mask.
    * Fortunately, coordinates can be dynamic and passed as percentages */
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  
+  @include respond(phone) {
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
 
   /* position: relative; is like `static` but respects reference values from `top`, `left`, `bottom` and `right`,
    * and also can be used as "anchor" to child elements which have `position: absolute` */

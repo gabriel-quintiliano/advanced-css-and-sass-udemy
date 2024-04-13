@@ -408,9 +408,28 @@ body {
   position: relative;
   perspective: 700px;
   perspective-origin: 40% 0%;
+  background-color: lightblue;
   /* when .component is being hovered (i.e. when any element within .component container is being hovered),
    * selects all descendants from .component which are NOT being hovered at that moment.
    * final selector --> .component:hover .component__photo:not(:hover) */
+}
+@media screen and (max-width: 56.25em) {
+  .composition {
+    /* I used margin-bottom here to give .composition some height (29rem in this case). As
+     * there are only absolutely positioned elements within, this container collapses, but
+     * it turns out that in phone and tab-port 1 column layout, the absolutely positioned
+     * elements will occupy no actual space in the normal flow and that's what margin-bottom
+     * is solving now.
+     *
+     * Why margin-bottom instead of height? that is because of the hover effect applied in
+     * `&:hover &__photo:not(:hover) {...}`, for it to work properly, the actual composition
+     * element has to have no height, otherwise, when it being hovered the scale and opacity
+     * styles will be applied to all the photos, which is weird when no specific photo is
+     * being hovered. This selector mentioned above is just to select the photos not being
+     * hovered when there is actually another photo already being hovered. */
+    margin-bottom: 29rem;
+    transform: translateY(-65px);
+  }
 }
 .composition__photo {
   width: 80%;
@@ -888,6 +907,28 @@ body {
   z-index: 1005;
 }
 
+.navigation {
+  --_button-top: 6rem;
+  --_button-right: 6rem;
+  /* To make it all much more scalable, simpler to use and maintainable, its a pretty
+   * good idea to use css custom properties to change base values in many places at the
+   * same time, and based on that, in lots of cases, within media queries it's so much
+   * easier to just change these custom properties values instead of creating a media
+   * query within each selector and describing multiple css properties which in the end
+   * have a single base value as reference. In the usage below, it is actually changing
+   * the `top` and `right` properties of both `&__button` and also `&__background` (in
+   * a single media query with just 2 lines! it's less then half we'd have to write if
+   * were doing it according to isolate selectors or properties).
+   *
+   * THIS SIMPLY CANNOT BE DONE WITH SASS VARIABLES because these don't exist in the
+   * final compiled css, thus the will be nothing to be dynamically changed there. */
+}
+@media screen and (max-width: 56.25em) {
+  .navigation {
+    --_button-top: 2.5rem;
+    --_button-right: 3.5rem;
+  }
+}
 .navigation__checkbox {
   display: none;
 }
@@ -897,8 +938,8 @@ body {
   border-radius: 50%;
   position: fixed;
   z-index: 1002;
-  top: 6rem;
-  right: 6rem;
+  top: var(--_button-top);
+  right: var(--_button-right);
   line-height: 7rem;
   background-color: #fff;
   cursor: pointer;
@@ -910,8 +951,8 @@ body {
   border-radius: 50%;
   position: fixed;
   z-index: 1000;
-  top: 6.5rem;
-  right: 6.5rem;
+  top: calc(var(--_button-top) + 0.5rem);
+  right: calc(var(--_button-right) + 0.5rem);
   /* While `linear-gradient` goes from side to side, the `radial-gradient` starts at the center
    * and expands outwards. first you define the color in the center and after the outer color */
   background-image: radial-gradient(#7ed56f, #28b485);
@@ -1035,6 +1076,11 @@ body {
    * and also can be used as "anchor" to child elements which have `position: absolute` */
   position: relative;
 }
+@media screen and (max-width: 37.5em) {
+  .header {
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
+}
 .header__logo-box {
   position: absolute;
   top: 4rem; /* relative to it's closest positioned parent, `.header` in this case */
@@ -1074,15 +1120,38 @@ body {
 .row:not(:last-child) {
   margin-bottom: 8rem;
 }
+@media screen and (max-width: 56.25em) {
+  .row:not(:last-child) {
+    margin-bottom: 6rem;
+  }
+}
+@media screen and (max-width: 56.25em) {
+  .row {
+    max-width: 55rem;
+  }
+}
 .row [class^=col-] {
   float: left;
 }
 .row [class^=col-]:not(:last-child) {
   margin-right: 6rem;
 }
+@media screen and (max-width: 56.25em) {
+  .row [class^=col-]:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 6rem;
+  }
+}
+@media screen and (max-width: 56.25em) {
+  .row [class^=col-] {
+    /* All columns will spread the whole width in tab-port layouts. !important is being used
+     * just so that this style gets applied no matter the order or specificity. */
+    width: 100% !important;
+  }
+}
 .row .col-1-of-2 {
   /* no need to use # + { <var-here> } within `calc()` in dart-sass@1.72.0 */
-  width: calc((100% - 6rem) / 2);
+  width: calc(calc(100% - 6rem)/2 * 1 + 0rem);
 }
 .row .col-1-of-3 {
   width: calc(calc(100% - 12rem)/3 * 1 + 0rem);
@@ -1101,14 +1170,26 @@ body {
 }
 
 .footer {
+  --_footer-padding-block: 10rem;
+  --_lb-margin-bottom: 8rem;
+  --_cp-width: 80%;
+  --_cp-margin-left: auto;
   background-color: #333;
-  padding: 10rem 0;
+  padding: var(--_footer-padding-block) 0;
   font-size: 1.4rem;
   color: #f7f7f7;
 }
+@media screen and (max-width: 56.25em) {
+  .footer {
+    --_footer-padding-block: 8rem;
+    --_lb-margin-bottom: 6rem;
+    --_cp-width: 100%;
+    --_cp-margin-left: 0;
+  }
+}
 .footer__logo-box {
   text-align: center;
-  margin-bottom: 8rem;
+  margin-bottom: var(--_lb-margin-bottom);
 }
 .footer__logo {
   width: 15rem;
@@ -1143,8 +1224,8 @@ body {
 .footer__copyright {
   padding-top: 2rem;
   border-top: 1px solid #777;
-  width: 80%;
-  margin-left: auto;
+  width: var(--_cp-width);
+  margin-left: var(--_cp-margin-left);
 }
 
 /* in scss files within the pages folder (like this file), we can put style that could

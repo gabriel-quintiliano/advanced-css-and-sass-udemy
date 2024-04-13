@@ -1,12 +1,24 @@
 .footer {
+  --_footer-padding-block: 10rem;
+  --_lb-margin-bottom: 8rem;
+  --_cp-width: 80%;
+  --_cp-margin-left: auto;
+
+  @include respond(tab-port) {
+    --_footer-padding-block: 8rem;
+    --_lb-margin-bottom: 6rem;
+    --_cp-width: 100%;
+    --_cp-margin-left: 0;
+  }
+
   background-color: $color-grey-dark-3;
-  padding: 10rem 0;
+  padding: var(--_footer-padding-block) 0;
   font-size: 1.4rem;
   color: $color-grey-light-1;
 
   &__logo-box {
     text-align: center;
-    margin-bottom: 8rem;
+    margin-bottom: var(--_lb-margin-bottom);
   }
 
   &__logo {
@@ -55,7 +67,7 @@
     padding-top: 2rem;
     // display: inline-block;
     border-top: 1px solid $color-grey-dark;
-    width: 80%;
-    margin-left: auto;
+    width: var(--_cp-width);
+    margin-left: var(--_cp-margin-left);
   }
 }

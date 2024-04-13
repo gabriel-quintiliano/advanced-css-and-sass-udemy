@@ -1,4 +1,24 @@
 .navigation {
+  // the underscore indicates that these bellow are not global custom properties
+  --_button-top: 6rem;
+  --_button-right: 6rem;
+
+  /* To make it all much more scalable, simpler to use and maintainable, its a pretty
+   * good idea to use css custom properties to change base values in many places at the
+   * same time, and based on that, in lots of cases, within media queries it's so much
+   * easier to just change these custom properties values instead of creating a media
+   * query within each selector and describing multiple css properties which in the end
+   * have a single base value as reference. In the usage below, it is actually changing
+   * the `top` and `right` properties of both `&__button` and also `&__background` (in
+   * a single media query with just 2 lines! it's less then half we'd have to write if
+   * were doing it according to isolate selectors or properties).
+   *
+   * THIS SIMPLY CANNOT BE DONE WITH SASS VARIABLES because these don't exist in the
+   * final compiled css, thus the will be nothing to be dynamically changed there. */
+  @include respond(tab-port) {
+    --_button-top: 2.5rem;
+    --_button-right: 3.5rem;
+  }
 
   &__checkbox {
     display: none;
@@ -11,8 +31,8 @@
     border-radius: 50%;
     position: fixed;
     z-index: 1002;  // above &__background and &__nav
-    top: 6rem;
-    right: 6rem;
+    top: var(--_button-top);
+    right: var(--_button-right);
     line-height: 7rem;
     background-color: $color-white;
     cursor: pointer;
@@ -25,8 +45,8 @@
     border-radius: 50%;
     position: fixed;
     z-index: 1000; // above &__nav and below &__button
-    top: 6.5rem;
-    right: 6.5rem;
+    top: calc(var(--_button-top) + .5rem);
+    right: calc(var(--_button-right) + .5rem);
 
     /* While `linear-gradient` goes from side to side, the `radial-gradient` starts at the center
      * and expands outwards. first you define the color in the center and after the outer color */

@@ -11,6 +11,14 @@
 
   &:not(:last-child) { // every .row but the last one
     margin-bottom: $gutter-vertical;
+
+    @include respond(tab-port) {
+      margin-bottom: $gutter-vertical-tab-port;
+    }
+  }
+
+  @include respond(tab-port) {
+    max-width: 55rem;
   }
 
   /* [class^="col-"] selects all elements whose class attribute value starts with "col-"
@@ -23,12 +31,24 @@
 
     &:not(:last-child) {
       margin-right: $gutter-horizontal;
+      @include respond(tab-port) {
+        // No horizontal gutter is needed in tab-port layouts as there will be a single column.
+        margin-right: 0;
+        // But as these behave as rows now, a vertical gutter must be added
+        margin-bottom: $gutter-vertical-tab-port;
+      }
+    }
+    
+    @include respond(tab-port) {
+      /* All columns will spread the whole width in tab-port layouts. !important is being used
+       * just so that this style gets applied no matter the order or specificity. */
+      width: 100% !important;
     }
   }
 
   .col-1-of-2 {
     /* no need to use # + { <var-here> } within `calc()` in dart-sass@1.72.0 */
-    width: calc((100% - $gutter-horizontal)/2);
+    width: calcGridColWidth(1,2);
   }
   
   .col-1-of-3 {
