@@ -1231,43 +1231,75 @@ body {
 /* in scss files within the pages folder (like this file), we can put style that could
  * be in the components folder but actually are going to appear only in this specific page */
 .section-about {
+  --_padding-top: 8rem;
+  --_padding-bottom: $_margin-neg-indentation;
   background-color: #f7f7f7;
   /* 8rem is the padding we want and +$margin-negative-indentation is to "cancel out" the
    * negative margin-top property set just bellow. In the end we're just doing that so the
    * background color of this element "flows" behind the element above this one.
    * (I looks like a hack to me, maybe there is a better way to do that...) */
-  padding: calc(8rem + 20vh) 0 20vh;
+  padding: calc(var(--_padding-top) + 20vh) 0 var(--_padding-bottom);
   /* when you use negative values for margin instead of "expanding" outwards and pushing elements
    * around, it "expands" inwards and this way its box model gets smaller, thus the element gets
    * closer to other elements */
   margin-top: -20vh;
 }
+@media screen and (max-width: 56.25em) {
+  .section-about {
+    --_padding-top: 3rem;
+    --_padding-bottom: 16vh;
+  }
+}
 
 .section-features {
-  padding: 15rem 0;
+  --_padding-block: 15rem;
+  padding: var(--_padding-block) 0;
   background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/nat-4.jpg");
   background-size: cover;
   margin-top: -12rem;
   transform: skewY(-7deg);
+}
+@media screen and (max-width: 56.25em) {
+  .section-features {
+    --_padding-block: 10rem;
+  }
 }
 .section-features > * {
   transform: skewY(7deg);
 }
 
 .section-tours {
-  padding: calc(12rem + 8rem) 0 8rem;
+  --_padding-block: 8rem;
+  padding: calc(12rem + var(--_padding-block)) 0 var(--_padding-block);
   background-color: #f7f7f7;
   margin-top: -12rem;
 }
+@media screen and (max-width: 56.25em) {
+  .section-tours {
+    --_padding-block: 6rem;
+  }
+}
 
 .section-stories {
+  --_padding-block: 15rem;
   position: relative;
-  padding: 15rem 0;
+  padding: var(--_padding-block) 0;
+}
+@media screen and (max-width: 56.25em) {
+  .section-stories {
+    --_padding-block: 6rem;
+  }
 }
 
 .section-book {
-  padding: 15rem 0;
+  --_padding-block: 15rem;
+  padding: var(--_padding-block) 0;
   background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
+}
+@media screen and (max-width: 56.25em) {
+  .section-book {
+    --_padding-block: 8rem;
+  }
 }
 
 .book {

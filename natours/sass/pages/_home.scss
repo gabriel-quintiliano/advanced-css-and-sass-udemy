@@ -2,20 +2,36 @@
  * be in the components folder but actually are going to appear only in this specific page */
 
 .section-about {
+  $_margin-neg-indentation: 20vh; // will be replaced in final css
+  --_padding-top: 8rem;
+  --_padding-bottom: 20vh;
+
+  @include respond(tab-port) {
+    --_padding-top: 3rem;
+    --_padding-bottom: 9vh;
+  }
+
   background-color: $color-grey-light-1;
   /* 8rem is the padding we want and +$margin-negative-indentation is to "cancel out" the
    * negative margin-top property set just bellow. In the end we're just doing that so the
    * background color of this element "flows" behind the element above this one.
    * (I looks like a hack to me, maybe there is a better way to do that...) */
-  padding: calc(8rem + #{$margin-negative-indentation}) 0 $margin-negative-indentation; // top sides bottom
+  // padding: calc(8rem + #{$margin-negative-indentation}) 0 $margin-negative-indentation; // top sides bottom
+  padding: calc(var(--_padding-top) + $_margin-neg-indentation) 0 var(--_padding-bottom); // top sides bottom
   /* when you use negative values for margin instead of "expanding" outwards and pushing elements
    * around, it "expands" inwards and this way its box model gets smaller, thus the element gets
    * closer to other elements */
-  margin-top: -$margin-negative-indentation;
+  margin-top: - $_margin-neg-indentation;
 }
 
 .section-features {
-  padding: 15rem 0;
+  --_padding-block: 15rem;
+
+  @include respond(tab-port) {
+    --_padding-block: 10rem;
+  }
+
+  padding: var(--_padding-block) 0;
   background-image:
     linear-gradient(
       to right bottom,
@@ -35,19 +51,32 @@
 
 .section-tours {
   $margin-negative-indentation: 12rem;
+  --_padding-block: 8rem;
 
-  padding: calc(#{$margin-negative-indentation} + 8rem) 0 8rem; // top side bottom
+  padding: calc($margin-negative-indentation + 8rem) 0 8rem; // top side bottom
   background-color: $color-grey-light-1;
   margin-top: -$margin-negative-indentation;
 }
 
 .section-stories {
+  --_padding-block: 15rem;
+
+  @include respond(tab-port) {
+    --_padding-block: 6rem;
+  }
+
   position: relative;
-  padding: 15rem 0;
+  padding: var(--_padding-block) 0;
 }
 
 .section-book {
-  padding: 15rem 0;
+  --_padding-block: 15rem;
+
+  @include respond(tab-port) {
+    --_padding-block: 8rem;
+  }
+
+  padding: var(--_padding-block) 0;
   background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
 }
 
