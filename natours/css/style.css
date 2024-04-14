@@ -1005,6 +1005,7 @@ body {
 .navigation {
   --_button-top: 6rem;
   --_button-right: 6rem;
+  --_bg-scale-value: 90;
   /* To make it all much more scalable, simpler to use and maintainable, its a pretty
    * good idea to use css custom properties to change base values in many places at the
    * same time, and based on that, in lots of cases, within media queries it's so much
@@ -1022,6 +1023,12 @@ body {
   .navigation {
     --_button-top: 2.5rem;
     --_button-right: 3.5rem;
+    --_bg-scale-value: 53;
+  }
+}
+@media screen and (max-width: 37.5em) {
+  .navigation {
+    --_bg-scale-value: 40;
   }
 }
 .navigation__checkbox {
@@ -1073,6 +1080,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  width: max-content;
 }
 .navigation__item {
   margin: 1rem;
@@ -1093,7 +1101,7 @@ body {
   margin-right: 1.5rem;
 }
 .navigation__link:hover, .navigation__link:active, .navigation__link:focus {
-  /* when a percentage is used like that (below), the background X coordinate goes to the percentage
+  /* when a percentage is used like that (bellow), the background X coordinate goes to the percentage
    * with a Y coordinate set to 50%. So in the end, the thick is: expand the "solid part" of the
    * background until it disappears (as done above) and then, on hover, focus and active, bring the
    * background-position to 100% so the solid part of it reappears. */
@@ -1102,7 +1110,7 @@ body {
   transform: translateX(1rem);
 }
 .navigation__checkbox:checked ~ .navigation__background {
-  transform: scale(90);
+  transform: scale(var(--_bg-scale-value));
 }
 .navigation__checkbox:checked ~ .navigation__nav {
   opacity: 1;

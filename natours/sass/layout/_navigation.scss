@@ -3,6 +3,8 @@
   --_button-top: 6rem;
   --_button-right: 6rem;
 
+  --_bg-scale-value: 90;
+
   /* To make it all much more scalable, simpler to use and maintainable, its a pretty
    * good idea to use css custom properties to change base values in many places at the
    * same time, and based on that, in lots of cases, within media queries it's so much
@@ -18,6 +20,11 @@
   @include respond(tab-port) {
     --_button-top: 2.5rem;
     --_button-right: 3.5rem;
+    --_bg-scale-value: 53;
+  }
+
+  @include respond(phone) {
+    --_bg-scale-value: 40;
   }
 
   &__checkbox {
@@ -40,6 +47,8 @@
   }
 
   &__background {
+    // opacity: 0;
+    // visibility: hidden;
     height: 6rem;
     width: 6rem;
     border-radius: 50%;
@@ -76,6 +85,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    width: max-content;
   }
 
   &__item {
@@ -101,7 +111,7 @@
     &:hover,
     &:active,
     &:focus {
-      /* when a percentage is used like that (below), the background X coordinate goes to the percentage
+      /* when a percentage is used like that (bellow), the background X coordinate goes to the percentage
        * with a Y coordinate set to 50%. So in the end, the thick is: expand the "solid part" of the
        * background until it disappears (as done above) and then, on hover, focus and active, bring the
        * background-position to 100% so the solid part of it reappears. */
@@ -113,7 +123,9 @@
 
   // FUNCTIONALITY
   &__checkbox:checked ~ &__background {
-    transform: scale(90);
+    transform: scale(var(--_bg-scale-value));
+    // opacity: 1;
+    // visibility: visible;
   }
 
   &__checkbox:checked ~ &__nav {
