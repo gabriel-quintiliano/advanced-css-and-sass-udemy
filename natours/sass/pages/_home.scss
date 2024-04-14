@@ -81,19 +81,31 @@
 }
 
 .book {
+  --_form-width: 50%;
+  --_form-padding: 6rem;
+  
+  @include respond(tab-land) {
+    --_form-width: 65%;
+  }
+
+  @include respond(tab-port) {
+    --_form-width: 100%;
+    --_form-padding: 2rem;
+  }
+
   /* regarding `linear-gradient()` its direction can be set in degrees also, and you can define a percentages
    * referring after the color which will represent where it begins or ends, e.g. below the a gradient that
    * starts at 0% in white and goes up to 50%, and from there up to the end it its transparent so the actual
    * background image can show. */
-  background-image: linear-gradient(105deg, rgba($color-white, .85) 0%, rgba($color-white, .85) 50%, transparent 50%), url("../img/nat-10.jpg");
+  background-image: linear-gradient(105deg, rgba($color-white, .75) 0%, rgba($color-white, .75) var(--_form-width), transparent var(--_form-width)), url("../img/nat-10.jpg");
   background-size: cover;
   background-position: right;
   border-radius: 4px;
   box-shadow: 0 15px 40px rgba($color-black, .2);
 
   &__form {
-    width: 50%; 
-    padding: 6rem;
+    width: var(--_form-width); 
+    padding: var(--_form-padding);
     padding-bottom: 4rem;
   }
 }

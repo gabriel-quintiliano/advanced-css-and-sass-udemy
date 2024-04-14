@@ -1,7 +1,21 @@
 .form {
+  --_radio-group-width: 49%;
+  --_radio-group-margin-bottom: 0;
+  --_last-form-group-margin-top: 5rem;
+
+  @include respond(tab-port) {
+    --_radio-group-width: 100%;
+    --_radio-group-margin-bottom: 2rem;
+    --_last-form-group-margin-top: 0rem;
+  }
+
   
   &__group:not(:last-child) {
     margin-bottom: 2rem;
+  }
+
+  &__group:last-child {
+    margin-top: var(--_last-form-group-margin-top);
   }
 
   &__input {
@@ -70,7 +84,8 @@
   &__radio-group {
     /* as we know there are only 2 radio buttons, `width: 49%;` + `display: inline-block;`
      * will make sure these are side by side in the layout. */
-    width: 49%;
+    width: var(--_radio-group-width);
+    margin-bottom: var(--_radio-group-margin-bottom);
     display: inline-block;
   }
 

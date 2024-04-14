@@ -795,13 +795,26 @@ body {
 }
 
 .form {
+  --_radio-group-width: 49%;
+  --_radio-group-margin-bottom: 0;
+  --_last-form-group-margin-top: 5rem;
   /* while <input> placeholder is being shown, the associated <label> will be invisible
    * an translated upwards, so when it reappears (as the placeholder goes away), it will
    * be back to its original position in an animation as if the placeholder itself is
    * going down. */
 }
+@media screen and (max-width: 56.25em) {
+  .form {
+    --_radio-group-width: 100%;
+    --_radio-group-margin-bottom: 2rem;
+    --_last-form-group-margin-top: 0rem;
+  }
+}
 .form__group:not(:last-child) {
   margin-bottom: 2rem;
+}
+.form__group:last-child {
+  margin-top: var(--_last-form-group-margin-top);
 }
 .form__input {
   font-size: 1.5rem;
@@ -855,7 +868,8 @@ body {
 .form__radio-group {
   /* as we know there are only 2 radio buttons, `width: 49%;` + `display: inline-block;`
    * will make sure these are side by side in the layout. */
-  width: 49%;
+  width: var(--_radio-group-width);
+  margin-bottom: var(--_radio-group-margin-bottom);
   display: inline-block;
 }
 .form__radio-input {
@@ -1365,19 +1379,32 @@ body {
 }
 
 .book {
+  --_form-width: 50%;
+  --_form-padding: 6rem;
   /* regarding `linear-gradient()` its direction can be set in degrees also, and you can define a percentages
    * referring after the color which will represent where it begins or ends, e.g. below the a gradient that
    * starts at 0% in white and goes up to 50%, and from there up to the end it its transparent so the actual
    * background image can show. */
-  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.85) 50%, transparent 50%), url("../img/nat-10.jpg");
+  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) var(--_form-width), transparent var(--_form-width)), url("../img/nat-10.jpg");
   background-size: cover;
   background-position: right;
   border-radius: 4px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
+@media screen and (max-width: 75em) {
+  .book {
+    --_form-width: 65%;
+  }
+}
+@media screen and (max-width: 56.25em) {
+  .book {
+    --_form-width: 100%;
+    --_form-padding: 2rem;
+  }
+}
 .book__form {
-  width: 50%;
-  padding: 6rem;
+  width: var(--_form-width);
+  padding: var(--_form-padding);
   padding-bottom: 4rem;
 }
 
