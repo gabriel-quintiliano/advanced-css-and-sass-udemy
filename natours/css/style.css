@@ -409,16 +409,22 @@ body {
 }
 
 .btn-close {
+  --_btn-close-size: 3.7rem;
   padding: 0;
   margin: 0;
-  font-size: 3.7rem;
-  width: 3.7rem;
-  height: 3.7rem;
+  font-size: var(--_btn-close-size);
+  width: var(--_btn-close-size);
+  height: var(--_btn-close-size);
   background-color: #55c57a;
   border-radius: 50%;
   text-align: center;
-  line-height: 3.3rem;
+  line-height: calc(var(--_btn-close-size) - 0.4rem);
   color: white;
+}
+@media screen and (max-width: 37.5em) {
+  .btn-close {
+    --_btn-close-size: 4.7rem;
+  }
 }
 
 .composition {
@@ -920,6 +926,11 @@ body {
 }
 
 .popup {
+  --_content-width: 75%;
+  --_right-container-padding: 3rem 5rem;
+  --_text-col-count: 2;
+  --_close-btn-top: 2rem;
+  --_close-btn-right: 2rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -940,6 +951,19 @@ body {
    * in the url as a fragment, e.g. 'yoursite.com/#popup', that is when the styles defined here will
    * be applied to the class itself. */
 }
+@media screen and (max-width: 56.25em) {
+  .popup {
+    --_content-width: 90%;
+    --_text-col-count: 1;
+    --_right-container-padding: 3rem 2rem;
+  }
+}
+@media screen and (max-width: 37.5em) {
+  .popup {
+    --_close-btn-top: -0.8rem;
+    --_close-btn-right: -0.8rem;
+  }
+}
 .popup:target {
   opacity: 1;
   visibility: visible;
@@ -950,13 +974,12 @@ body {
   left: 50%;
   translate: -50% -50%;
   height: 50rem;
-  width: 75%;
+  width: var(--_content-width);
   max-width: 114rem;
   max-height: 85%;
   background-color: #fff;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
-  overflow: clip;
   transform: translateZ(-100px);
   transition: transform 0.4s 150ms;
 }
@@ -967,6 +990,8 @@ body {
   display: inline-block;
   width: 33.3333333%;
   height: 100%;
+  overflow: clip;
+  border-radius: 3px 0 0 3px;
 }
 .popup__right {
   display: inline-block;
@@ -977,7 +1002,7 @@ body {
   transform: translateY(-50%);
   right: 0;
   overflow: auto;
-  padding: 3rem 5rem;
+  padding: var(--_right-container-padding);
 }
 .popup__img {
   /* `vertical-align: middle` removes void space bellow the image, as <img> is an inline element,
@@ -991,14 +1016,14 @@ body {
   font-size: 1.4rem;
   margin-bottom: 4rem;
   text-align: justify;
-  column-count: 2;
+  column-count: var(--_text-col-count);
   column-gap: 3rem;
   column-rule: 2px solid #eee;
 }
 .popup__close {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: var(--_close-btn-top);
+  right: var(--_close-btn-right);
   z-index: 1005;
 }
 

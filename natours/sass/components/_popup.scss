@@ -1,4 +1,21 @@
 .popup {
+  --_content-width: 75%;
+  --_right-container-padding: 3rem 5rem;
+  --_text-col-count: 2;
+  --_close-btn-top: 2rem;
+  --_close-btn-right: 2rem;
+  
+  @include respond(tab-port) {
+    --_content-width: 90%;
+    --_text-col-count: 1;
+    --_right-container-padding: 3rem 2rem;
+  }
+
+  @include respond(phone) {
+    --_close-btn-top: -0.8rem;
+    --_close-btn-right: -0.8rem;
+  }
+
   position: fixed;
   top: 0;
   left: 0;
@@ -31,13 +48,12 @@
     @include absCenter;
 
     height: 50rem;
-    width: 75%;
+    width: var(--_content-width);
     max-width: 114rem;
     max-height: 85%;
     background-color: $color-white;
     box-shadow:  0 20px 40px rgba($color-black, .2);
     border-radius: 3px;
-    overflow: clip;
 
     transform: translateZ(-100px);
     transition: transform .4s 150ms;
@@ -51,6 +67,8 @@
     display: inline-block;
     width: 33.3333333%;
     height: 100%;
+    overflow: clip;
+    border-radius: 3px 0 0 3px;
   }
   
   &__right {
@@ -63,7 +81,7 @@
     right: 0;
     overflow: auto;
 
-    padding: 3rem 5rem;
+    padding: var(--_right-container-padding);
   }
 
   &__img {
@@ -80,15 +98,15 @@
     margin-bottom: 4rem;
     text-align: justify;
 
-    column-count: 2; // in how many columns the whole text will be split into
+    column-count: var(--_text-col-count); // in how many columns the whole text will be split into
     column-gap: 3rem; // gap width between columns
     column-rule: 2px solid $color-grey-light-2; // a vertical line between columns
   }
 
   &__close {
     position: absolute;
-    top: 2rem;
-    right: 2rem;
+    top: var(--_close-btn-top);
+    right: var(--_close-btn-right);
     z-index: 1005; // above everything else
   }
 }
