@@ -1,12 +1,23 @@
 .feature-box {
+  $_default-padding: 2.5rem;
+
+  --_fb-min-height: 38rem;
+  --_extra-padding-bottom: 0rem;
+  
+  @include respond(tab-port) {
+    --_fb-min-height: 0;
+    --_extra-padding-bottom: 1rem;
+  }
+
   background-color: $color-greenish-white;
-  padding: 2.5rem;
+  padding: $_default-padding;
+  padding-bottom: calc($_default-padding + var(--_extra-padding-bottom));
   text-align: center;
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
   transition-property: transform box-shadow;
   transition-duration: .2s;
-  min-height: 38rem;
+  min-height: var(--_fb-min-height);
 
   &__icon {
     font-size: 6rem;
