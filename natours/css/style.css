@@ -515,9 +515,24 @@ body {
 }
 
 .card {
+  --_card-height: 50rem;
+  --_cs-height: 50rem;
+  --_card-bg-color: transparent;
+  --_cs-position: absolute;
+  --_cs-front-y-rotation: -180deg;
+  --_cs-back-y-rotation: 180deg;
+  --_cs-back-clip-path: none;
+  --_card-box-shadow: none;
+  --_cs-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  --_cta-position: absolute;
+  --_cta-translate: translate(-50%, -50%);
+  --_cta-padding-block: 0;
+  --_price-box-margin-bottom: 8rem;
+  background-color: var(--_card-bg-color);
+  box-shadow: var(--_card-box-shadow);
   perspective: 150rem;
   position: relative;
-  height: 50rem;
+  height: var(--_card-height);
   /* Why was it necessary to set a height above?
   *
   * It was necessary because all the child elements of div.card have `position: absolute` set
@@ -535,16 +550,33 @@ body {
    * against the nesting of different elements, you can only nest those within blocks and within elements
    * you only nest modifiers */
 }
+@media screen and (max-width: 56.25em) {
+  .card {
+    --_card-height: auto;
+    --_cs-height: auto;
+    --_card-bg-color: #fff;
+    --_cs-position: relative;
+    --_cs-back-clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
+    --_cs-front-y-rotation: 0deg;
+    --_cs-back-y-rotation: 0deg;
+    --_card-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    --_cs-box-shadow: none;
+    --_cta-position: static;
+    --_cta-translate: translate(0);
+    --_cta-padding: 6rem 0 4rem;
+    --_price-box-margin-bottom: 3rem;
+  }
+}
 .card__side {
-  height: 50rem;
+  height: var(--_cs-height);
   transition: all 0.8s ease;
-  position: absolute;
+  position: var(--_cs-position);
   top: 0;
   left: 0;
   backface-visibility: hidden;
   border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  box-shadow: var(--_cs-box-shadow);
   /* `width: 100%;` is needed because elements with `position: absolute` set have their width
   * defined by their content, I think it is `width: max-content;`. */
   width: 100%;
@@ -553,7 +585,8 @@ body {
   background-color: #fff;
 }
 .card__side--back {
-  rotate: y 180deg;
+  clip-path: var(--_cs-back-clip-path);
+  rotate: y var(--_cs-back-y-rotation);
 }
 .card__side--back-1 {
   background-image: linear-gradient(to right bottom, #ffb900, #ff7730);
@@ -565,7 +598,7 @@ body {
   background-image: linear-gradient(to right bottom, #2998ff, #5643fa);
 }
 .card:hover .card__side--front, .card:focus-within .card__side--front {
-  rotate: y -180deg;
+  rotate: y var(--_cs-front-y-rotation);
 }
 .card:hover .card__side--back, .card:focus-within .card__side--back {
   rotate: y 0deg;
@@ -646,16 +679,17 @@ body {
   border-bottom: 1px solid #eee;
 }
 .card__cta {
-  position: absolute;
+  position: var(--_cta-position);
   width: 100%;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  transform: var(--_cta-translate);
+  padding: var(--_cta-padding);
 }
 .card__price-box {
   transform-style: preserve-3d;
   color: #fff;
-  margin-bottom: 8rem;
+  margin-bottom: var(--_price-box-margin-bottom);
 }
 .card__price-only {
   font-size: 1.4rem;
@@ -1095,15 +1129,10 @@ body {
   /* clip-path apply a "mask" in the object, you define the coordinate based on what you want to be shown on
    * screen - the `polygon` function receives coordinates to create as polygon shaped mask.
    * Fortunately, coordinates can be dynamic and passed as percentages */
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
   /* position: relative; is like `static` but respects reference values from `top`, `left`, `bottom` and `right`,
    * and also can be used as "anchor" to child elements which have `position: absolute` */
   position: relative;
-}
-@media screen and (max-width: 37.5em) {
-  .header {
-    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
-  }
 }
 .header__logo-box {
   position: absolute;

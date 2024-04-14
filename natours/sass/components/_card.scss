@@ -1,8 +1,45 @@
 .card {
+  $_card-and-card-side-default-height: 50rem;
+  $_default-box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+  // if you want to use sass variables mixed with css custom prop, you gotta use #{ sass_var_here }
+  --_card-height: #{$_card-and-card-side-default-height};
+  --_cs-height: #{$_card-and-card-side-default-height};
+  --_card-bg-color: transparent;
+  --_cs-position: absolute;
+  --_cs-front-y-rotation: -180deg;
+  --_cs-back-y-rotation: 180deg;
+  --_cs-back-clip-path: none;
+  --_card-box-shadow: none;
+  --_cs-box-shadow: #{$_default-box-shadow};
+  --_cta-position: absolute;
+  --_cta-translate: translate(-50%, -50%);
+  --_cta-padding-block: 0;
+  --_price-box-margin-bottom: 8rem;
+  
+  @include respond(tab-port) {
+    --_card-height: auto;
+    --_cs-height: auto;
+    --_card-bg-color: #{$color-white};
+    --_cs-position: relative;
+    --_cs-back-clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
+    --_cs-front-y-rotation: 0deg;
+    --_cs-back-y-rotation: 0deg;
+    --_card-box-shadow: #{$_default-box-shadow};
+    --_cs-box-shadow: none;
+    --_cta-position: static;
+    --_cta-translate: translate(0);
+    --_cta-padding: 6rem 0 4rem;
+    --_price-box-margin-bottom: 3rem;
+  }
+
+  background-color: var(--_card-bg-color);
+  box-shadow: var(--_card-box-shadow);
+  
   // FUNCTIONALITY
   perspective: 150rem;
   position: relative;
-  height: $card-height;
+  height: var(--_card-height);
   /* Why was it necessary to set a height above?
   *
   * It was necessary because all the child elements of div.card have `position: absolute` set
@@ -15,15 +52,15 @@
   * animation applied. */
   
   &__side {    
-    height: $card-height;
+    height: var(--_cs-height);
     transition: all .8s ease;
-    position: absolute;
+    position: var(--_cs-position);
     top: 0;
     left: 0;
     backface-visibility: hidden; // so when this element is rotated 180deg its back doesn't show
     border-radius: 4px;
     overflow: hidden; // will make the border-radius show in the background-image of &__picture--X
-    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+    box-shadow: var(--_cs-box-shadow);
 
     /* `width: 100%;` is needed because elements with `position: absolute` set have their width
     * defined by their content, I think it is `width: max-content;`. */
@@ -34,9 +71,10 @@
     }
     
     &--back {
-      rotate: y 180deg;
+      clip-path: var(--_cs-back-clip-path);
+      rotate: y var(--_cs-back-y-rotation);
       // transform: rotateY(90deg); // you could use this too
-      
+
       &-1 {
         background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
       }
@@ -56,7 +94,7 @@
    * button placed on the back side of the card. */
   &:hover &__side--front,
   &:focus-within &__side--front {
-    rotate: y -180deg;
+    rotate: y var(--_cs-front-y-rotation);
     // transform: rotateY(-180deg); // you could use this too
   }
   
@@ -166,17 +204,18 @@
 
   // BACK-SIDE STYLING
   &__cta {
-    position: absolute;
+    position: var(--_cta-position);
     width: 100%;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    transform: var(--_cta-translate);
+    padding: var(--_cta-padding);
   }
   
   &__price-box {
     transform-style: preserve-3d;
     color: $color-white;
-    margin-bottom: 8rem;
+    margin-bottom: var(--_price-box-margin-bottom);
   }
 
   &__price-only {
