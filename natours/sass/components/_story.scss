@@ -1,18 +1,30 @@
 .story {
-  $story-padding: 6rem;
   $transition-duration: .45s;
 
-  width: 90%;
+  --_story-width: 90%;
+  --_story-padding: 6rem;
+  --_skewX-value: 12deg;
+
+  @include respond(tab-port) {
+    --_story-width: 100%;
+    --_story-padding: 2rem;
+  }
+
+  @include respond(phone) {
+    --_skewX-value: 0deg;
+  }
+
+  width: var(--_story-width);
   margin: 0 auto;
   box-shadow: 0 30px 60px rgba($color-black, .1);
   background-color: rgba($color-white, .6);
   border-radius: 3px;
-  padding: $story-padding;
-  transform: skewX(-12deg);
+  padding: var(--_story-padding);
+  transform: skewX(calc(var(--_skewX-value) * -1));
   
   & > * {
     // so child elements look normal
-    transform: skewX(12deg);
+    transform: skewX(var(--_skewX-value));
   }
 
   &__shape {
@@ -20,7 +32,8 @@
     height: 15rem;
     float: left;
 
-    margin-right: calc($story-padding / 2); // applied to <figure>
+    // margin-right: calc($default-story-padding / 2); // applied to <figure>
+    margin-right: calc(6rem / 2); // applied to <figure>
     // apparently, the basis for the percentage within `circle()` is the current element width, not the parents width.
     shape-outside: circle(50%);
     clip-path: circle(50%);

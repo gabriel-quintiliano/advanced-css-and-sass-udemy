@@ -701,16 +701,30 @@ body {
 }
 
 .story {
-  width: 90%;
+  --_story-width: 90%;
+  --_story-padding: 6rem;
+  --_skewX-value: 12deg;
+  width: var(--_story-width);
   margin: 0 auto;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 3px;
-  padding: 6rem;
-  transform: skewX(-12deg);
+  padding: var(--_story-padding);
+  transform: skewX(calc(var(--_skewX-value) * -1));
+}
+@media screen and (max-width: 56.25em) {
+  .story {
+    --_story-width: 100%;
+    --_story-padding: 2rem;
+  }
+}
+@media screen and (max-width: 37.5em) {
+  .story {
+    --_skewX-value: 0deg;
+  }
 }
 .story > * {
-  transform: skewX(12deg);
+  transform: skewX(var(--_skewX-value));
 }
 .story__shape {
   width: 15rem;
