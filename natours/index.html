@@ -401,7 +401,24 @@
 
     <footer class="footer">
       <div class="footer__logo-box">
-        <img src="img/logo-green-2x.png" alt="natours logo" class="footer__logo">
+        <!-- The <picture> element allows us to display different images based on diffent device and browser conditions.
+            As shown bellow, when the media element of <source> matches the defined screen size, that image will be
+            displayed, else, the fallback image, defined by <img> will be displayed.
+             Both <source> and <img> leverage the usage of the srcset attribute to let the browser decide which is the
+            best version of that image to be displayed based on the device's screen pixel density. This approach, regarding
+            pixel density is best suited for when the image has a fixed size throughout all possible screen sizes, in
+            other cases, when the images has a variable size, try using a width descriptor 'w' (see an example within
+            the .composition div container) -->
+        <picture>
+          <!-- if the screen width is less than or equal to 37.5rem, use this image: -->
+          <source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x" media="(max-width: 37.5em)">
+          <!-- else, in any other case, use this other image: -->
+          <img src="img/logo-green-1x.png" srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="natours logo" class="footer__logo">
+          <!-- even with the usage of srcset, it's still a good idea to use the src attr as a fallback in case the
+              browser doesn't understand srcset. In src you must always use the smaller image (the logic is, if the
+              browser the user is using is old enough to not support srcset, the computer and/or internet connection
+              might also not be that great) -->
+        </picture>
       </div>
       <div class="row">
         <div class="col-1-of-2">
