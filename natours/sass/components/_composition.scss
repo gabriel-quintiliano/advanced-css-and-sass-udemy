@@ -1,4 +1,5 @@
 .composition {
+  --_photo-transition-duration: .2s;
   --_p1-left: -5rem;
   --_p3-top: 8rem;
   --_p3-translate: 0;
@@ -24,6 +25,10 @@
     --_p3-translate: 0 6rem 0;
   }
 
+  @include respond(phone) {
+    --_photo-transition-duration: 270ms;
+  }
+
   position: relative;
   perspective: 700px; // this perspective should NOT change according to browser font-size
   perspective-origin: 40% 0%;
@@ -34,7 +39,7 @@
     width: 80%;
     border-radius: 5px;
     position: absolute;
-    transition: all .2s;
+    transition: all var(--_photo-transition-duration);
     outline-offset: .8rem; // creates a space between the element and the actual outline
     
     &--p1 {

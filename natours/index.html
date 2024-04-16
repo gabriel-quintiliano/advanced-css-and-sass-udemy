@@ -81,16 +81,26 @@
           </div>
           <div class="col-1-of-2">
             <div class="composition">
+              <!-- responsive images: when you use the srcset attr with width descriptors, you can also
+                  use the sizes attr to give the browser more detail on the actual display size of the
+                  image in various different breakpoints. This approach will also take into account the
+                  device's screen pixel density to choose the best image to display. -->
               <img
-                src="img/nat-1-large.jpg"
+                src="img/nat-1.jpg"
+                srcset="img/nat-1.jpg 300w, img/nat-1-large.jpg 1000w"
+                sizes="(max-width: 37.5em) 57vw, 38vw"
                 alt="Promo photo 1 - mountains in the background, trees and a river."
                 class="composition__photo composition__photo--p1">
               <img
                 src="img/nat-2-large.jpg"
+                srcset="img/nat-2.jpg 300w, img/nat-2-large.jpg 1000w"
+                sizes="(max-width: 37.5em) 57vw, 38vw"
                 alt="Promo photo 2 - plains in the background and a biker riding in the road."
                 class="composition__photo composition__photo--p2">
               <img
                 src="img/nat-3-large.jpg"
+                srcset="img/nat-3.jpg 300w, img/nat-3-large.jpg 1000w"
+                sizes="(max-width: 37.5em) 57vw, 38vw"
                 alt="Promo photo 3 - person walking on the summit of a mountain."
                 class="composition__photo composition__photo--p3">
             </div>

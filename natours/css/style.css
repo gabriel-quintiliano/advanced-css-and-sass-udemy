@@ -428,6 +428,7 @@ body {
 }
 
 .composition {
+  --_photo-transition-duration: .2s;
   --_p1-left: -5rem;
   --_p3-top: 8rem;
   --_p3-translate: 0;
@@ -460,11 +461,16 @@ body {
     --_p3-translate: 0 6rem 0;
   }
 }
+@media screen and (max-width: 37.5em) {
+  .composition {
+    --_photo-transition-duration: 270ms;
+  }
+}
 .composition__photo {
   width: 80%;
   border-radius: 5px;
   position: absolute;
-  transition: all 0.2s;
+  transition: all var(--_photo-transition-duration);
   outline-offset: 0.8rem;
 }
 .composition__photo--p1 {
