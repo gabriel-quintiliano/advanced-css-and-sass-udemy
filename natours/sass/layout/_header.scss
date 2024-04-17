@@ -1,4 +1,16 @@
 .header {
+  --_bg-hero-image: url("../img/hero-small.jpg"); // 1200x719
+
+  /* the way to implement responsive images in css is to use media queries that will what min/max-width
+   * and/or min/max-resolution (set in dpi - 2x displays have about 192dpi) */
+    
+  @media screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+         screen and (-webkit-device-pixel-ratio: 2) and (min-width: 37.5em), // for safari 15.6 or older
+         screen and (min-width: 75em) {
+    // this represents smh like: 2x (or higher dpi) displays >= 600px or 1x (or higher) displays >= 1200px
+    --_bg-hero-image: url("../img/hero.jpg"); // 2000x1199
+  }
+
   /* the calc is to make it fits the viewport with 30px of padding above and bellow (added in <body>) */
   height: calc(98vh - (60px - 2vh)); /* 98% of the viewport height (60px is for 2 * <body> padding (30px)) */
   /* always apply a gradient on the background via the `background-image` css prop, and if its the case
@@ -8,7 +20,7 @@
       /* for rgba(), in regular css you must use numbers, but in scss you can also use hexadecimal values too */
       rgba($color-primary-light, 0.8),
       rgba($color-primary-dark, 0.8)),
-    url("../img/hero.jpg");
+    var(--_bg-hero-image);
   background-size: cover; /* directly on replaced elements, e.g. <img>, <video>, you can use `object-fit` */
   background-position: top; /* tells which part of the bg should be "fixed" and will never go out of the frame */
 
