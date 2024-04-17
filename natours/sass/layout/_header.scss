@@ -24,14 +24,17 @@
   background-size: cover; /* directly on replaced elements, e.g. <img>, <video>, you can use `object-fit` */
   background-position: top; /* tells which part of the bg should be "fixed" and will never go out of the frame */
 
-  /* clip-path apply a "mask" in the object, you define the coordinate based on what you want to be shown on
-   * screen - the `polygon` function receives coordinates to create as polygon shaped mask.
-   * Fortunately, coordinates can be dynamic and passed as percentages */
-  clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
-
   /* position: relative; is like `static` but respects reference values from `top`, `left`, `bottom` and `right`,
    * and also can be used as "anchor" to child elements which have `position: absolute` */
   position: relative;
+
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    /* clip-path apply a "mask" in the object, you define the coordinate based on what you want to be shown on
+     * screen - the `polygon` function receives coordinates to create as polygon shaped mask.
+     * Fortunately, coordinates can be dynamic and passed as percentages */
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
 
   &__logo-box {
     position: absolute;

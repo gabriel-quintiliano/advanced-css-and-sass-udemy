@@ -36,6 +36,12 @@
   perspective: 7rem;
   transition: opacity .3s;
 
+  @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba($color-black, .3);
+  }
+
   /* The :target pseudo-class represents the state when this class (.popup in this case) is present
    * in the url as a fragment, e.g. 'yoursite.com/#popup', that is when the styles defined here will
    * be applied to the class itself. */

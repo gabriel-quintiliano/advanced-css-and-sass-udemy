@@ -1,5 +1,5 @@
 .story {
-  $transition-duration: .45s;
+  $transition-duration: 375ms;
 
   --_story-width: 90%;
   --_story-padding: 6rem;
@@ -31,14 +31,17 @@
     width: 15rem;
     height: 15rem;
     float: left;
-
-    // margin-right: calc($default-story-padding / 2); // applied to <figure>
-    margin-right: calc(6rem / 2); // applied to <figure>
-    // apparently, the basis for the percentage within `circle()` is the current element width, not the parents width.
-    shape-outside: circle(50%);
-    clip-path: circle(50%);
-    
     position: relative;
+    overflow: hidden;
+    margin-right: calc(5rem / 2); // applied to <figure>
+    border-radius: 50%;
+
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+      border-radius: none;
+      // apparently, the basis for the percentage within `circle()` is the current element width, not the parents width.
+      shape-outside: circle(50%);
+      clip-path: circle(50%);
+    }
   }
 
   &__img {
@@ -58,8 +61,6 @@
     left: 50%;
     transform: translate(-50%, 80%);
 
-    // background-color: rgba($color-black, .25);
-    // box-shadow: 0 15px 40px rgba($color-black, 1);
     opacity: 0;
     transition: all $transition-duration;
   }
