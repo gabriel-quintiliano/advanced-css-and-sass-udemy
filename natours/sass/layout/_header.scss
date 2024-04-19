@@ -4,9 +4,9 @@
   /* the way to implement responsive images in css is to use media queries that will what min/max-width
    * and/or min/max-resolution (set in dpi - 2x displays have about 192dpi) */
     
-  @media screen and (min-resolution: 192dpi) and (min-width: 37.5em),
-         screen and (-webkit-device-pixel-ratio: 2) and (min-width: 37.5em), // for safari 15.6 or older
-         screen and (min-width: 75em) {
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+         only screen and (-webkit-device-pixel-ratio: 2) and (min-width: 37.5em), // for safari 15.6 or older
+         only screen and (min-width: 75em) {
     // this represents smh like: 2x (or higher dpi) displays >= 600px or 1x (or higher) displays >= 1200px
     --_bg-hero-image: url("../img/hero.jpg"); // 2000x1199
   }

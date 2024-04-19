@@ -58,17 +58,17 @@ html {
   font-size: 62.5%;
   /* rem is not supported bellow IE 9 */
 }
-@media screen and (max-width: 75em) {
+@media only screen and (max-width: 75em) {
   html {
     font-size: 56.25%;
   }
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   html {
     font-size: 50%;
   }
 }
-@media screen and (min-width: 112.5em) {
+@media only screen and (min-width: 112.5em) {
   html {
     font-size: 75%;
   }
@@ -82,7 +82,7 @@ body {
   box-sizing: border-box; /* margins and paddings are NOT added to the total size of the element */
   padding: 3rem; /* this padding will not be inherited by elements within <body> */
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   body {
     padding: 0;
   }
@@ -169,7 +169,7 @@ body {
   animation-iteration-count: 3; - how many times should the animation be repeated
   */
 }
-@media screen and (max-width: 37.5em) {
+@media only screen and (max-width: 37.5em) {
   .heading-primary--main {
     letter-spacing: 1rem;
     font-size: 5rem;
@@ -185,7 +185,7 @@ body {
   animation-duration: 1.3s;
   animation-timing-function: ease-out; */
 }
-@media screen and (max-width: 37.5em) {
+@media only screen and (max-width: 37.5em) {
   .heading-primary--sub {
     letter-spacing: 0.5rem;
     font-size: 1.7rem;
@@ -206,12 +206,12 @@ body {
   letter-spacing: 2px;
   transition: all 0.2s;
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .heading-secondary {
     font-size: 3rem;
   }
 }
-@media screen and (max-width: 37.5em) {
+@media only screen and (max-width: 37.5em) {
   .heading-secondary {
     font-size: 2.5rem;
   }
@@ -288,7 +288,7 @@ body {
   position: absolute !important;
 }
 
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .u-margin-bottom-medium {
     margin-bottom: 3rem !important;
   }
@@ -426,7 +426,7 @@ body {
   line-height: calc(var(--_btn-close-size) - 0.4rem);
   color: white;
 }
-@media screen and (max-width: 37.5em) {
+@media only screen and (max-width: 37.5em) {
   .btn-close {
     --_btn-close-size: 4.7rem;
   }
@@ -445,7 +445,7 @@ body {
    * selects all descendants from .component which are NOT being hovered at that moment.
    * final selector --> .component:hover .component__photo:not(:hover) */
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .composition {
     /* I used margin-bottom here to give .composition some height (29rem in this case). As
      * there are only absolutely positioned elements within, this container collapses, but
@@ -466,7 +466,7 @@ body {
     --_p3-translate: 0 6rem 0;
   }
 }
-@media screen and (max-width: 37.5em) {
+@media only screen and (max-width: 37.5em) {
   .composition {
     --_photo-transition-duration: 270ms;
   }
@@ -522,7 +522,7 @@ body {
   transition-duration: 0.2s;
   min-height: var(--_fb-min-height);
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .feature-box {
     --_fb-min-height: 0;
     --_extra-padding-bottom: 1rem;
@@ -576,7 +576,7 @@ body {
    * against the nesting of different elements, you can only nest those within blocks and within elements
    * you only nest modifiers */
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .card {
     --_card-height: auto;
     --_cs-height: auto;
@@ -738,13 +738,13 @@ body {
   padding: var(--_story-padding);
   transform: skewX(calc(var(--_skewX-value) * -1));
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .story {
     --_story-width: 100%;
     --_story-padding: 2rem;
   }
 }
-@media screen and (max-width: 37.5em) {
+@media only screen and (max-width: 37.5em) {
   .story {
     --_skewX-value: 0deg;
   }
@@ -836,7 +836,7 @@ body {
    * be back to its original position in an animation as if the placeholder itself is
    * going down. */
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .form {
     --_radio-group-width: 100%;
     --_radio-group-margin-bottom: 2rem;
@@ -969,14 +969,14 @@ body {
    * in the url as a fragment, e.g. 'yoursite.com/#popup', that is when the styles defined here will
    * be applied to the class itself. */
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .popup {
     --_content-width: 90%;
     --_text-col-count: 1;
     --_right-container-padding: 3rem 2rem;
   }
 }
-@media screen and (max-width: 37.5em) {
+@media only screen and (max-width: 37.5em) {
   .popup {
     --_close-btn-top: -0.8rem;
     --_close-btn-right: -0.8rem;
@@ -1069,14 +1069,14 @@ body {
    * THIS SIMPLY CANNOT BE DONE WITH SASS VARIABLES because these don't exist in the
    * final compiled css, thus the will be nothing to be dynamically changed there. */
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .navigation {
     --_button-top: 2.5rem;
     --_button-right: 3.5rem;
     --_bg-scale-value: 53;
   }
 }
-@media screen and (max-width: 37.5em) {
+@media only screen and (max-width: 37.5em) {
   .navigation {
     --_bg-scale-value: 40;
   }
@@ -1228,7 +1228,7 @@ body {
    * and also can be used as "anchor" to child elements which have `position: absolute` */
   position: relative;
 }
-@media screen and (min-resolution: 192dpi) and (min-width: 37.5em), screen and (-webkit-device-pixel-ratio: 2) and (min-width: 37.5em), screen and (min-width: 75em) {
+@media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), only screen and (-webkit-device-pixel-ratio: 2) and (min-width: 37.5em), only screen and (min-width: 75em) {
   .header {
     --_bg-hero-image: url("../img/hero.jpg");
   }
@@ -1281,12 +1281,12 @@ body {
 .row:not(:last-child) {
   margin-bottom: 8rem;
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .row:not(:last-child) {
     margin-bottom: 6rem;
   }
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .row {
     max-width: 55rem;
   }
@@ -1297,13 +1297,13 @@ body {
 .row [class^=col-]:not(:last-child) {
   margin-right: 6rem;
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .row [class^=col-]:not(:last-child) {
     margin-right: 0;
     margin-bottom: 6rem;
   }
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .row [class^=col-] {
     /* All columns will spread the whole width in tab-port layouts. !important is being used
      * just so that this style gets applied no matter the order or specificity. */
@@ -1340,7 +1340,7 @@ body {
   font-size: 1.4rem;
   color: #f7f7f7;
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .footer {
     --_footer-padding-block: 8rem;
     --_lb-margin-bottom: 6rem;
@@ -1405,7 +1405,7 @@ body {
    * closer to other elements */
   margin-top: -20vh;
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .section-about {
     --_padding-top: 3rem;
     --_padding-bottom: 9vh;
@@ -1420,7 +1420,7 @@ body {
   margin-top: -12rem;
   transform: skewY(-7deg);
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .section-features {
     --_padding-block: 10rem;
   }
@@ -1441,7 +1441,7 @@ body {
   position: relative;
   padding: var(--_padding-block) 0;
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .section-stories {
     --_padding-block: 6rem;
   }
@@ -1452,7 +1452,7 @@ body {
   padding: var(--_padding-block) 0;
   background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .section-book {
     --_padding-block: 8rem;
   }
@@ -1471,12 +1471,12 @@ body {
   border-radius: 4px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
-@media screen and (max-width: 75em) {
+@media only screen and (max-width: 75em) {
   .book {
     --_form-width: 65%;
   }
 }
-@media screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em) {
   .book {
     --_form-width: 100%;
     --_form-padding: 2rem;

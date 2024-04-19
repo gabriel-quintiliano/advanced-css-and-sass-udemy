@@ -60,16 +60,16 @@
 @mixin respond($breakpoint) {
   // in this case, the @if directive works just like in any programming language
   @if $breakpoint == phone {
-    @media screen and (max-width: 37.5em) { @content } // 600px
+    @media only screen and (max-width: 37.5em) { @content } // 600px
   }
   @if $breakpoint == tab-port {
-    @media screen and (max-width: 56.25em) { @content } // 900px
+    @media only screen and (max-width: 56.25em) { @content } // 900px
   }
   @if $breakpoint == tab-land {
-    @media screen and (max-width: 75em) { @content } // 1200px
+    @media only screen and (max-width: 75em) { @content } // 1200px
   }
   @if $breakpoint == big-desktop {
-    @media screen and (min-width: 112.5em) { @content } // 1800px
+    @media only screen and (min-width: 112.5em) { @content } // 1800px
   }
 }
 
