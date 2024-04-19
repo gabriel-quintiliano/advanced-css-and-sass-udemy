@@ -4,12 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile:sass:natours": "sass natours/sass/main.scss natours/css/style.css -w"
+    "watch:sass:natours": "sass natours/sass/main.scss natours/css/style.css -w",
+    "devserver": "live-server ./natours",
+    "start": "npm-run-all --parallel devserver watch:sass:natours",
+    "compile:sass:natours": "sass natours/sass/main.scss natours/css/style.css",
+    "concat:css:natours": "concat -o natours/css/style.concat.css natours/css/style.css natours/css/icon-font.css",
+    "prefix:css:natours": "postcss --use autoprefixer -b 'last 10 versions' natours/css/style.concat.css -o natours/css/style.prefix.css",
+    "compress:css:natours": "sass natours/css/style.prefix.css natours/css/style.css --style compressed",
+    "build:css:natours": "npm-run-all compile:sass:natours concat:css:natours prefix:css:natours compress:css:natours"
   },
   "keywords": [ ],
-  "author": "",
+  "author": "Gabriel Quintiliano",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "concat": "^1.0.3",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^11.0.0",
     "sass": "^1.72.0"
   }
 }
