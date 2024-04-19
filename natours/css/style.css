@@ -88,6 +88,11 @@ body {
   }
 }
 
+::selection {
+  background-color: #55c57a;
+  color: #fff;
+}
+
 /* in this file you should put all animations that'll be used in the project */
 /* regarding browser performance, it's better to only ever animate the `opacity` and `transform` properties
  * because these only trigger the `composite` phase of rendering the element on screen, the other phases,
