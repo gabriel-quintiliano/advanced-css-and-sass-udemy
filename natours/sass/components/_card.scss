@@ -17,7 +17,8 @@
   --_cta-padding-block: 0;
   --_price-box-margin-bottom: 8rem;
   
-  @include respond(tab-port) {
+  /* when the screen is smaller then 56.25em (900px)*/
+  @media only screen and (max-width: 56.25em), (hover: none) {
     --_card-height: auto;
     --_cs-height: auto;
     --_card-bg-color: #{$color-white};

@@ -554,6 +554,7 @@ body {
   --_cta-translate: translate(-50%, -50%);
   --_cta-padding-block: 0;
   --_price-box-margin-bottom: 8rem;
+  /* when the screen is smaller then 56.25em (900px)*/
   background-color: var(--_card-bg-color);
   box-shadow: var(--_card-box-shadow);
   perspective: 150rem;
@@ -576,7 +577,7 @@ body {
    * against the nesting of different elements, you can only nest those within blocks and within elements
    * you only nest modifiers */
 }
-@media only screen and (max-width: 56.25em) {
+@media only screen and (max-width: 56.25em), (hover: none) {
   .card {
     --_card-height: auto;
     --_cs-height: auto;
