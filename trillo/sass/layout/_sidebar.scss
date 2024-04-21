@@ -1,0 +1,8 @@
+.sidebar {
+  background-color: var(--color-grey-dark-1);
+
+  /* Remember: flex = flex-grow flex-shrink flex-basis - and in this case it's totally
+   * ok for flex-shrink to be 0 because as flex basis is a percentage, it will automatically
+   * shrink based on it's parent width */
+  flex: 0 0 18%;
+}

@@ -9,6 +9,7 @@
   --color-grey-dark-1: #333;
   --color-grey-dark-2: #777;
   --color-grey-dark-3: #999;
+  --shadow-dark: 0 20px 60px rgba(0,0,0,.3);
 }
 
 html {
@@ -43,6 +44,38 @@ body {
   font-weight: 400;
   line-height: 1.6;
   color: var(--color-grey-dark-2);
+  font-size: 1.6rem;
+}
+
+.hotel-view {
+  background-color: #fff;
+  flex: 1;
+}
+
+.container {
+  max-width: 120rem;
+  min-height: 50rem;
+  margin: 8rem auto;
+  background-color: var(--color-grey-light-2);
+  box-shadow: var(--shadow-dark);
+}
+
+.header {
+  height: 7rem;
+  background-color: #fff;
+  border-bottom: var(--color-grey-light-2);
+}
+
+.sidebar {
+  background-color: var(--color-grey-dark-1);
+  /* Remember: flex = flex-grow flex-shrink flex-basis - and in this case it's totally
+   * ok for flex-shrink to be 0 because as flex basis is a percentage, it will automatically
+   * shrink based on it's parent width */
+  flex: 0 0 18%;
+}
+
+.content {
+  display: flex;
 }
 
 /*# sourceMappingURL=style.css.map */
