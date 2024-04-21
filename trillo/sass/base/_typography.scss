@@ -1,0 +1,16 @@
+:root {
+  /* if you want `rem` units throughout the styles of your site/app to be relative
+   * to a custom value defined by you, it's mandatory that you set a `font-size` in
+   * :root or html, if you do that in any other place (even in body), it won't work
+   * as intended, and `rem` will keep being relative to the browser's default font-size
+   * which is typically 16px. Bellow I'm setting it to be 10px (62.5% * 16px = 10px) */
+  
+  font-size: 62.5%; // 1 rem = 10px
+}
+
+body {
+  font-family: 'Open Sans';
+  font-weight: 400;
+  line-height: 1.6; // 1.6 times the normal line-height
+  color: var(--color-grey-dark-2);
+}

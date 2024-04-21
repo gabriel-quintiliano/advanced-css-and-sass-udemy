@@ -1,19 +1,48 @@
-/*
-COLORS
+:root {
+  --color-primary: #eb2f64;
+  --color-primary-light: #FF3366;
+  --color-primary-dark: #BA265D;
+  --color-grey-light-1: #faf9f9;
+  --color-grey-light-2: #f4f2f2;
+  --color-grey-light-3: #f0eeee;
+  --color-grey-light-4: #ccc;
+  --color-grey-dark-1: #333;
+  --color-grey-dark-2: #777;
+  --color-grey-dark-3: #999;
+}
 
-Primary: #eb2f64
-Primary light: #FF3366
-Primary dark: #BA265D
+html {
+  box-sizing: border-box;
+}
 
-Grey light 1: #faf9f9
-Grey light 2: #f4f2f2
-Grey light 3: #f0eeee
-Grey light 4: #ccc
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
 
-Grey dark 1: #333
-Grey dark 2: #777
-Grey dark 3: #999
+body {
+  min-height: 100vh;
+  background-image: linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-dark));
+  background-repeat: no-repeat;
+}
 
-*/
+:root {
+  /* if you want `rem` units throughout the styles of your site/app to be relative
+   * to a custom value defined by you, it's mandatory that you set a `font-size` in
+   * :root or html, if you do that in any other place (even in body), it won't work
+   * as intended, and `rem` will keep being relative to the browser's default font-size
+   * which is typically 16px. Bellow I'm setting it to be 10px (62.5% * 16px = 10px) */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Open Sans";
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-grey-dark-2);
+}
 
 /*# sourceMappingURL=style.css.map */
