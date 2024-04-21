@@ -15,7 +15,42 @@
   <body>
     <div class="container">
       <header class="header">
-        header
+        <img src="img/logo.png" alt="Trillo logo" class="header__logo">
+
+        <form action="#" class="search">
+          <input type="text" class="search__input" placeholder="Search hotels">
+          <button type="submit" class="search__button">
+            <svg class="icon search__icon">
+              <!-- the <use> tag within <svg> the the best way to use SVGs within you site, and that
+                  is because via the `xlink:href` you just tell the browser to reuse the SVG that's
+                  been already defined elsewhere. It helps the browser specially when it's a complicated
+                  SVG to draw, it's makes it all more maintainable and scalable.
+                   To the `xlink:href` you point to the path of the declaration file of the SVG and,
+                  in case it's a single file that defines multiple SVGs, you also use `#` to reference
+                  the specific SVG you want to show on screen -->
+              <use xlink:href="img/sprite.svg#icon-magnifying-glass"></use>
+            </svg>
+          </button>
+        </form>
+
+        <nav class="user-nav">
+          <div class="user-nav__icon-box">
+            <svg class="user-nav__icon">
+              <use xlink:href="img/sprite.svg#icon-bookmark"></use>
+            </svg>
+            <span class="user-nav__notification">7</span>
+          </div>
+          <div class="user-nav__icon-box">
+            <svg class="user-nav__icon">
+              <use xlink:href="img/sprite.svg#icon-chat"></use>
+            </svg>
+            <span class="user-nav__notification">13</span>
+          </div>
+          <div class="user-nav__user">
+            <img src="img/user.jpg" alt="User photo" class="user-nav__user-photo">
+            <span class="user-nav__user-name">Jonas</span>
+          </div>
+        </nav>
       </header>
       <div class="content">
         <nav class="sidebar">

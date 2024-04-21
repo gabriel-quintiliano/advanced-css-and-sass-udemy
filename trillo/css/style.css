@@ -65,6 +65,9 @@ body {
   background-color: #fff;
   border-bottom: var(--color-grey-light-2);
 }
+.header__logo {
+  height: 3.25rem;
+}
 
 .sidebar {
   background-color: var(--color-grey-dark-1);
@@ -76,6 +79,20 @@ body {
 
 .content {
   display: flex;
+}
+
+.search__icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.user-nav__icon {
+  height: 2.25rem;
+  width: 2.25rem;
+}
+.user-nav__user-photo {
+  height: 3.25rem;
+  border-radius: 50%;
 }
 
 /*# sourceMappingURL=style.css.map */
