@@ -1,14 +1,68 @@
 .search {
-  &__input {
+  font-size: 1.4rem;
+  flex: 0 0 40%; // .search is a flex item of .header
 
+  
+  &__form-group {
+    position: relative; // to serve as anchor for &__button
+    margin: auto;
+    display: flex; // .search is also a flex container
+    align-items: center; // cross axis alignment
+
+    width: 90%;
+    transition: width 200ms;
+
+    &:focus-within {
+      width: 100%;
+    }
+  }
+
+  /* I personally thought it'd better to style &__input based on the focus within
+   * &__form-group because this way, when &__button is clicked or focused via keyboard
+   * and thus &__input loses focus, it doesn't lose its styles defined bellow */
+  &__form-group:focus-within &__input {
+    outline: none;
+    background-color: var(--color-grey-light-3);
+  }
+
+  &__input {
+    font-family: inherit; // input elements do not inherited it by default
+    font-size: inherit; // input elements do not inherited it by default
+    color: inherit; // input elements do not inherited it by default
+    background-color: var(--color-grey-light-2);
+    border: none;
+    /* I don't know why `border-radius: 50%` doesn't work on <input>, but to have
+     * this same effect as expected, just use a high number in pixels. */
+    border-radius: 200px;
+    padding: .7rem 2rem; // padding to push the text within
+
+    flex: 1; // equal to flex-grow: 1; it will fill up all available space
+
+    transition: box-shadow 300ms;
+
+    &::placeholder,
+    &::-webkit-input-placeholder {
+      font-weight: 100;
+      color: var(--color-grey-dark-1);
+    }
   }
 
   &__button {
+    position: absolute;
+    right: 13px;
 
+    border: none;
+    background-color: transparent; // so it doesn't stand out
+    transition: transform 100ms;
+
+    &:active {
+      transform: translateY(2px);
+    }
   }
 
   &__icon {
     height: 2rem;
     width: 2rem;
+    fill: var(--color-grey-dark-3); // color of the SVG
   }
 }

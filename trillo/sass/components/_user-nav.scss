@@ -1,27 +1,63 @@
 .user-nav {
-  &__icon-box {
+  align-self: stretch; // yes, .user-nav is also a flex item
 
+  display: flex; // used to make child elements stand side by side horizontally
+
+  // all direct children
+  & > * {
+    height: 100%;
+    cursor: pointer;
+    padding: 0 2rem;
+
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: var(--color-grey-light-2);
+    }
+  }
+
+  &__icon-box {
+    position: relative;
   }
 
   &__icon {
     height: 2.25rem;
     width: 2.25rem;
+    fill: var(--color-grey-dark-2); // icon fill color
   }
 
-  &__icon-notification {
+  &__notification {
+    font-size: 1rem;
+    min-height: 1.75rem;
+    min-width: 1.75rem; // adjusts width to fit +3 digit notification counts
+    border-radius: 100px;
+    background-color: var(--color-primary);
+    color: #fff;
 
+    text-align: center; // center text
+    /* this padding makes sure that if there are more than 2 digits in the notification 
+     * count, the number won't bump into the sides */
+    padding: 0 .5em; // padding based on the current font-size
+
+    position: absolute;
+    top: 20%;
+    left: 55%;
   }
 
-  &__user {
-
-  }
+  // this selector was not needed so far
+  // &__user {
+  //
+  // }
 
   &__user-photo {
     height: 3.25rem;
     border-radius: 50%;
+    margin-right: 1rem;
   }
-
-  &__user-name {
-
-  }
+  
+  // this selector was not needed so far
+  // &__user-name {
+  // 
+  // }
 }

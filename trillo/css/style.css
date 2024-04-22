@@ -64,8 +64,12 @@ body {
   height: 7rem;
   background-color: #fff;
   border-bottom: var(--color-grey-light-2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .header__logo {
+  margin-left: 2rem;
   height: 3.25rem;
 }
 
@@ -81,18 +85,102 @@ body {
   display: flex;
 }
 
+.search {
+  font-size: 1.4rem;
+  flex: 0 0 40%;
+  /* I personally thought it'd better to style &__input based on the focus within
+   * &__form-group because this way, when &__button is clicked or focused via keyboard
+   * and thus &__input loses focus, it doesn't lose its styles defined bellow */
+}
+.search__form-group {
+  position: relative;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  width: 90%;
+  transition: width 200ms;
+}
+.search__form-group:focus-within {
+  width: 100%;
+}
+.search__form-group:focus-within .search__input {
+  outline: none;
+  background-color: var(--color-grey-light-3);
+}
+.search__input {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: var(--color-grey-light-2);
+  border: none;
+  /* I don't know why `border-radius: 50%` doesn't work on <input>, but to have
+   * this same effect as expected, just use a high number in pixels. */
+  border-radius: 200px;
+  padding: 0.7rem 2rem;
+  flex: 1;
+  transition: box-shadow 300ms;
+}
+.search__input::placeholder, .search__input::-webkit-input-placeholder {
+  font-weight: 100;
+  color: var(--color-grey-dark-1);
+}
+.search__button {
+  position: absolute;
+  right: 13px;
+  border: none;
+  background-color: transparent;
+  transition: transform 100ms;
+}
+.search__button:active {
+  transform: translateY(2px);
+}
 .search__icon {
   height: 2rem;
   width: 2rem;
+  fill: var(--color-grey-dark-3);
 }
 
+.user-nav {
+  align-self: stretch;
+  display: flex;
+}
+.user-nav > * {
+  height: 100%;
+  cursor: pointer;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+}
+.user-nav > *:hover {
+  background-color: var(--color-grey-light-2);
+}
+.user-nav__icon-box {
+  position: relative;
+}
 .user-nav__icon {
   height: 2.25rem;
   width: 2.25rem;
+  fill: var(--color-grey-dark-2);
+}
+.user-nav__notification {
+  font-size: 1rem;
+  min-height: 1.75rem;
+  min-width: 1.75rem;
+  border-radius: 100px;
+  background-color: var(--color-primary);
+  color: #fff;
+  text-align: center;
+  /* this padding makes sure that if there are more than 2 digits in the notification 
+   * count, the number won't bump into the sides */
+  padding: 0 0.5em;
+  position: absolute;
+  top: 20%;
+  left: 55%;
 }
 .user-nav__user-photo {
   height: 3.25rem;
   border-radius: 50%;
+  margin-right: 1rem;
 }
 
 /*# sourceMappingURL=style.css.map */
