@@ -1,0 +1,14 @@
+.gallery {
+  display: flex;
+
+  &__photo {
+    vertical-align: middle; // removes that white space bellow the image
+    width: 100%;
+
+    /* Not really necessary but it will make sure there is no distortion if the height
+     * of the container holding the image doesn't "align" with it width x height ratio */
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
