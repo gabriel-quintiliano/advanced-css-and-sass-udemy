@@ -50,6 +50,7 @@ body {
 .hotel-view {
   background-color: #fff;
   flex: 1;
+  height: 70rem;
 }
 
 .container {
@@ -79,10 +80,14 @@ body {
    * ok for flex-shrink to be 0 because as flex basis is a percentage, it will automatically
    * shrink based on it's parent width */
   flex: 0 0 18%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .content {
   display: flex;
+  background-color: blue;
 }
 
 .search {
@@ -181,6 +186,70 @@ body {
   height: 3.25rem;
   border-radius: 50%;
   margin-right: 1rem;
+}
+
+.side-nav {
+  font-size: 1.4rem;
+  list-style: none;
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.side-nav__item {
+  position: relative;
+  /* Even though &__item is a <li>, we can still use the :active pseudo-class to apply styles to
+   * it when it's being clicked (or pressed). */
+}
+.side-nav__item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 5px;
+  background-color: var(--color-primary);
+  transition: transform 200ms, width 400ms cubic-bezier(1, 0, 0, 1) 200ms, background-color 100ms;
+  transform: scaleY(0);
+}
+.side-nav__item:active::before {
+  background-color: var(--color-primary-light);
+}
+.side-nav__item:hover::before, .side-nav__item--active::before {
+  transform: scaleY(1);
+  width: 100%;
+}
+.side-nav__link {
+  color: var(--color-grey-light-1);
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 1.5rem 3rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+.side-nav__icon {
+  height: 1.75rem;
+  width: 1.75rem;
+  margin-right: 2rem;
+  /* currentColor is a built-in value that represent the current value of the `color`
+   * property of the current element, or, if the current element has no `color` set,
+   * currentColor represents the `color` set in the parent element - which is just what
+   * is happening bellow, it getting the current `color` of the &__link element. Using
+   * this `currentColor` value you, for example, can only care about changing the color
+   * of the parent element and doesn't need to bother setting the same color for the
+   * child element according to that specific state of its parent. */
+  fill: currentColor;
+}
+
+.legal {
+  font-size: 1.2rem;
+  text-align: center;
+  color: var(--color-grey-light-4);
+  padding: 2.5rem;
 }
 
 /*# sourceMappingURL=style.css.map */

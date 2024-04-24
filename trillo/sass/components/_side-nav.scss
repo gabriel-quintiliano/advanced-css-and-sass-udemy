@@ -1,0 +1,73 @@
+.side-nav {
+  font-size: 1.4rem;
+  list-style: none;
+  margin-top: 3.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+
+  &__item {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 5px;
+      background-color: var(--color-primary);
+
+      //          prop      time   prop  time    timing-function     delay 
+      transition: transform 200ms, width 400ms cubic-bezier(1,0,0,1) 200ms, background-color 100ms;
+      transform: scaleY(0); // for height
+      // transform-origin: center; // this is the default
+      
+    }
+
+    /* Even though &__item is a <li>, we can still use the :active pseudo-class to apply styles to
+     * it when it's being clicked (or pressed). */
+    &:active::before {
+      background-color: var(--color-primary-light);
+    }
+    
+    &:hover::before,
+    &--active::before {
+      transform: scaleY(1);
+      width: 100%;
+    }
+  }
+
+  &__link {
+    color: var(--color-grey-light-1);
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 1.5rem 3rem;
+    margin: 0 auto;
+
+    // so that the link text and svg icon are above the &__item::before
+    position: relative;
+    z-index: 1; // only works when there is a position other than "static" (default)
+
+    // to vertically align (center) the link text and svg icon
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    height: 1.75rem;
+    width: 1.75rem;
+    margin-right: 2rem;
+
+    /* currentColor is a built-in value that represent the current value of the `color`
+     * property of the current element, or, if the current element has no `color` set,
+     * currentColor represents the `color` set in the parent element - which is just what
+     * is happening bellow, it getting the current `color` of the &__link element. Using
+     * this `currentColor` value you, for example, can only care about changing the color
+     * of the parent element and doesn't need to bother setting the same color for the
+     * child element according to that specific state of its parent. */
+    fill: currentColor; // even Internet Explorer supports it
+  }
+}
