@@ -73,6 +73,8 @@ body {
   margin: 8rem auto;
   background-color: var(--color-grey-light-2);
   box-shadow: var(--shadow-dark);
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .header {
