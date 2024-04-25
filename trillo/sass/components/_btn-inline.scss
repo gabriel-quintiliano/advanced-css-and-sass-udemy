@@ -1,0 +1,22 @@
+.btn-inline {
+  font-size: inherit;
+  font-weight: 400;
+  color: var(--color-primary);
+  transition: color 200ms;
+  
+  display: inline-block; // <button> is an inline element by default
+  border: none;
+  border-bottom: 1px solid currentColor; // uses the current color defined in `color` property
+  padding-bottom: .2rem;
+  background-color: transparent;
+
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-grey-dark-1);
+  }
+
+  &:focus {
+    animation: pulsate 1s infinite;
+  }
+}
