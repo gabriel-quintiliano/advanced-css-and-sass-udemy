@@ -1,0 +1,39 @@
+.recommend {
+  font-size: 1.3rem;
+  color: var(--color-grey-dark-3);
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; // vertically center - for when there is no wrapping
+  // row-gap column-gap
+  gap: .5rem 1rem;
+
+  &__count {
+    flex: 1 0;
+  }
+
+  &__friends {
+    flex: 0 0 max-content;
+  }
+
+  &__photo {
+    box-sizing: content-box; // border add to height and width
+    vertical-align: middle; // to remove the blank space bellow <img>
+    border: 3px solid #fff;
+
+    height: 4rem;
+    border-radius: 50%;
+
+    /* This only works because the photo is a square, for aspect-ratios other than
+     * 1:1, it would be a lot better to wrap this <img> tag in a container square
+     * container and use the following styles here in &__photo to avoid distortions:
+     *
+     * width: 100%;
+     * height: 100%;
+     * object-fit: cover; */
+
+    &:not(:first-of-type) {
+      margin-left: -1.5rem; // so the images overlap
+    }
+  }
+}
