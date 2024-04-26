@@ -6,6 +6,10 @@
    * which is typically 16px. Bellow I'm setting it to be 10px (62.5% * 16px = 10px) */
   
   font-size: 62.5%; // 1 rem = 10px
+  
+  @include respond(large) {
+    font-size: 56.25%; // 1 rem = 9px
+  }
 }
 
 body {
