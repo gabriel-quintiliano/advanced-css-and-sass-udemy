@@ -1,0 +1,38 @@
+.btn {
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  border-radius: 150px; // nice rounded edges
+  border: none;
+  background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+
+  cursor: pointer;
+
+  &__visible {
+    display: inline-block;
+    padding: 2rem 7.5rem;
+    transition: transform 200ms;
+  }
+  
+  &__invisible {
+    width: 100%;
+    padding: 2rem 0;
+    transition: transform 200ms;
+    
+    position: absolute;
+    top: -100%; // so it goes up and out of the button limits
+    left: 0;
+  }
+
+  &:hover &__visible,
+  &:hover &__invisible {
+    transform: translateY(100%);
+  }
+
+  &:focus {
+    animation: pulsate 1s infinite;
+  }
+}
