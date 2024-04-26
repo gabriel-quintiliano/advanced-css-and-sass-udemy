@@ -9,7 +9,7 @@
   gap: .5rem 1rem;
 
   &__count {
-    flex: 1 0;
+    flex: 1 0 max-content;
   }
 
   &__friends {
