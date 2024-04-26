@@ -1,0 +1,26 @@
+// media query manager
+/* $breakpoint argument choices:
+ * - phone 
+ * - tab-port
+ * - tab-land
+ * - big-desktop
+ *
+ * ORDER: Base + typography > general layout > grid > page-layout > components
+ *
+ * 1 em = 16px by default */
+
+@mixin respond($breakpoint) {
+  // in this case, the @if directive works just like in any programming language
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) { @content } // 600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) { @content } // 900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) { @content } // 1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) { @content } // 1800px
+  }
+}
