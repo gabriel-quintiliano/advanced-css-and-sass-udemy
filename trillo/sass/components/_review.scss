@@ -1,0 +1,64 @@
+.review {
+  background-color: #fff;
+  padding: 3rem;
+  margin-bottom: 3.5rem;
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+
+  position: relative; // to serve as anchor to ::before
+
+  &__text {
+    margin-bottom: 2rem;
+
+    position: relative; // just so z-index works properly
+    z-index: 2;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  &__photo {
+    vertical-align: middle; // to remove blank space bellow the image
+    height: 4.5rem;
+    border-radius: 50%;
+  }
+
+  &__user-box {
+    flex: 1;
+    // margin-right: auto; would have the same end result
+  }
+
+  &__user-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    // margin-bottom: .4rem;
+  }
+
+  &__user-date {
+    font-size: 1.1rem;
+  }
+
+  &__rating {
+    color: var(--color-primary);
+    font-size: 2.4rem;
+    font-weight: 300;
+  }
+
+  &::before {
+    font-family: sans-serif;
+    content: "\201C"; // use the character ISO number in css 
+    font-size: 20rem;
+    line-height: 1;
+    color: var(--color-grey-light-2);
+    
+    position: absolute;
+    top: -2.75rem;
+    left: -1rem;
+
+    z-index: 1;
+  }
+}

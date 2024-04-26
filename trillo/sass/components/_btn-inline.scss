@@ -12,8 +12,17 @@
 
   cursor: pointer;
 
+  & span {
+    margin-left: 3px;
+    transition: margin 200ms;
+  }
+
   &:hover {
     color: var(--color-grey-dark-1);
+
+    span {
+      margin-left: 10px;
+    }
   }
 
   &:focus {

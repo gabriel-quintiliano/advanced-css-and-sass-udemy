@@ -1,4 +1,6 @@
 .detail {
+  font-size: 1.4rem; // so child elements automatically inherit this value
+
   display: flex;
   gap: 4.5rem;
 
