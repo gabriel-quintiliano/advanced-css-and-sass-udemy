@@ -5,17 +5,25 @@
   --_gap: .5rem;
   --_link-padding: 1.5rem 3rem;
   --_link-justify-content: initial;
-  --_m-right-icon: 2rem;
+  --_link-flex-gap: 2rem;
+  --_link-flex-dir: initial;
+  --_link-span-line-height: inherit;
   
   @include respond(medium) {
     --_flex-grow: 1;
     --_flex-dir: row;
     --_m-top: 0;
     --_gap: 0;
-    --_link-padding: 1.5rem;
+    --_link-padding: 1.5rem 0;
     --_link-justify-content: center;
-    --_m-right-icon: 1.2rem;
-
+    --_link-flex-gap: 1.2rem;
+  }
+  
+  @include respond(x-small) {
+    --_link-padding: 1rem 0;
+    --_link-flex-gap: .8rem;
+    --_link-flex-dir: column;
+    --_link-span-line-height: 1;
   }
 
   flex-grow: var(--_flex-grow);
@@ -76,14 +84,19 @@
 
     // to vertically align (center) the link text and svg icon
     display: flex;
+    flex-direction: var(--_link-flex-dir);
     align-items: center;
     justify-content: var(--_link-justify-content);
+    gap: var(--_link-flex-gap);
+
+    & span {
+      line-height: var(--_link-span-line-height);
+    }
   }
 
   &__icon {
     height: 1.75rem;
     width: 1.75rem;
-    margin-right: var(--_m-right-icon);
 
     /* currentColor is a built-in value that represent the current value of the `color`
      * property of the current element, or, if the current element has no `color` set,

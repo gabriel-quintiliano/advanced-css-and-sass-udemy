@@ -11,6 +11,9 @@
 
 @mixin respond($breakpoint) {
   // in this case, the @if directive works just like in any programming language
+  @if $breakpoint == x-small {
+    @media only screen and (max-width: 31.875em) { @content } // 510px
+  }
   @if $breakpoint == small {
     @media only screen and (max-width: 37.5em) { @content } // 600px
   }

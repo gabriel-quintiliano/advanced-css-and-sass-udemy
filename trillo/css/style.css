@@ -244,7 +244,9 @@ body {
   --_gap: .5rem;
   --_link-padding: 1.5rem 3rem;
   --_link-justify-content: initial;
-  --_m-right-icon: 2rem;
+  --_link-flex-gap: 2rem;
+  --_link-flex-dir: initial;
+  --_link-span-line-height: inherit;
   flex-grow: var(--_flex-grow);
   font-size: 1.4rem;
   list-style: none;
@@ -259,9 +261,17 @@ body {
     --_flex-dir: row;
     --_m-top: 0;
     --_gap: 0;
-    --_link-padding: 1.5rem;
+    --_link-padding: 1.5rem 0;
     --_link-justify-content: center;
-    --_m-right-icon: 1.2rem;
+    --_link-flex-gap: 1.2rem;
+  }
+}
+@media only screen and (max-width: 31.875em) {
+  .side-nav {
+    --_link-padding: 1rem 0;
+    --_link-flex-gap: .8rem;
+    --_link-flex-dir: column;
+    --_link-span-line-height: 1;
   }
 }
 .side-nav__item {
@@ -298,13 +308,17 @@ body {
   position: relative;
   z-index: 1;
   display: flex;
+  flex-direction: var(--_link-flex-dir);
   align-items: center;
   justify-content: var(--_link-justify-content);
+  gap: var(--_link-flex-gap);
+}
+.side-nav__link span {
+  line-height: var(--_link-span-line-height);
 }
 .side-nav__icon {
   height: 1.75rem;
   width: 1.75rem;
-  margin-right: var(--_m-right-icon);
   /* currentColor is a built-in value that represent the current value of the `color`
    * property of the current element, or, if the current element has no `color` set,
    * currentColor represents the `color` set in the parent element - which is just what
@@ -571,6 +585,12 @@ body {
   overflow: hidden;
   position: relative;
 }
+@media only screen and (max-width: 56.25em) {
+  .review {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+}
 .review__text {
   margin-bottom: 2rem;
   position: relative;
@@ -617,6 +637,11 @@ body {
 .cta {
   padding: 3.5rem 0;
   text-align: center;
+}
+@media only screen and (max-width: 56.25em) {
+  .cta {
+    padding: 2.5rem 0;
+  }
 }
 .cta__book-now {
   font-size: 2rem;
