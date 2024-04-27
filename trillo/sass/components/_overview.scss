@@ -1,15 +1,29 @@
 .overview {
+  --_primary-text-font-size: 2.25rem; // heading and rating-average
+  --_heading-padding: 1.5rem 3rem;
+  --_rating-count-font-size: 1.2rem;
+  --_rating-padding: 0 2.25rem;
+  --_rating-m-left: 3rem;
+  
+  @include respond(small) {
+    --_primary-text-font-size: 1.8rem;
+    --_heading-padding: 1.25rem 2rem;
+    --_rating-count-font-size: 1rem;
+    --_rating-padding: 0 1.5rem;
+    --_rating-m-left: 1rem;
+  }
+
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--color-grey-light-2);
 
   &__heading {
-    font-size: 2.25rem;
+    font-size: var(--_primary-text-font-size);
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 1px;
 
-    padding: 1.5rem 3rem;
+    padding: var(--_heading-padding);
   }
 
   &__stars {
@@ -42,8 +56,8 @@
     color: #fff;
     background-color: var(--color-primary);
     align-self: stretch;
-    padding: 0 2.25rem;
-    margin-left: 3rem;
+    padding: var(--_rating-padding);
+    margin-left: var(--_rating-m-left);
 
     display: flex;
     flex-direction: column;
@@ -52,14 +66,15 @@
   }
 
   &__rating-average {
-    font-size: 2.25rem;
+    font-size: var(--_primary-text-font-size);
     font-weight: 300;
+    // line-height: var(--_primary-text-font-size); // doesn't look that good on smaller screens
     line-height: 2.25rem;
   }
   
   &__rating-count {
-    font-size: 1.2rem;
+    font-size: var(--_rating-count-font-size);
     font-weight: 300;
-
+    text-transform: uppercase;
   }
 }

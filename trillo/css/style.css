@@ -355,16 +355,30 @@ body {
 }
 
 .overview {
+  --_primary-text-font-size: 2.25rem;
+  --_heading-padding: 1.5rem 3rem;
+  --_rating-count-font-size: 1.2rem;
+  --_rating-padding: 0 2.25rem;
+  --_rating-m-left: 3rem;
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--color-grey-light-2);
 }
+@media only screen and (max-width: 37.5em) {
+  .overview {
+    --_primary-text-font-size: 1.8rem;
+    --_heading-padding: 1.25rem 2rem;
+    --_rating-count-font-size: 1rem;
+    --_rating-padding: 0 1.5rem;
+    --_rating-m-left: 1rem;
+  }
+}
 .overview__heading {
-  font-size: 2.25rem;
+  font-size: var(--_primary-text-font-size);
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 1px;
-  padding: 1.5rem 3rem;
+  padding: var(--_heading-padding);
 }
 .overview__stars {
   /* Within flexbox, a great trick to create a space between items other then `flex: 1` (which
@@ -389,21 +403,22 @@ body {
   color: #fff;
   background-color: var(--color-primary);
   align-self: stretch;
-  padding: 0 2.25rem;
-  margin-left: 3rem;
+  padding: var(--_rating-padding);
+  margin-left: var(--_rating-m-left);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .overview__rating-average {
-  font-size: 2.25rem;
+  font-size: var(--_primary-text-font-size);
   font-weight: 300;
   line-height: 2.25rem;
 }
 .overview__rating-count {
-  font-size: 1.2rem;
+  font-size: var(--_rating-count-font-size);
   font-weight: 300;
+  text-transform: uppercase;
 }
 
 .btn {
