@@ -1,4 +1,17 @@
 .user-nav {
+  --_children-padding: 2rem;
+  --_notification-top: 20%;
+  --_icon-box-m-top: 0;
+  
+  @include respond(x-small) {
+    --_children-padding: 1.25rem 2rem;
+    --_notification-top: 12%;
+    --_icon-box-m-top: .2rem;
+
+    justify-content: space-between;
+    flex: 0 0 55%;
+  }
+
   align-self: stretch; // yes, .user-nav is also a flex item
 
   display: flex; // used to make child elements stand side by side horizontally
@@ -7,7 +20,7 @@
   & > * {
     height: 100%;
     cursor: pointer;
-    padding: 0 2rem;
+    padding: var(--_children-padding);
 
     display: flex;
     align-items: center;
@@ -19,6 +32,7 @@
 
   &__icon-box {
     position: relative;
+    margin-top: var(--_icon-box-m-top);
   }
 
   &__icon {
@@ -41,7 +55,7 @@
     padding: 0 .5em; // padding based on the current font-size
 
     position: absolute;
-    top: 20%;
+    top: var(--_notification-top);
     left: 55%;
   }
 

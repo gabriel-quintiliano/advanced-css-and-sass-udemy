@@ -1,7 +1,18 @@
 .search {
-  font-size: 1.4rem;
-  flex: 0 0 40%; // .search is a flex item of .header
+  --_search-flex: 0 0 40%;
+  --_fg-width: 90%;
+  
+  @include respond(x-small) {
+    --_fg-width: 100%;
+    --_search-flex: 1 0 100%;
+    
+    order: 1;
+    padding: 0 1.7rem;
+    margin-bottom: 1rem;
+  }
 
+  font-size: 1.4rem;
+  flex: var(--_search-flex); // .search is a flex item of .header
   
   &__form-group {
     position: relative; // to serve as anchor for &__button
@@ -9,7 +20,7 @@
     display: flex; // .search is also a flex container
     align-items: center; // cross axis alignment
 
-    width: 90%;
+    width: var(--_fg-width);
     transition: width 200ms;
 
     &:focus-within {

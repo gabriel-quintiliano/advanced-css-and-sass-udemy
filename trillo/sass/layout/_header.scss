@@ -1,12 +1,14 @@
 .header {
-  height: 7rem;
+  // padding: 1.5rem 0;
   background-color: #fff;
   border-bottom: 1px solid var(--color-grey-light-2);
-
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  flex-wrap: wrap;
+  
   &__logo {
     margin-left: 2rem;
     height: 3.25rem;

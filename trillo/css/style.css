@@ -101,12 +101,12 @@ body {
 }
 
 .header {
-  height: 7rem;
   background-color: #fff;
   border-bottom: 1px solid var(--color-grey-light-2);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 .header__logo {
   margin-left: 2rem;
@@ -140,18 +140,29 @@ body {
 }
 
 .search {
+  --_search-flex: 0 0 40%;
+  --_fg-width: 90%;
   font-size: 1.4rem;
-  flex: 0 0 40%;
+  flex: var(--_search-flex);
   /* I personally thought it'd better to style &__input based on the focus within
    * &__form-group because this way, when &__button is clicked or focused via keyboard
    * and thus &__input loses focus, it doesn't lose its styles defined bellow */
+}
+@media only screen and (max-width: 31.875em) {
+  .search {
+    --_fg-width: 100%;
+    --_search-flex: 1 0 100%;
+    order: 1;
+    padding: 0 1.7rem;
+    margin-bottom: 1rem;
+  }
 }
 .search__form-group {
   position: relative;
   margin: auto;
   display: flex;
   align-items: center;
-  width: 90%;
+  width: var(--_fg-width);
   transition: width 200ms;
 }
 .search__form-group:focus-within {
@@ -195,13 +206,25 @@ body {
 }
 
 .user-nav {
+  --_children-padding: 2rem;
+  --_notification-top: 20%;
+  --_icon-box-m-top: 0;
   align-self: stretch;
   display: flex;
+}
+@media only screen and (max-width: 31.875em) {
+  .user-nav {
+    --_children-padding: 1.25rem 2rem;
+    --_notification-top: 12%;
+    --_icon-box-m-top: .2rem;
+    justify-content: space-between;
+    flex: 0 0 55%;
+  }
 }
 .user-nav > * {
   height: 100%;
   cursor: pointer;
-  padding: 0 2rem;
+  padding: var(--_children-padding);
   display: flex;
   align-items: center;
 }
@@ -210,6 +233,7 @@ body {
 }
 .user-nav__icon-box {
   position: relative;
+  margin-top: var(--_icon-box-m-top);
 }
 .user-nav__icon {
   height: 2.25rem;
@@ -228,7 +252,7 @@ body {
    * count, the number won't bump into the sides */
   padding: 0 0.5em;
   position: absolute;
-  top: 20%;
+  top: var(--_notification-top);
   left: 55%;
 }
 .user-nav__user-photo {
