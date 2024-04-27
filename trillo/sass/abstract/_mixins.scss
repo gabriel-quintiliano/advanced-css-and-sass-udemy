@@ -1,5 +1,6 @@
 // media query manager
 /* $breakpoint argument choices:
+ * - medium
  * - large
  * - largest
  *
@@ -9,6 +10,9 @@
 
 @mixin respond($breakpoint) {
   // in this case, the @if directive works just like in any programming language
+  @if $breakpoint == medium {
+    @media only screen and (max-width: 56.25em) { @content } // 900px
+  }
   @if $breakpoint == large {
     @media only screen and (max-width: 68.75em) { @content } // 1100px
   }

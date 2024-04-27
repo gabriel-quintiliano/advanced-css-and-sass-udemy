@@ -3,4 +3,8 @@
   text-align: center;
   color: var(--color-grey-light-4);
   padding: 2.5rem;
+
+  @include respond(medium) {
+    display: none;
+  }
 }

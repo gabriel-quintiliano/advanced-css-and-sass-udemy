@@ -1,14 +1,37 @@
 .side-nav {
+  --_flex-grow: initial;
+  --_flex-dir: column;
+  --_m-top: 3.5rem;
+  --_gap: .5rem;
+  --_link-padding: 1.5rem 3rem;
+  --_link-justify-content: initial;
+  --_m-right-icon: 2rem;
+  
+  @include respond(medium) {
+    --_flex-grow: 1;
+    --_flex-dir: row;
+    --_m-top: 0;
+    --_gap: 0;
+    --_link-padding: 1.5rem;
+    --_link-justify-content: center;
+    --_m-right-icon: 1.2rem;
+
+  }
+
+  flex-grow: var(--_flex-grow);
+  
   font-size: 1.4rem;
   list-style: none;
-  margin-top: 3.5rem;
-
+  margin-top: var(--_m-top);
+  
   display: flex;
-  flex-direction: column;
-  gap: .5rem;
+  flex-direction: var(--_flex-dir);
+  gap: var(--_gap);
+
 
   &__item {
     position: relative;
+    flex: 1;
 
     &::before {
       content: "";
@@ -44,7 +67,7 @@
     text-decoration: none;
     text-transform: uppercase;
     display: inline-block;
-    padding: 1.5rem 3rem;
+    padding: var(--_link-padding);
     margin: 0 auto;
 
     // so that the link text and svg icon are above the &__item::before
@@ -54,12 +77,13 @@
     // to vertically align (center) the link text and svg icon
     display: flex;
     align-items: center;
+    justify-content: var(--_link-justify-content);
   }
 
   &__icon {
     height: 1.75rem;
     width: 1.75rem;
-    margin-right: 2rem;
+    margin-right: var(--_m-right-icon);
 
     /* currentColor is a built-in value that represent the current value of the `color`
      * property of the current element, or, if the current element has no `color` set,

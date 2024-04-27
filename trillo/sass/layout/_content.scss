@@ -1,4 +1,7 @@
 .content {
   display: flex;
-  background-color: blue;
+
+  @include respond(medium) {
+    flex-direction: column;
+  }
 }

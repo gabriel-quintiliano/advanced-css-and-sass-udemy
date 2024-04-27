@@ -1,5 +1,6 @@
 @charset "UTF-8";
 /* $breakpoint argument choices:
+ * - medium
  * - large
  * - largest
  *
@@ -121,10 +122,20 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
+@media only screen and (max-width: 56.25em) {
+  .sidebar {
+    flex-direction: row;
+    align-items: center;
+  }
+}
 
 .content {
   display: flex;
-  background-color: blue;
+}
+@media only screen and (max-width: 56.25em) {
+  .content {
+    flex-direction: column;
+  }
 }
 
 .search {
@@ -226,15 +237,35 @@ body {
 }
 
 .side-nav {
+  --_flex-grow: initial;
+  --_flex-dir: column;
+  --_m-top: 3.5rem;
+  --_gap: .5rem;
+  --_link-padding: 1.5rem 3rem;
+  --_link-justify-content: initial;
+  --_m-right-icon: 2rem;
+  flex-grow: var(--_flex-grow);
   font-size: 1.4rem;
   list-style: none;
-  margin-top: 3.5rem;
+  margin-top: var(--_m-top);
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-direction: var(--_flex-dir);
+  gap: var(--_gap);
+}
+@media only screen and (max-width: 56.25em) {
+  .side-nav {
+    --_flex-grow: 1;
+    --_flex-dir: row;
+    --_m-top: 0;
+    --_gap: 0;
+    --_link-padding: 1.5rem;
+    --_link-justify-content: center;
+    --_m-right-icon: 1.2rem;
+  }
 }
 .side-nav__item {
   position: relative;
+  flex: 1;
   /* Even though &__item is a <li>, we can still use the :active pseudo-class to apply styles to
    * it when it's being clicked (or pressed). */
 }
@@ -261,17 +292,18 @@ body {
   text-decoration: none;
   text-transform: uppercase;
   display: inline-block;
-  padding: 1.5rem 3rem;
+  padding: var(--_link-padding);
   margin: 0 auto;
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
+  justify-content: var(--_link-justify-content);
 }
 .side-nav__icon {
   height: 1.75rem;
   width: 1.75rem;
-  margin-right: 2rem;
+  margin-right: var(--_m-right-icon);
   /* currentColor is a built-in value that represent the current value of the `color`
    * property of the current element, or, if the current element has no `color` set,
    * currentColor represents the `color` set in the parent element - which is just what
@@ -287,6 +319,11 @@ body {
   text-align: center;
   color: var(--color-grey-light-4);
   padding: 2.5rem;
+}
+@media only screen and (max-width: 56.25em) {
+  .legal {
+    display: none;
+  }
 }
 
 .gallery {
