@@ -381,12 +381,18 @@ body {
 .overview {
   --_primary-text-font-size: 2.25rem;
   --_heading-padding: 1.5rem 3rem;
+  --_heading-m-bottom: 0rem;
   --_rating-count-font-size: 1.2rem;
   --_rating-padding: 0 2.25rem;
   --_rating-m-left: 3rem;
+  --_icon-location-display: initial;
+  --_location-position: initial;
+  --_location-bottom: 0
+  --_location-left: 0;
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--color-grey-light-2);
+  position: relative;
 }
 @media only screen and (max-width: 37.5em) {
   .overview {
@@ -397,12 +403,24 @@ body {
     --_rating-m-left: 1rem;
   }
 }
+@media only screen and (max-width: 31.875em) {
+  .overview {
+    --_heading-padding: 1rem 2rem;
+    --_heading-m-bottom: 1.8rem;
+    --_location-position: absolute;
+    --_location-bottom: 1rem;
+    --_location-left: 2rem;
+    --_icon-location-display: none;
+    --_rating-m-left: 0;
+  }
+}
 .overview__heading {
   font-size: var(--_primary-text-font-size);
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: var(--_heading-padding);
+  margin-bottom: var(--_heading-m-bottom);
 }
 .overview__stars {
   /* Within flexbox, a great trick to create a space between items other then `flex: 1` (which
@@ -417,11 +435,16 @@ body {
   height: 1.75rem;
   fill: var(--color-primary);
 }
+.overview__icon-location {
+  display: var(--_icon-location-display);
+}
 .overview__location {
+  position: var(--_location-position);
+  bottom: var(--_location-bottom);
+  left: var(--_location-left);
   font-size: 1.4rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
 }
 .overview__rating {
   color: #fff;

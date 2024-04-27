@@ -1,10 +1,17 @@
 .overview {
   --_primary-text-font-size: 2.25rem; // heading and rating-average
   --_heading-padding: 1.5rem 3rem;
+  --_heading-m-bottom: 0rem;
   --_rating-count-font-size: 1.2rem;
   --_rating-padding: 0 2.25rem;
   --_rating-m-left: 3rem;
+
+  --_icon-location-display: initial;
   
+  --_location-position: initial; // static
+  --_location-bottom: 0
+  --_location-left: 0;
+
   @include respond(small) {
     --_primary-text-font-size: 1.8rem;
     --_heading-padding: 1.25rem 2rem;
@@ -12,10 +19,21 @@
     --_rating-padding: 0 1.5rem;
     --_rating-m-left: 1rem;
   }
+  
+  @include respond(x-small) {
+    --_heading-padding: 1rem 2rem;
+    --_heading-m-bottom: 1.8rem;
+    --_location-position: absolute;
+    --_location-bottom: 1rem;
+    --_location-left: 2rem;
+    --_icon-location-display: none;
+    --_rating-m-left: 0;
+  }
 
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--color-grey-light-2);
+  position: relative; // to serve as anchor for &__location
 
   &__heading {
     font-size: var(--_primary-text-font-size);
@@ -24,6 +42,7 @@
     letter-spacing: 1px;
 
     padding: var(--_heading-padding);
+    margin-bottom: var(--_heading-m-bottom);
   }
 
   &__stars {
@@ -36,7 +55,7 @@
     display: flex;
     align-items: center;
   }
-  
+
   &__icon-star,
   &__icon-location {
     width: 1.75rem;
@@ -44,12 +63,20 @@
     fill: var(--color-primary);
   }
 
+  &__icon-location {
+    display: var(--_icon-location-display);
+  }
+
   &__location {
+    position: var(--_location-position);
+    bottom: var(--_location-bottom);
+    left: var(--_location-left);
+
     font-size: 1.4rem;
-    
+
     display: flex;
     align-items: center;
-    gap: .5rem;
+    // gap: 1rem;
   }
 
   &__rating {
@@ -71,7 +98,7 @@
     // line-height: var(--_primary-text-font-size); // doesn't look that good on smaller screens
     line-height: 2.25rem;
   }
-  
+
   &__rating-count {
     font-size: var(--_rating-count-font-size);
     font-weight: 300;
