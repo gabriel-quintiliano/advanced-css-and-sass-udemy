@@ -1,5 +1,6 @@
 @charset "UTF-8";
 /* $breakpoint argument choices:
+ * - small
  * - medium
  * - large
  * - largest
@@ -458,12 +459,23 @@ body {
 }
 
 .detail {
+  --_padding: 4.5rem;
   font-size: 1.4rem;
   display: flex;
-  gap: 4.5rem;
-  padding: 4.5rem;
+  gap: var(--_padding);
+  padding: var(--_padding);
   background-color: var(--color-grey-light-1);
   border-bottom: var(--grey-light-line);
+}
+@media only screen and (max-width: 56.25em) {
+  .detail {
+    --_padding: 3rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .detail {
+    flex-direction: column;
+  }
 }
 
 .user-reviews {
