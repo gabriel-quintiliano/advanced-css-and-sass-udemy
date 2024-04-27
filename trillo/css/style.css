@@ -457,6 +457,11 @@ body {
   padding: 3rem;
   flex: 0 0 60%;
 }
+@media only screen and (max-width: 56.25em) {
+  .description {
+    padding: 2rem;
+  }
+}
 
 .detail {
   --_padding: 4.5rem;

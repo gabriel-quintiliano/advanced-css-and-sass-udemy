@@ -5,4 +5,8 @@
   box-shadow: var(--shadow-light);
   padding: 3rem;
   flex: 0 0 60%;
+
+  @include respond(medium) {
+    padding: 2rem;
+  }
 }

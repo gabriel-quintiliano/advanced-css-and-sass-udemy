@@ -4,8 +4,13 @@
   margin-bottom: 3.5rem;
   box-shadow: var(--shadow-light);
   overflow: hidden;
-
+  
   position: relative; // to serve as anchor to ::before
+  
+  @include respond(medium) {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
 
   &__text {
     margin-bottom: 2rem;
