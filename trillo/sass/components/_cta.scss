@@ -3,7 +3,7 @@
   text-align: center;
 
   @include respond(medium) {
-    padding: 2.5rem 0;
+    padding: 2.5rem 1rem;
   }
 
   &__book-now { // it's an <h2> element
