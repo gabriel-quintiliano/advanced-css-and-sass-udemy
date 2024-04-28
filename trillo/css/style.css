@@ -558,6 +558,11 @@ body {
     flex-direction: column;
   }
 }
+@media only screen and (max-width: 56.25em) {
+  .detail {
+    --_padding: 1.5rem;
+  }
+}
 
 .user-reviews {
   flex: 1;
@@ -583,6 +588,11 @@ body {
 }
 .list__item {
   flex: 1 0 40%;
+}
+@media only screen and (max-width: 31.875em) {
+  .list__item {
+    flex: 0 0 100%;
+  }
 }
 .list__item::before {
   content: "";

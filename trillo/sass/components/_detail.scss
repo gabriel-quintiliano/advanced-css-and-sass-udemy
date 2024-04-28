@@ -4,9 +4,13 @@
   @include respond(medium) {
     --_padding: 3rem;
   }
-
+  
   @include respond(small) {
     flex-direction: column;
+  }
+  
+  @include respond(medium) {
+    --_padding: 1.5rem;
   }
 
   font-size: 1.4rem; // so child elements automatically inherit this value

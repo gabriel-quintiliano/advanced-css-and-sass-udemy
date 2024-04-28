@@ -1,6 +1,5 @@
 .list {
   list-style: none;
-  // background-color: lightgreen;
 
   padding: 3rem 0;
   margin: 3rem 0;
@@ -15,7 +14,10 @@
 
   &__item {
     flex: 1 0 40%;
-    // border: 2px solid blue;
+
+    @include respond(x-small) {
+      flex: 0 0 100%;
+    }
 
     &::before {
       content: "";
