@@ -31,16 +31,20 @@
        * which is actually the url() of the SVG, the only downside of this approach is that
        * this way you cannot really change the (fill)color of the SVG - Use that for really
        * old browsers support */
-      // background-image: url("../img/chevron-thin-right.svg");
-      // background-size: cover;
+      background-image: url("../img/chevron-thin-right.svg");
+      background-size: cover;
+      
+      @supports (mask-image: url("../img/chevron-thin-right.svg")) and (mask-size: cover) {
+        /* On newer browsers, use a mask, which defines an area that we can look through, this
+        * way, now we can set the SVG area as the mask to let a background-color pass through.
+         * It's similar to clipping. */
+        background-color: var(--color-primary); // color that will pass through the mask
+        // postcss autoprefixer will add prefixes later on
+        mask-image: url("../img/chevron-thin-right.svg"); // usage similar to background-size
+        mask-size: cover; // usage similar to background-size
 
-      /* On newer browsers, use a mask, which defines an area that we can look through, this
-       * way, now we can set the SVG area as the mask to let a background-color pass through.
-       * It's similar to clipping. */
-      background-color: var(--color-primary); // color that will pass through the mask
-      // postcss autoprefixer will add prefixes later on
-      mask-image: url("../img/chevron-thin-right.svg"); // usage similar to background-size
-      mask-size: cover; // usage similar to background-size
+        background-image: none; // reset of background-image
+      }
     }
   }
   
