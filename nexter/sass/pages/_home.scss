@@ -1,0 +1,10 @@
+.features {
+  grid-column: center-start / center-end;
+
+  margin: 15rem 0;
+  display: grid;
+  align-items: start; // to avoid misalignment of smaller cells - stretch breaks things
+  gap: 6rem;
+  // grid-template-columns: repeat(3, 1fr); // before
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+}

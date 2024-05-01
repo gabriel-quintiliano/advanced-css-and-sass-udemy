@@ -1,0 +1,17 @@
+.feature {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center; // to vertically align .heading-4
+  gap: 1.5rem 2.5rem;
+
+  &__icon {
+    width: 4.5rem;
+    height: 4.5rem;
+    fill: $color-primary;
+  }
+
+  &__text {
+    font-size: 1.7rem;
+    grid-column: -2;
+  }
+}
