@@ -5,4 +5,9 @@ body {
    * this way every element within <body> will inherit these style and its also more efficient
    * that doing the same via the `*` selector, which selects each element "individually", here
    * we're using the power of inheritance */
+
+  font-family: $font-primary;
+  color: $color-grey-dark-2;
+  font-weight: 300;
+  line-height: 1.6; /* now line-height will be 1.6x bigger than the pre-defined line-height*/
 }

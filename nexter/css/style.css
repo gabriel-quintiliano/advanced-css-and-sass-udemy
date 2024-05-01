@@ -29,6 +29,66 @@ body {
    * this way every element within <body> will inherit these style and its also more efficient
    * that doing the same via the `*` selector, which selects each element "individually", here
    * we're using the power of inheritance */
+  font-family: "Nunito", sans-serif;
+  color: #6D5D4B;
+  font-weight: 300;
+  line-height: 1.6; /* now line-height will be 1.6x bigger than the pre-defined line-height*/
+}
+
+.container {
+  display: grid;
+  justify-content: center;
+  grid-template-rows: 80vh auto 40vw repeat(3, auto);
+  grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+}
+.container > * {
+  padding: 40px;
+  font-size: 3rem;
+}
+
+.header {
+  background-color: #54483A;
+  grid-column: full-start/col-end 6;
+}
+
+.footer {
+  background-color: #101d2c;
+  grid-column: full-start/full-end;
+}
+
+.sidebar {
+  background-color: #c69963;
+  grid-column: sidebar-start/sidebar-end;
+  grid-row: 1/-1;
+}
+
+.realtors {
+  background-color: #101d2c;
+  grid-column: col-start 7/full-end;
+}
+
+.features {
+  background-color: #aaa;
+  grid-column: center-start/center-end;
+}
+
+.gallery {
+  background-color: #54483A;
+  grid-column: full-start/full-end;
+}
+
+.homes {
+  background-color: #101d2c;
+  grid-column: center-start/center-end;
+}
+
+.story__pictures {
+  background-color: #c69963;
+  grid-column: full-start/col-end 4;
+}
+.story__content {
+  background-color: #f9f7f6;
+  grid-column: col-start 5/full-end;
 }
 
 /*# sourceMappingURL=style.css.map */

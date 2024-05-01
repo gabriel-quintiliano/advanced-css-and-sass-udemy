@@ -1,0 +1,20 @@
+.container {
+  display: grid;
+  justify-content: center;
+
+  // In grid-template-rows or grid-template-columns, the `auto` keyword means
+  // something like adapt according to content.
+  grid-template-rows: 80vh auto 40vw repeat(3, auto); // 6 explicit grid-rows in total
+  // for the last 3 rows, we could actually no set anything, because auto is the default (I think)
+
+  // apparently, the min() and max() functions don't work with fr units, only percentage
+  // and hard coded numbers, use minmax() instead.
+  grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr)
+                         [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
+                         [center-end] minmax(6rem, 1fr) [full-end]; // 11 columns in total
+
+  & > * {
+    padding: 40px;
+    font-size: 3rem;
+  }
+}
