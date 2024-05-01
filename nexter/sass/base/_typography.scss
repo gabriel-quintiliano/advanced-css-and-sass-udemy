@@ -1,0 +1,8 @@
+/* in this file you should put styles related to the general typography of the website */
+
+body {
+  /* everything related to "global" fonts should be done in the body tag selector, because
+   * this way every element within <body> will inherit these style and its also more efficient
+   * that doing the same via the `*` selector, which selects each element "individually", here
+   * we're using the power of inheritance */
+}
