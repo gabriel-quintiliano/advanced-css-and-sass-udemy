@@ -1,0 +1,16 @@
+.btn {
+  color: #fff;
+  text-transform: uppercase;
+  font-family: $font-display; // <button> doesn't inherit font-family by default (just like <input>)
+  font-size: 1.5rem;
+
+  background-color: $color-primary;
+  border: none;
+  cursor: pointer;
+  padding: 1.8rem 3rem;
+  transition: background-color 200ms;
+  
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+}

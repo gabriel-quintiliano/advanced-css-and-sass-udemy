@@ -12,29 +12,52 @@ body {
   line-height: 1.6; /* now line-height will be 1.6x bigger than the pre-defined line-height*/
 }
 
-// every element with a class name that starts with "heading-"
-[class^="heading-"] {
+// In final css, classed within which this %placeholder is used will be grouped together
+%heading-common {
   font-family: $font-display;
   font-weight: 400;
   line-height: 1;
+  text-wrap: pretty;
+}
+
+// These could not be added via a %placeholder, so a mixin is the way to go, instead of grouping
+// selectors together, this mixin will add the these styles in each selector where its used within.
+@mixin heading-variants {
+  &--light {
+    color: $color-grey-light-1;
+  }
+
+  &--dark {
+    color: $color-grey-dark-1;
+  }
 }
 
 .heading-1 {
-
+  @include heading-variants;
+  @extend %heading-common;
+  
 }
 
 .heading-2 {
-
+  @extend %heading-common;
+  @include heading-variants;
+  
+  font-size: 4rem;
+  font-style: italic; // it's only possible because we got the font's italic style from google fonts
 }
 
 .heading-3 {
-
+  @extend %heading-common;
+  @include heading-variants;
+  
+  font-size: 1.6rem;
+  color: $color-primary;
+  text-transform: uppercase;
 }
 
 .heading-4 {
+  @extend %heading-common;
+  @include heading-variants;
+  
   font-size: 1.9rem;
-  color: $color-grey-light-1; // default is just like &--light
-
-  &--light { color: $color-grey-light-1; }
-  &--dark { color: $color-grey-dark-1; }
 }

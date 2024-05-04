@@ -35,21 +35,83 @@ body {
   line-height: 1.6; /* now line-height will be 1.6x bigger than the pre-defined line-height*/
 }
 
-[class^=heading-] {
+.heading-4, .heading-3, .heading-2, .heading-1 {
   font-family: "Josefin Sans", sans-serif;
   font-weight: 400;
   line-height: 1;
+  text-wrap: pretty;
+}
+
+.heading-1--light {
+  color: #f9f7f6;
+}
+.heading-1--dark {
+  color: #54483A;
+}
+
+.heading-2 {
+  font-size: 4rem;
+  font-style: italic;
+}
+.heading-2--light {
+  color: #f9f7f6;
+}
+.heading-2--dark {
+  color: #54483A;
+}
+
+.heading-3 {
+  font-size: 1.6rem;
+  color: #c69963;
+  text-transform: uppercase;
+}
+.heading-3--light {
+  color: #f9f7f6;
+}
+.heading-3--dark {
+  color: #54483A;
 }
 
 .heading-4 {
   font-size: 1.9rem;
-  color: #f9f7f6;
 }
 .heading-4--light {
   color: #f9f7f6;
 }
 .heading-4--dark {
   color: #54483A;
+}
+
+.mb-1 {
+  margin-bottom: 1rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 2rem !important;
+}
+
+.mb-3 {
+  margin-bottom: 3rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 4rem !important;
+}
+
+.mb-5 {
+  margin-bottom: 5rem !important;
+}
+
+.mb-6 {
+  margin-bottom: 6rem !important;
+}
+
+.mb-7 {
+  margin-bottom: 7rem !important;
+}
+
+.mb-8 {
+  margin-bottom: 8rem !important;
 }
 
 .features {
@@ -64,7 +126,7 @@ body {
 .container {
   display: grid;
   justify-content: center;
-  grid-template-rows: 80vh auto 40vw repeat(3, auto);
+  grid-template-rows: 80vh auto min-content repeat(3, auto);
   grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
 }
 
@@ -122,6 +184,36 @@ body {
 .story__content {
   background-color: #f9f7f6;
   grid-column: col-start 5/full-end;
+  display: grid;
+  place-content: center;
+  padding: 6rem 0;
+  --_breakpoint: 500px;
+  --_padding-bellow-bp: 4rem;
+  --_padding-above-bp: 12rem;
+  grid-template-columns: clamp(100% - var(--_padding-above-bp) * 2, 500px, 100% - var(--_padding-bellow-bp) * 2);
+}
+.story__text {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-bottom: 4rem;
+}
+.story__btn {
+  place-self: start;
+}
+
+.btn {
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.5rem;
+  background-color: #c69963;
+  border: none;
+  cursor: pointer;
+  padding: 1.8rem 3rem;
+  transition: background-color 200ms;
+}
+.btn:hover {
+  background-color: #B28451;
 }
 
 /*# sourceMappingURL=style.css.map */

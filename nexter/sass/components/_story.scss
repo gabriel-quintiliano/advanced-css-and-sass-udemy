@@ -9,5 +9,26 @@
   &__content {
     background-color: $color-grey-light-1;  
     grid-column: col-start 5 / full-end;
+
+    display: grid;
+    place-content: center; // shorthand for align-content and justify-content
+    padding: 6rem 0;
+    
+    --_breakpoint: 500px;
+    --_padding-bellow-bp: 4rem;
+    --_padding-above-bp: 12rem;
+    // grid-template-columns: max(min(100% - var(--_padding-bellow-bp) * 2, var(--_breakpoint)), 100% - var(--_padding-above-bp) * 2);
+    // the line above is actually resolved to the line bellow (according to clamp() official docs at mdn), both work the same
+    grid-template-columns: clamp(100% - var(--_padding-above-bp) * 2, 500px, 100% - var(--_padding-bellow-bp) * 2);
+  }
+
+  &__text {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 4rem;
+  }
+
+  &__btn {
+    place-self: start;
   }
 }
