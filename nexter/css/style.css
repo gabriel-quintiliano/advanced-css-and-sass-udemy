@@ -123,6 +123,15 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
 }
 
+.homes {
+  grid-column: center-start/center-end;
+  margin: 15rem 0;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 7rem;
+}
+
 .container {
   display: grid;
   justify-content: center;
@@ -172,9 +181,92 @@ body {
   grid-column: full-start/full-end;
 }
 
-.homes {
+.home {
+  --_general-width: 85%;
+  --_name-width: var(--_general-width);
+  --_name-pb: 1.25rem;
+  --_name-fs: 1.6rem;
+  --_details-wrapper-width: var(--_general-width);
+  background-color: #f9f7f6;
+  max-width: 31rem;
+  transition: transform 250ms;
+  display: grid;
+  gap: 3.25rem;
+  position: relative;
+}
+.home:hover {
+  transform: translateY(-10px) scale(1.04);
+}
+.home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 1.5rem 2rem #000;
+  z-index: -1;
+  opacity: 0.15;
+  transition: opacity 250ms;
+}
+.home:hover::before {
+  opacity: 0.25;
+}
+.home__heading-wrapper {
+  display: grid;
+  grid-template-rows: auto calc((var(--_name-fs) + var(--_name-pb) * 2) / 2);
+}
+.home__img {
+  grid-row: 1;
+  grid-column: 1;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
+  vertical-align: middle;
+  z-index: 1;
+}
+.home__like-icon {
+  grid-row: 1;
+  grid-column: 1;
+  justify-self: end;
+  margin: 1rem;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 2.5rem;
+  fill: #c69963;
+  z-index: 2;
+}
+.home__name {
+  justify-self: center;
+  align-self: end;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1;
+  text-align: center;
+  box-sizing: content-box;
+  padding: var(--_name-pb) 0;
   background-color: #101d2c;
-  grid-column: center-start/center-end;
+  width: var(--_name-width);
+  height: var(--_name-fs);
+  z-index: 2;
+}
+.home__details-wrapper {
+  justify-self: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: var(--_details-wrapper-width);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.home__location, .home__rooms, .home__area, .home__price {
+  display: flex;
+  align-items: center;
+  gap: 0 1rem;
+}
+.home__location svg, .home__rooms svg, .home__area svg, .home__price svg {
+  width: 2rem;
+  height: 2rem;
+  fill: #c69963;
 }
 
 .story__pictures {

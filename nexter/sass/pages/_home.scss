@@ -8,3 +8,21 @@
   // grid-template-columns: repeat(3, 1fr); // before
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
 }
+
+.homes {
+  grid-column: center-start / center-end;
+  margin: 15rem 0;
+
+  display: grid;
+  justify-items: center;
+
+  // this technique used bellow is just great, but I couldn't find an equivalent to clamp()
+  // which can be used with fr unit from grid layout, so the best solution for me was to
+  // set a `max-width` (31rem in this case) to be used as a top limit and to still keep
+  // items centered, used `justify-items: center;` (up here). The result is pretty similar
+  // to `clamp(25rem, 1fr, 31rem)` if it was really possible.
+  // Note: `clamp(25rem, 100%, 31rem)` doesn't work properly because 100% will only be taken
+  // in really small screen sizes (when 31rem might me bigger then 100% of container width).
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 7rem;
+}

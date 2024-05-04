@@ -1,0 +1,145 @@
+.home {
+  --_general-width: 85%; // used for &__name and &__details-wrapper
+
+  --_name-width: var(--_general-width);
+  --_name-pb: 1.25rem; // &__name padding-block
+  --_name-fs: 1.6rem; // &__name font-size
+
+  --_details-wrapper-width: var(--_general-width);
+
+  background-color: $color-grey-light-1;
+  max-width: 31rem;
+  transition: transform 250ms;
+  
+  display: grid;
+  gap: 3.25rem;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-10px) scale(1.04);
+  }
+  
+  // the best way to animate box-shadow is by using pseudo-elements and changing their opacity:
+  &::before {
+    content: '';
+
+    // display: block; // no need - I thinks it's because of the parent's display: grid;
+    // width: 100%; // no need - That's because of inset: 0;
+    // height: 100%; // no need - That's because of inset: 0;
+
+    position: absolute;
+    // inset: 0; makes the absolutely positioned element occupy 100% of the cards width and height
+    inset: 0;
+
+    // background-color: blue;
+    box-shadow: 0 1.5rem 2rem #000;
+    z-index: -1; // so it gets behind everything
+    opacity: .15;
+
+    transition: opacity 250ms;
+  }
+
+  &:hover::before {
+    opacity: .25;
+  }
+
+  &__heading-wrapper {
+    display: grid;
+
+    // this is maybe an over engineered way, though not that much I think, I just still can't
+    // see another way to do that. I want the second row of that grid to have exactly half the
+    // size of the element <h5> that's placed there, so that this <h5> intentionally overflows
+    // 50% to the first row, so the <h5> is half in and out of the <img>.
+    // If I have used position absolute, the <h5> would've been taken out of the flow and its
+    // sizing discarded, and same would've also happened if I've placed the <h5> overlapping
+    // the first-row and/or used translate, in the end I just didn't want to have solved this
+    // problems with a margin-bottom, I'd much rather use a grid gap (from .home) to solve this.
+    grid-template-rows: auto calc((var(--_name-fs) + var(--_name-pb) * 2) / 2);
+  }
+
+  // Remember: this is within &__heading-wrapper
+  &__img {
+    grid-row: 1; // span 1 (implicit)
+    grid-column: 1; // span 1 (implicit)
+    
+    width: 100%;
+    object-fit: cover;
+    border-radius: 4px 4px 0 0;
+    
+    vertical-align: middle; // to get rid of the empty space bellow <img>
+    z-index: 1; // to make sure it's under &__like-icon (z-index: 2;)
+  }
+  
+  // Remember: this is within &__heading-wrapper
+  &__like-icon {
+    grid-row: 1; // span 1 (implicit)
+    grid-column: 1; // span 1 (implicit)
+
+    justify-self: end;
+    margin: 1rem;
+    cursor: pointer;
+
+    height: 2.5rem;
+    width: 2.5rem;
+    fill: $color-primary;
+
+    z-index: 2; // to make sure it's on top of &__img (z-index: 1;)
+  }
+  
+  // Remember: this is within &__heading-wrapper
+  &__name {
+    justify-self: center;
+    align-self: end;
+    
+    font-family: $font-display;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #fff;
+    line-height: 1;
+    text-align: center;
+    
+    box-sizing: content-box; // I want padding to add up to the content size
+    padding: var(--_name-pb) 0;
+    background-color: $color-secondary;
+
+    width: var(--_name-width);
+    height: var(--_name-fs);
+
+    z-index: 2; // to make sure it's on top of &__img (z-index: 1;)
+  }
+
+  &__details-wrapper {
+    justify-self: center;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    
+    width: var(--_details-wrapper-width);
+
+    font-size: 1.5rem; // will be inherited by elements child elements (bellow)
+    line-height: 1; // will be inherited by elements child elements (bellow)
+  }
+
+  // Remember: this is within &__details-wrapper
+  &__location,
+  &__rooms,
+  &__area,
+  &__price {
+
+    display: flex;
+    align-items: center; // vertically align items
+    gap: 0 1rem;
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+      fill: $color-primary;
+    }
+  }
+  
+  // selector not needed
+  // &__btn {
+  //
+  // }
+}
