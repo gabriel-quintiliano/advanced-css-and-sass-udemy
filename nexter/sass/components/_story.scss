@@ -1,9 +1,50 @@
 .story {
   
   &__pictures {
-    background-color: $color-primary;
-
     grid-column: full-start / col-end 4;
+    
+    // this linear-gradient() with the same color repeated with opacity .5 it to serve as a
+    // filter, just to give the url() image some color 
+    background-image: linear-gradient(rgba($color-primary, .5), rgba($color-primary, .5)), url("../img/back.jpg");
+    background-size: cover;
+
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+  }
+
+  &__img {
+    border-radius: 3px;
+
+    &--1 {
+      grid-column: 2 / -2;
+      grid-row: 2 / -2;
+
+      width: 100%;
+      height: 80%;
+      object-fit: cover;
+      box-shadow: 0 2rem 5rem rgba(#000, .1);
+    }
+    
+    &--2 {
+      grid-column: 4 / -1;
+      grid-row: 4 / -2;
+      
+      // the percentages used bellow are referent to the parent container, but actually,
+      // specifically in this case, the grid-area this picture is placed in, so to
+      // create an intentional overflow, we just need to set width and height above 100%
+      width: 115%;
+      height: 100%;
+      z-index: 20; // so the overflow area show up
+      box-shadow: 0 2rem 5rem rgba(#000, .2);
+
+      // it's not really necessary to use object-fit in this case because of the way I
+      // set up this image parent's grid columns and row (with fr units) and the whole
+      // page's grid row to min-content, but just to be safe, I thought it was better
+      // to have it here, just in case...
+      object-fit: cover;
+    }
   }
   
   &__content {
@@ -15,7 +56,7 @@
     padding: 6rem 0;
     
     --_breakpoint: 500px;
-    --_padding-bellow-bp: 4rem;
+    --_padding-bellow-bp: 5rem;
     --_padding-above-bp: 12rem;
     // grid-template-columns: max(min(100% - var(--_padding-bellow-bp) * 2, var(--_breakpoint)), 100% - var(--_padding-above-bp) * 2);
     // the line above is actually resolved to the line bellow (according to clamp() official docs at mdn), both work the same
