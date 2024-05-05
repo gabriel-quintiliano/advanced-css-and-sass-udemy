@@ -114,6 +114,38 @@ body {
   margin-bottom: 8rem !important;
 }
 
+.mt-1 {
+  margin-top: 1rem !important;
+}
+
+.mt-2 {
+  margin-top: 2rem !important;
+}
+
+.mt-3 {
+  margin-top: 3rem !important;
+}
+
+.mt-4 {
+  margin-top: 4rem !important;
+}
+
+.mt-5 {
+  margin-top: 5rem !important;
+}
+
+.mt-6 {
+  margin-top: 6rem !important;
+}
+
+.mt-7 {
+  margin-top: 7rem !important;
+}
+
+.mt-8 {
+  margin-top: 8rem !important;
+}
+
 .features {
   grid-column: center-start/center-end;
   margin: 15rem 0;
@@ -147,6 +179,7 @@ body {
 .footer {
   background-color: #101d2c;
   grid-column: full-start/full-end;
+  padding: 8rem;
 }
 
 .sidebar {
@@ -440,6 +473,40 @@ body {
 }
 .btn:hover {
   background-color: #B28451;
+}
+
+.nav {
+  font-size: 1.6rem;
+}
+.nav__list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.nav__item {
+  flex: 1 0 15rem;
+  max-width: 25rem;
+  text-align: center;
+}
+.nav__link {
+  font-size: 1.4rem;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Josefin Sans", sans-serif;
+  text-transform: uppercase;
+  display: block;
+  padding: 1.5rem;
+}
+
+.copyright {
+  font-size: 1.4rem;
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+  color: #aaa;
 }
 
 /*# sourceMappingURL=style.css.map */

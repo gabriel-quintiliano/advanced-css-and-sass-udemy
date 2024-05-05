@@ -1,0 +1,33 @@
+.nav {
+  font-size: 1.6rem;
+
+  &__list {
+    list-style: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  &__item {
+    // clamp() doesn't work properly used within flex prop. so you can solve that as done
+    // bellow, in this case you end up with something like clamp(15rem, 100%, 25rem);
+    flex: 1 0 15rem;
+    max-width: 25rem;
+
+    text-align: center;
+  }
+
+  &__link {
+    font-size: 1.4rem;
+    color: #fff;
+    text-decoration: none;
+    font-family: $font-display;
+    text-transform: uppercase;
+
+    display: block;
+    padding: 1.5rem;
+  }
+}
