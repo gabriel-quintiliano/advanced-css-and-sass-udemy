@@ -1,6 +1,58 @@
 .sidebar {
   background-color: $color-primary;
 
-  grid-column: sidebar-start / sidebar-end;
-  grid-row: 1 / -1;
+  // grid-column: sidebar-start / sidebar-end;
+  // grid-row: 1 / -1;
+  padding: .5rem;
+
+  // yes, this doesn't seem 100% the way it's supposed to be (dunno for sure)
+  position: fixed;
+  width: 5.25rem; // same width as 1st grid-column (in .container)
+  height: 100vh;
+
+  &__btn {
+    display: block;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    width: 100%;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    background-color: transparent;
+    
+    position: relative;
+  }
+
+  &__icon {
+    display: block;
+    width: 80%;
+    height: 4%;
+    background-color: #fff;
+    border-radius: 50px;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      border-radius: 50px;
+      
+      position: absolute;
+    }
+
+    &::before {
+      top: -600%;
+    }
+
+    &::after {
+      top: 600%;
+    }
+  }
 }
