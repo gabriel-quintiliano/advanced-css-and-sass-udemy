@@ -1,15 +1,11 @@
-.nav {
-  font-size: 1.6rem;
+.footer-nav {
+  list-style: none;
 
-  &__list {
-    list-style: none;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 2rem;
 
   &__item {
     // clamp() doesn't work properly used within flex prop. so you can solve that as done
