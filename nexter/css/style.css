@@ -1,5 +1,9 @@
 /* in thw "7-1 architecture" this main.scss file only serves to import other files 
 @import "folder/file"; --> will import `folder/_file.scss` */
+:root {
+  --sidebar-w: 5.25rem;
+}
+
 /* this file as the name suggests will be the base the styles will be build on top of. In here
  * you will set global resets, styles and normalizations */
 /* basic "global" reset - affects all html elements including before and after pseudo-elements */
@@ -168,7 +172,7 @@ body {
   display: grid;
   justify-content: center;
   grid-template-rows: 80vh auto min-content repeat(3, auto);
-  grid-template-columns: [sidebar-start] 5.25rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+  grid-template-columns: [sidebar-start] var(--sidebar-w) [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
   position: relative;
 }
 
@@ -184,27 +188,40 @@ body {
 }
 
 .sidebar {
+  --_btn-w: 4.5rem;
   background-color: #c69963;
-  padding: 0.5rem;
   position: fixed;
-  width: 5.25rem;
-  height: 100vh;
+  top: 0;
+  left: 0;
+  width: min(100vw, 30rem);
+  height: 120vh;
+  transform: translateX(calc(-100% + var(--sidebar-w)));
+  transition: transform 200ms ease-out;
 }
-.sidebar__btn {
+.sidebar--opened {
+  transform: translateX(0);
+}
+.sidebar__toggle-btn {
   display: block;
   text-align: center;
   border: none;
   border-radius: 3px;
-  width: 100%;
+  width: var(--_btn-w);
   aspect-ratio: 1;
-  margin: 0 auto;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: calc((var(--sidebar-w) - var(--_btn-w)) / 2);
   background-color: transparent;
   position: relative;
+  transition: transform 100ms;
+}
+.sidebar--opened > .sidebar__toggle-btn {
+  transform: translate(-2rem, 2rem);
 }
 .sidebar__icon {
   display: block;
-  width: 80%;
-  height: 4%;
+  width: 3.5rem;
+  height: 0.3rem;
   background-color: #fff;
   border-radius: 50px;
   position: absolute;
@@ -220,12 +237,50 @@ body {
   background-color: #fff;
   border-radius: 50px;
   position: absolute;
+  transition: transform 300ms;
 }
 .sidebar__icon::before {
-  top: -600%;
+  transform: translateY(-370%);
 }
 .sidebar__icon::after {
-  top: 600%;
+  transform: translateY(370%);
+}
+.sidebar--opened .sidebar__icon {
+  background-color: transparent;
+}
+.sidebar--opened .sidebar__icon::before, .sidebar--opened .sidebar__icon::after {
+  width: 90%;
+  height: 60%;
+}
+.sidebar--opened .sidebar__icon::before {
+  transform: rotateZ(-45deg);
+}
+.sidebar--opened .sidebar__icon::after {
+  transform: rotateZ(45deg);
+}
+.sidebar__nav {
+  margin-top: 10vh;
+  list-style: none;
+}
+.sidebar__nav-item {
+  display: none;
+  padding-left: 2rem;
+  transition: background-color 200ms;
+}
+.sidebar__nav-item:hover {
+  background-color: #a1733b;
+}
+.sidebar--opened .sidebar__nav-item {
+  display: list-item;
+}
+.sidebar__nav-link {
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Josefin Sans", sans-serif;
+  text-transform: uppercase;
+  display: block;
+  padding: 1.5rem;
 }
 
 .realtors {

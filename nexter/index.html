@@ -10,16 +10,36 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
 
+    <script src="sidebar.js" defer></script>
+
     <title>nexter &mdash; your home, your freedom</title>
   </head>
 
   <body class="container">
     <div class="sidebar">
-      <button type="button" class="sidebar__btn">
+      <button type="button" class="sidebar__toggle-btn">
         <span class="sidebar__icon"></span>
       </button>
 
-      <nav class="nav"></nav>
+      <nav>
+        <ul class="sidebar__nav">
+          <li class="sidebar__nav-item">
+            <a href="#" class="sidebar__nav-link">Home</a>
+          </li>
+          <li class="sidebar__nav-item">
+            <a href="#" class="sidebar__nav-link">Properties</a>
+          </li>
+          <li class="sidebar__nav-item">
+            <a href="#" class="sidebar__nav-link">Realtors</a>
+          </li>
+          <li class="sidebar__nav-item">
+            <a href="#" class="sidebar__nav-link">Home planner</a>
+          </li>
+          <li class="sidebar__nav-item">
+            <a href="#" class="sidebar__nav-link">About us</a>
+          </li>
+        </ul>
+      </nav>
     </div>
 
     <header class="header">

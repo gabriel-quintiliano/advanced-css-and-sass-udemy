@@ -9,7 +9,7 @@
 
   // apparently, the min() and max() functions don't work with fr units, only percentage
   // and hard coded numbers, use minmax() instead.
-  grid-template-columns: [sidebar-start] 5.25rem [sidebar-end full-start] minmax(6rem, 1fr)
+  grid-template-columns: [sidebar-start] var(--sidebar-w) [sidebar-end full-start] minmax(6rem, 1fr)
                          [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
                          [center-end] minmax(6rem, 1fr) [full-end]; // 11 columns in total
 
