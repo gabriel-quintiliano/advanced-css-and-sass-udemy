@@ -1,5 +1,58 @@
 .header {
   background-color: $color-grey-dark-1;
-
   grid-column: full-start / col-end 6;
+
+  background-image: linear-gradient(rgba($color-secondary, .93), rgba($color-secondary, .93)), url("../img/hero.jpeg");
+  background-position: center;
+
+  padding: 8rem;
+  padding-top: 4rem;
+
+  display: grid;
+  grid-template-rows: 1fr min-content minmax(6rem, min-content) 1fr min-content min-content;
+  gap: 1.5rem;
+  place-items: start;
+
+  &__logo {
+    justify-self: center;
+    height: 3rem;
+  }
+
+  &__seen-on-text {
+    align-self: end;
+    justify-self: stretch;
+
+    color: $color-grey-light-2;
+    font-size: 1.6rem;
+
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+
+    &::before,
+    &::after {
+      content: "";
+      flex: 1; // so these stretch throughout the their cell
+      height: 1px;
+      background-color: currentColor;
+    }
+  }
+
+  &__seen-on-logos {
+    justify-self: stretch;
+
+    display: grid;
+    grid-auto-columns: 1fr; // this way it doesn't matter how many logos there are
+    grid-auto-rows: 2.5rem; // this will set the height of the images within
+    grid-auto-flow: column; // so new columns are create for each new logo
+    justify-items: center;
+    gap: 3rem;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      filter: brightness(70%);
+    }
+  }
 }
