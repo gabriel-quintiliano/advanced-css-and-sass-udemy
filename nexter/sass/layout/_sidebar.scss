@@ -1,5 +1,36 @@
 .sidebar {
   --_btn-w: 4.5rem; // &__btn width
+  // goes back 100% but discounts the "closed sidebar width" so it's always on screen
+  // +1px is to be safe that there will be no space between content and the side bar in Chrome
+  --_sidebar-transform: translateX(calc(-100% + var(--closed-sidebar-w) + 1px));
+  --_opened-sidebar-w: min(100%, 30rem);
+  --_opened-sidebar-h: 120vh;
+  --_btn-grid-row: 1;
+  --_btn-grid-col: 2;
+  --_nav-grid-col: 1 / span 2;
+  --_nav-m-top: 10vh;
+  --_nav-item-display: none;
+  --_grid-2nd-col: var(--closed-sidebar-w);
+  --_grid-2nd-row: 1fr;
+  
+  @include respond(largest) {
+    --_btn-w: 4rem; // &__btn width
+    // +1px is to be safe that there will be no space between content and the side bar in Chrome
+    --_sidebar-transform: translateY(calc(-100% + var(--closed-sidebar-h) + 1px));
+    --_opened-sidebar-w: 100%;
+    --_opened-sidebar-h: max-content;
+    --_btn-grid-row: 2;
+    --_btn-grid-col: 2;
+    --_nav-grid-col: 1 / span 2;
+    --_nav-m-top: 6vh;
+    --_nav-item-display: grid;
+    --_grid-2nd-col: 6.25rem;
+    --_grid-2nd-row: var(--closed-sidebar-h);
+  }
+
+  display: grid;
+  grid-template-columns: 1fr var(--_grid-2nd-col);
+  grid-template-rows: max-content var(--_grid-2nd-row);
 
   background-color: $color-primary;
 
@@ -7,25 +38,29 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: min(100vw, 30rem); // same width as 1st grid-column (in .container)
+  z-index: 9999; // should always be on top on everything
+
+  width: var(--_opened-sidebar-w); // same width as 1st grid-column (in .container)
 
   // After so much trying, I found that 120vh for this fixed sidebar is kind of the minimum
   // it has to have to really occupy 100% of the viewport height at all times in mobile,
   // specially when there are no ui elements present, and, at the same, it works the same
   // in desktop and cause no kind extra scrolling.
-  height: 120vh;
+  height: var(--_opened-sidebar-h);
 
   // to hide the contents from the sidebar, initially it's closed
-  transform: translateX(calc(-100% + var(--sidebar-w)));
+  transform: var(--_sidebar-transform);
   transition: transform 200ms ease-out;
-
-  // translate: 0 0 0;
   
   &--opened {
     transform: translateX(0);
   }
 
   &__toggle-btn {
+    grid-row: var(--_btn-grid-row);
+    grid-column: var(--_btn-grid-col);
+
+    place-self: center;
     display: block;
     text-align: center;
     border: none;
@@ -33,33 +68,19 @@
     width: var(--_btn-w);
     aspect-ratio: 1;
 
-    margin-top: 1rem;
-    margin-left: auto;
-    margin-right: calc((var(--sidebar-w) - var(--_btn-w)) / 2);
     background-color: transparent;
-    
-    position: relative; // to serve as anchor for &__icon
-
-    transition: transform 100ms;
-  }
-
-  &--opened > &__toggle-btn {
-    transform: translate(-2rem, 2rem);
   }
 
   &__icon {
     display: block;
-    width: 3.5rem;
-    height: .3rem;
+    width: calc(var(--_btn-w) - 1rem);
+    height: 6.666666%;
+    margin: 0 auto; // horizontally center it within &__toggle-btn
+
     background-color: #fff;
     border-radius: 50px;
     
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-
-    // transition-property: background-color;
+    position: relative; // to serve as anchor to the pseudo-elements bellow
 
     &::before,
     &::after {
@@ -101,14 +122,19 @@
     }
   }
 
+  // this selector was simply used for positioning purposes
+  nav {
+    grid-column: var(--_nav-grid-col);
+  }
+
   &__nav {
-    margin-top: 10vh;
+    margin-top: var(--_nav-m-top);
     list-style: none;
   }
 
   &__nav-item {
-    display: none;
-    padding-left: 2rem;
+    display: var(--_nav-item-display);
+    justify-items: center;
     transition: background-color 200ms;
 
     &:hover {
@@ -117,7 +143,7 @@
   }
 
   &--opened &__nav-item {
-    display: list-item;
+    display: grid;
   }
 
   &__nav-link {

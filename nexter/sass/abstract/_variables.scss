@@ -15,5 +15,11 @@ $font-primary: 'Nunito', sans-serif;
 $font-display: 'Josefin Sans', sans-serif;
 
 :root {
-  --sidebar-w: 5.25rem; // w is for width
+  --closed-sidebar-w: 5.25rem; // w is for width
+  --closed-sidebar-h: 0rem; // h is for height
+  
+  @include respond(largest) {
+    --closed-sidebar-w: 0rem;
+    --closed-sidebar-h: 4rem;
+  }
 }
