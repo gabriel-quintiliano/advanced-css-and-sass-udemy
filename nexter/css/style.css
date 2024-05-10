@@ -1,5 +1,11 @@
 /* in thw "7-1 architecture" this main.scss file only serves to import other files 
 @import "folder/file"; --> will import `folder/_file.scss` */
+/* $breakpoint argument choices:
+ * - largest
+ *
+ * ORDER: Base + typography > general layout > grid > page-layout > components
+ *
+ * 1 em = 16px by default */
 :root {
   --sidebar-w: 5.25rem;
 }
@@ -21,6 +27,11 @@
 html {
   font-size: 62.5%;
   /* rem is not supported bellow IE 9 */
+}
+@media only screen and (max-width: 62.5em) {
+  html {
+    font-size: 56.25%;
+  }
 }
 
 body {
@@ -182,16 +193,26 @@ body {
 }
 
 .header {
+  --_p-inline: 8rem;
   background-color: #54483A;
   grid-column: full-start/col-end 6;
   background-image: linear-gradient(rgba(16, 29, 44, 0.93), rgba(16, 29, 44, 0.93)), url("../img/hero.jpeg");
   background-position: center;
-  padding: 8rem;
+  padding: var(--_p-inline);
+  padding-bottom: 8rem;
   padding-top: 4rem;
   display: grid;
   grid-template-rows: 1fr min-content minmax(6rem, min-content) 1fr min-content min-content;
   gap: 1.5rem;
   place-items: start;
+}
+@media only screen and (max-width: 62.5em) {
+  .header {
+    --_p-inline: 4rem;
+  }
+  .header__heading.heading-1 {
+    font-size: 4rem;
+  }
 }
 .header__logo {
   justify-self: center;

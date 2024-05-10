@@ -1,11 +1,23 @@
 .header {
+  --_p-inline: 8rem;
+
+  @include respond(largest) {
+    --_p-inline: 4rem;
+
+    &__heading.heading-1 {
+      font-size: 4rem;
+    }
+  }
+
+
   background-color: $color-grey-dark-1;
   grid-column: full-start / col-end 6;
 
   background-image: linear-gradient(rgba($color-secondary, .93), rgba($color-secondary, .93)), url("../img/hero.jpeg");
   background-position: center;
 
-  padding: 8rem;
+  padding: var(--_p-inline);
+  padding-bottom: 8rem;
   padding-top: 4rem;
 
   display: grid;

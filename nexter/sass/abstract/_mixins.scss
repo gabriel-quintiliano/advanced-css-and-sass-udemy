@@ -1,0 +1,14 @@
+// media query manager
+/* $breakpoint argument choices:
+ * - largest
+ *
+ * ORDER: Base + typography > general layout > grid > page-layout > components
+ *
+ * 1 em = 16px by default */
+
+@mixin respond($breakpoint) {
+  // in this case, the @if directive works just like in any programming language
+  @if $breakpoint == largest {
+    @media only screen and (max-width: 62.5em) { @content } // 1000px
+  }
+}

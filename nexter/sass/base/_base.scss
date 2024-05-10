@@ -17,6 +17,10 @@
 html {
   font-size: 62.5%; // 62.5% * 16px (which is generally browser font-size) = 10 px, thus 1rem = 10px
   /* rem is not supported bellow IE 9 */
+  
+  @include respond(largest) {
+    font-size: 56.25%; // 56.25% * 16px = 9 px
+  }
 }
 
 body {
