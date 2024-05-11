@@ -1,6 +1,8 @@
 /* in thw "7-1 architecture" this main.scss file only serves to import other files 
 @import "folder/file"; --> will import `folder/_file.scss` */
 /* $breakpoint argument choices:
+ * - small
+ * - medium
  * - largest
  *
  * ORDER: Base + typography > general layout > grid > page-layout > components
@@ -194,7 +196,7 @@ body {
 .container {
   display: grid;
   justify-content: center;
-  grid-template-rows: 80vh auto min-content repeat(3, auto);
+  grid-template-rows: minmax(80vh, max-content) auto min-content repeat(3, auto);
   grid-template-columns: [sidebar-start] var(--closed-sidebar-w) [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
   /* It's always a good idea to name you grid columns and row because if you intend to add or 
    * remove columns/rows, you can do so without having to go back to each element within that
@@ -205,14 +207,13 @@ body {
 }
 
 .header {
-  --_p-inline: 8rem;
+  --_header-grid-col: full-start / col-end 6;
+  --padding: 4rem 8rem 8rem;
   background-color: #54483A;
-  grid-column: full-start/col-end 6;
+  grid-column: var(--_header-grid-col);
   background-image: linear-gradient(rgba(16, 29, 44, 0.93), rgba(16, 29, 44, 0.93)), url("../img/hero.jpeg");
   background-position: center;
-  padding: var(--_p-inline);
-  padding-bottom: 8rem;
-  padding-top: 4rem;
+  padding: var(--padding);
   display: grid;
   grid-template-rows: 1fr min-content minmax(6rem, min-content) 1fr min-content min-content;
   gap: 1.5rem;
@@ -220,10 +221,20 @@ body {
 }
 @media only screen and (max-width: 62.5em) {
   .header {
-    --_p-inline: 4rem;
+    --padding: 4rem 4rem 8rem;
   }
   .header__heading.heading-1 {
     font-size: 4rem;
+  }
+}
+@media only screen and (max-width: 50em) {
+  .header {
+    --_header-grid-col: full-start / full-end;
+  }
+}
+@media only screen and (max-height: 23.75em) {
+  .header {
+    --padding: 2rem 4rem;
   }
 }
 .header__logo {
@@ -248,11 +259,15 @@ body {
 .header__seen-on-logos {
   justify-self: stretch;
   display: grid;
-  grid-auto-columns: 1fr;
+  grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 2.5rem;
-  grid-auto-flow: column;
   justify-items: center;
   gap: 3rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .header__seen-on-logos {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .header__seen-on-logos img {
   height: 100%;
@@ -389,24 +404,50 @@ body {
 }
 
 .realtors {
+  --_realtors-padding: 8rem 2rem;
+  --_realtors-grid-col: col-start 7 / full-end;
+  --_realtors-justify-content: center;
+  --_list-grid-auto-flow: initial;
+  --_list-gap: 5vh;
+  --_details-gap: 5vh;
   background-color: #101d2c;
-  grid-column: col-start 7/full-end;
-  padding: 8rem 2rem;
+  grid-column: var(--_realtors-grid-col);
+  padding: var(--_realtors-padding);
   display: grid;
   grid-auto-rows: max-content;
   gap: 2rem;
-  place-content: center;
+  justify-content: var(--_realtors-justify-content);
+  align-content: center;
   justify-items: center;
 }
+@media only screen and (max-width: 50em) {
+  .realtors {
+    --_realtors-padding: 6rem 3.5rem;
+    --_realtors-grid-col: full-start / full-end;
+    --_realtors-justify-content: stretch;
+    --_list-grid-auto-flow: column;
+    --_list-gap: 0;
+    --_details-gap: 1rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .realtors {
+    --_realtors-justify-content: center;
+    --_list-grid-auto-flow: initial;
+    --_list-gap: 5vh;
+    --_details-gap: 5vh;
+  }
+}
 .realtors__list {
+  justify-self: stretch;
   display: grid;
-  gap: 5vh;
-  align-content: space-between;
-  justify-content: start;
+  grid-auto-flow: var(--_list-grid-auto-flow);
+  gap: var(--_list-gap);
+  justify-content: space-between;
 }
 .realtors__details {
   display: flex;
-  gap: 2rem;
+  gap: var(--_details-gap);
   align-items: center;
   justify-content: start;
 }

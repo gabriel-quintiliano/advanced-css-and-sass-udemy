@@ -4,7 +4,10 @@
 
   // In grid-template-rows or grid-template-columns, the `auto` keyword means
   // something like adapt according to content.
-  grid-template-rows: 80vh auto min-content repeat(3, auto); // 6 explicit grid-rows in total
+  // TIP: min() and max() apparently don't recognize keyword values related sizes defined
+  // by the grid algorithm, so if you need to interact with those, use minmax() which
+  // behaves the same as max() and always uses/returns the biggest computed value.
+  grid-template-rows: minmax(80vh, max-content) auto min-content repeat(3, auto); // 6 explicit grid-rows in total
   // for the last 3 rows, we could actually no set anything, because auto is the default (I think)
 
   // apparently, the min() and max() functions don't work with fr units, only percentage

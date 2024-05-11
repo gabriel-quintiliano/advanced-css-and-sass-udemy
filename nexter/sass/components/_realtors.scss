@@ -1,25 +1,51 @@
 .realtors {
-  background-color: $color-secondary;
-  grid-column: col-start 7 / full-end;
+  --_realtors-padding: 8rem 2rem;
+  --_realtors-grid-col: col-start 7 / full-end;
+  --_realtors-justify-content: center;
+  --_list-grid-auto-flow: initial;
+  --_list-gap: 5vh;
+  --_details-gap: 5vh;
+  
+  @include respond(medium) {
+    --_realtors-padding: 6rem 3.5rem;
+    --_realtors-grid-col: full-start / full-end;
+    --_realtors-justify-content: stretch;
+    --_list-grid-auto-flow: column;
+    --_list-gap: 0;
+    --_details-gap: 1rem;
+  }
 
-  padding: 8rem 2rem;
+  @include respond(small) {
+    --_realtors-justify-content: center;
+    --_list-grid-auto-flow: initial;
+    --_list-gap: 5vh;
+    --_details-gap: 5vh;
+  }
+
+  background-color: $color-secondary;
+  grid-column: var(--_realtors-grid-col);
+
+  padding: var(--_realtors-padding);
 
   display: grid;
   grid-auto-rows: max-content;
   gap: 2rem;
-  place-content: center;
-  justify-items: center;
-
+  justify-content: var(--_realtors-justify-content);
+  align-content: center;
+  justify-items: center; // mainly used to center .heading-3 text
+  
   &__list {
+    justify-self: stretch; // acts on smaller layouts
+
     display: grid;
-    gap: 5vh;
-    align-content: space-between;
-    justify-content: start;
+    grid-auto-flow: var(--_list-grid-auto-flow);
+    gap: var(--_list-gap);
+    justify-content: space-between; // acts on smaller layouts
   }
 
   &__details {
     display: flex;
-    gap: 2rem;
+    gap: var(--_details-gap);
     align-items: center;
     justify-content: start;
   }
