@@ -1,3 +1,58 @@
+:root {
+  // COLOR VARIABLES
+  --color-primary-lm: #c69963;
+  --color-primary-dm: #2f2188;
+  --color-primary-dark-lm: #B28451;
+  --color-primary-dark-dm: #050066;
+  
+  --color-secondary-lm: #101d2c;
+  --color-secondary-dm: #101d2c;
+  
+  --color-grey-light-1-lm: #f9f7f6;
+  --color-grey-light-1-dm: #5368b7;
+  --color-grey-light-2-lm: #aaa;
+  --color-grey-light-2-dm: #c26920;
+  
+  --color-grey-dark-1-lm: #54483A;
+  --color-grey-dark-1-dm: #b7f6b6;
+  --color-grey-dark-2-lm: #6D5D4B;
+  --color-grey-dark-2-dm: #daec13;
+
+  // COLOR VARIABLES TO USE IN STYLES
+  --color-primary: var(--color-primary-lm);
+  --color-primary-dark: var(--color-primary-dark-lm);
+  
+  --color-secondary: var(--color-secondary-lm);
+  
+  --color-grey-light-1: var(--color-grey-light-1-lm);
+  --color-grey-light-2: var(--color-grey-light-2-lm);
+  
+  --color-grey-dark-1: var(--color-grey-dark-1-lm);
+  --color-grey-dark-2: var(--color-grey-dark-2-lm);
+
+  // SIZING
+  --closed-sidebar-w: 5.25rem; // w is for width
+  --closed-sidebar-h: 0rem; // h is for height
+  
+  @include respond(largest) {
+    --closed-sidebar-w: 0rem;
+    --closed-sidebar-h: 4rem;
+  }
+}
+
+body[dark-mode] {
+  --color-primary: var(--color-primary-dm);
+  --color-primary-dark: var(--color-primary-dark-dm);
+  
+  --color-secondary: var(--color-secondary-dm);
+  
+  --color-grey-light-1: var(--color-grey-light-1-dm);
+  --color-grey-light-2: var(--color-grey-light-2-dm);
+  
+  --color-grey-dark-1: var(--color-grey-dark-1-dm);
+  --color-grey-dark-2: var(--color-grey-dark-2-dm);
+}
+
 // COLOR VARIABLES
 $color-primary: #c69963;
 $color-primary-dark: #B28451;
@@ -13,13 +68,3 @@ $color-grey-dark-2: #6D5D4B;
 // FONT VARIABLES
 $font-primary: 'Nunito', sans-serif;
 $font-display: 'Josefin Sans', sans-serif;
-
-:root {
-  --closed-sidebar-w: 5.25rem; // w is for width
-  --closed-sidebar-h: 0rem; // h is for height
-  
-  @include respond(largest) {
-    --closed-sidebar-w: 0rem;
-    --closed-sidebar-h: 4rem;
-  }
-}

@@ -32,7 +32,7 @@
   grid-template-columns: 1fr var(--_grid-2nd-col);
   grid-template-rows: max-content var(--_grid-2nd-row);
 
-  background-color: $color-primary;
+  background-color: var(--color-primary);
 
   // yes, this doesn't seem 100% the way it's supposed to be (dunno for sure)
   position: fixed;
@@ -138,7 +138,8 @@
     transition: background-color 200ms;
 
     &:hover {
-      background-color: darken($color-primary, 15%);
+      background-color: var(--color-primary);
+      filter: brightness(.8);
     }
   }
 
