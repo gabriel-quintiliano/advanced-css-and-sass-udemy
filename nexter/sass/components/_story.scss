@@ -1,6 +1,7 @@
+// there is no .story elem in the html structure, its used here just to gather
+// derivative class selectors
 .story {
-  
-  &__pictures {
+  &__pictures {    
     grid-column: full-start / col-end 4;
     
     // this linear-gradient() with the same color repeated with opacity .5 it to serve as a
@@ -12,6 +13,14 @@
     align-items: center;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(6, 1fr);
+    
+    @include respond(medium) {
+      grid-column: full-start / full-end;
+      grid-row: 5;
+    
+      grid-template-columns: 10vw repeat(4, 1fr) 10vw;
+      grid-template-rows: 5vh repeat(4, min(15vh, 8rem)) 5vh;
+    }
   }
 
   &__img {
@@ -25,6 +34,12 @@
       height: 80%;
       object-fit: cover;
       box-shadow: 0 2rem 5rem rgba(#000, .1);
+      
+      @include respond(medium) {
+        align-self: start;
+        width: 80%;
+        height: 92%;
+      }
     }
     
     &--2 {
@@ -38,18 +53,40 @@
       height: 100%;
       z-index: 20; // so the overflow area show up
       box-shadow: 0 2rem 5rem rgba(#000, .2);
-
+      
       // it's not really necessary to use object-fit in this case because of the way I
       // set up this image parent's grid columns and row (with fr units) and the whole
       // page's grid row to min-content, but just to be safe, I thought it was better
       // to have it here, just in case...
       object-fit: cover;
+      
+      @include respond(medium) {
+        align-self: start;
+        width: 90%;
+        height: 135%;
+        transform: translateY(-4rem);
+      }
+      
+      @include respond(small) {
+        grid-column: 3 / -1;
+        justify-self: end;
+        width: 80%;
+        transform: translateY(-4rem) translateX(-3rem);
+      }
     }
   }
   
   &__content {
-    background-color: $color-grey-light-1;  
-    grid-column: col-start 5 / full-end;
+    --_grid-col: col-start 5 / full-end;
+
+    @include respond(medium) {
+      --_grid-col: full-start / full-end;
+      
+      grid-row: 4;
+    }
+    
+    grid-column: var(--_grid-col);
+    background-color: $color-grey-light-1;
 
     display: grid;
     place-content: center; // shorthand for align-content and justify-content
