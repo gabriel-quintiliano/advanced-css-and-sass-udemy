@@ -3,4 +3,8 @@
   grid-column: full-start / full-end;
 
   padding: 8rem;
+  
+  @include respond(small) {
+    padding: 4rem;
+  }
 }
